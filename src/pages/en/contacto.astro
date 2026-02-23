@@ -1,7 +1,7 @@
 ---
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import Icon from "../../components/Icon.astro";
+import HubSpotFormContacto from "../../components/HubSpotFormContacto.astro";
 const lang = 'en';
 const currentPath = Astro.url.pathname;
 import "../../styles/global.css";
@@ -72,97 +72,7 @@ import "../../styles/global.css";
                 Share your details and one of our experts will get in touch to support you on your AWS digital transformation journey.
               </p>
 
-              <div id="contact-form-wrapper">
-                <form class="contact-form" id="contact-form">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Your name"
-                      class="form-input"
-                      required
-                      autocomplete="name"
-                    />
-                  </div>
-
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      id="organization"
-                      name="organization"
-                      placeholder="Organization"
-                      class="form-input"
-                      required
-                      autocomplete="organization"
-                    />
-                  </div>
-
-                  <div class="form-group">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="Corporate email"
-                      class="form-input"
-                      required
-                      autocomplete="email"
-                    />
-                  </div>
-
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      id="country"
-                      name="country"
-                      placeholder="Country"
-                      class="form-input"
-                      required
-                      autocomplete="country"
-                    />
-                  </div>
-
-                  <div class="form-group">
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      placeholder="Phone"
-                      class="form-input"
-                      required
-                      autocomplete="tel"
-                    />
-                  </div>
-
-                  <div class="form-group form-group-full" id="interest-group">
-                    <label class="form-label">What area are you interested in?</label>
-                    <div class="interest-buttons">
-                      <button type="button" class="interest-btn" data-value="migracion">Migration</button>
-                      <button type="button" class="interest-btn" data-value="data">DATA</button>
-                      <button type="button" class="interest-btn" data-value="genai">GenAI</button>
-                      <button type="button" class="interest-btn" data-value="seguridad">Security</button>
-                      <button type="button" class="interest-btn" data-value="personalizada">Custom solution</button>
-                    </div>
-                  </div>
-
-                  <div class="form-group form-group-full form-group-terms">
-                    <label class="terms-label">
-                      <input type="checkbox" id="terms" name="terms" class="form-checkbox" />
-                      <span class="terms-text">I accept the terms and conditions</span>
-                    </label>
-                  </div>
-
-                  <div class="form-group form-group-full">
-                    <button type="submit" class="btn btn-submit" id="submit-btn" disabled>
-                      Submit
-                      <Icon name="north_east" size={20} />
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <div id="submit-success" class="submit-success" aria-live="polite" hidden>
-                Form submitted
-              </div>
+              <HubSpotFormContacto lang={lang} />
             </div>
           </div>
         </div>
@@ -207,84 +117,6 @@ import "../../styles/global.css";
           carousel.scrollLeft = scrollLeft - walk;
         });
       });
-
-      // Contact form validation (same behavior as ContactSection)
-      (function () {
-        const form = document.getElementById('contact-form');
-        const wrapper = document.getElementById('contact-form-wrapper');
-        const successEl = document.getElementById('submit-success');
-        if (!form || !wrapper || !successEl) return;
-
-        const inputIds = ['name', 'organization', 'email', 'country', 'phone'];
-        const inputs = inputIds
-          .map((id) => document.getElementById(id))
-          .filter((el): el is HTMLInputElement => el != null);
-        const interestButtons = document.querySelectorAll('.interest-btn');
-        const termsCheckbox = document.getElementById('terms') as HTMLInputElement | null;
-        const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
-
-        const touchedInputs = new Set<HTMLInputElement>();
-
-        function getValues() {
-          const values: Record<string, string> = {};
-          inputs.forEach((el) => {
-            const id = el.id;
-            values[id] = (el as HTMLInputElement).value?.trim() ?? '';
-          });
-          const hasInterest = Array.from(interestButtons).some((b) => b.classList.contains('selected'));
-          const termsAccepted = termsCheckbox ? termsCheckbox.checked : false;
-          return { values, hasInterest, termsAccepted };
-        }
-
-        function validate() {
-          const { values, hasInterest, termsAccepted } = getValues();
-          const allFilled = inputIds.every((id) => (values[id] ?? '').length > 0);
-          return Boolean(allFilled && hasInterest && termsAccepted);
-        }
-
-        function updateUI() {
-          const { values, hasInterest, termsAccepted } = getValues();
-          const valid = validate();
-
-          inputs.forEach((el) => {
-            const id = el.id;
-            const filled = (values[id] ?? '').length > 0;
-            const isTextLike = /^(text|email|tel)$/i.test(el.type || 'text');
-            const showError = !filled && (!isTextLike || touchedInputs.has(el));
-            el.classList.toggle('error', showError);
-          });
-
-          if (submitBtn) submitBtn.disabled = !valid;
-        }
-
-        interestButtons.forEach((button) => {
-          button.addEventListener('click', () => {
-            button.classList.toggle('selected');
-            updateUI();
-          });
-        });
-
-        inputs.forEach((el) => {
-          el.addEventListener('input', updateUI);
-          el.addEventListener('change', updateUI);
-          el.addEventListener('blur', () => {
-            touchedInputs.add(el);
-            updateUI();
-          });
-        });
-        termsCheckbox?.addEventListener('change', updateUI);
-
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          updateUI();
-          if (!validate()) return;
-          wrapper.setAttribute('data-hidden', 'true');
-          successEl.removeAttribute('hidden');
-          successEl.setAttribute('data-visible', 'true');
-        });
-
-        updateUI();
-      })();
     </script>
   </body>
 </html>
