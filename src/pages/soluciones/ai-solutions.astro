@@ -1,5 +1,6 @@
 ---
 import Header from '../../components/Header.astro';
+import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
 import Footer from '../../components/Footer.astro';
 import { getT, localePrefix } from '../../i18n';
 import type { Locale } from '../../i18n';
@@ -16,10 +17,12 @@ import '../../styles/global.css';
 <!DOCTYPE html>
 <html lang={lang}>
 <head>
+  <GoogleAnalytics />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{t('generativeAi.title')}</title>
-  <link rel="icon" type="image/jpeg" href="/icons/escala-favicon.jpg">
+  <meta name="description" content={t('generativeAi.metaDescription')} />
+  <link rel="icon" type="image/png" href="/logos/escala-webclip.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">

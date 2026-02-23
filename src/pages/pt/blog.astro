@@ -1,5 +1,6 @@
 ---
 import Header from "../../components/Header.astro";
+import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
 import Footer from "../../components/Footer.astro";
 const lang = 'pt';
 const currentPath = Astro.url.pathname;
@@ -9,10 +10,11 @@ import "../../styles/global.css";
 <!doctype html>
 <html lang="pt">
   <head>
+    <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog - Escala 24x7</title>
-    <link rel="icon" type="image/jpeg" href="/icons/escala-favicon.jpg" />
+    <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

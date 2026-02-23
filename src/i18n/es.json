@@ -174,7 +174,8 @@
     "submittedMessage": "Submitted Form"
   },
   "nosotros": {
-    "title": "Nosotros - Escala 24x7",
+    "title": "Servicios Cloud Gestionados en AWS",
+    "metaDescription": "Como AWS Premier Partner, gestionamos, modernizamos y protegemos tu nube 24x7. Seguridad, resiliencia y resultados reales para tu operación.",
     "heroTitle": "Nuestra esencia",
     "heroSubtitle": "No solo gestionamos la nube. ",
     "heroSubtitleBold": "La convertimos en el motor de tu negocio.",
@@ -294,7 +295,8 @@
     "timelineLogoAlt": "AWS"
   },
   "cloudMigration": {
-    "title": "Cloud Migration - Escala 24x7",
+    "title": "Cloud Migration sin riesgos para tu operación",
+    "metaDescription": "Cloud Migration segura y controlada para mover tus cargas sin interrumpir la operación ni comprometer la seguridad con Escala 24x7.",
     "heroTitle": "Cloud Migration",
     "heroDescription": "En Escala 24x7 modernizamos y migramos plataformas críticas con control operativo, financiero y de riesgo.",
     "heroCta": "Descarga el portafolio completo aquí",
@@ -371,7 +373,8 @@
     "ctaButton": "Contacta un experto"
   },
   "partner": {
-    "title": "Partner - Escala 24x7",
+    "title": "Escala 24x7: AWS Premier Partner en LATAM",
+    "metaDescription": "Certificados en AWS para migración, modernización y operación continua. Gestiona cargas críticas con control, seguridad y cumplimiento.",
     "heroTitle": "Somos AWS Premier Partner",
     "heroSubtitle": "Nuestras alianzas estratégicas se basan en la innovación para respaldar proyectos de organizaciones de todo tipo, mejorando su experiencia con AWS.",
     "stefaniniAlt": "Grupo Stefanini",
@@ -487,7 +490,8 @@
     "card14Li3": "Escalabilidad, optimización de costos y seguridad integrada"
   },
   "dataManagement": {
-    "title": "Data Management - Escala 24x7",
+    "title": "Estrategias de Data Management robustas",
+    "metaDescription": "Data Management para gobernar, proteger, asegurar datos confiables, alineados al negocio y al cumplimiento en entornos cloud con Escala 24x7",
     "heroTitle": "Data Management",
     "heroDescription": "En Escala 24x7 te acompañamos para que habilites el siguiente nivel de inteligencia empresarial.",
     "heroCta": "Descarga el portafolio completo aquí",
@@ -546,6 +550,7 @@
   },
   "managedServices": {
     "title": "Managed Services - Escala 24x7",
+    "metaDescription": "Servicios gestionados en AWS con Escala 24x7: monitoreo, soporte proactivo, seguridad y control de costos para tu operación 24/7.",
     "heroTitle": "Managed Services",
     "heroDescription": "Eleva la gestión integral de tu infraestructura en AWS con un equipo de expertos disponible 24/7.",
     "heroCta": "Descarga el portafolio completo aquí",
@@ -610,7 +615,8 @@
     "ctaButton": "Contacta a un experto"
   },
   "securityCompliance": {
-    "title": "Security Compliance - Escala 24x7",
+    "title": "Cloud Security, Compliance y Resilience",
+    "metaDescription": "Cloud Security en AWS con Escala 24x7 integra seguridad, cumplimiento y resiliencia para proteger tu negocio y asegurar la continuidad.",
     "heroTitle": "Cloud Security",
     "heroDescription": "En Escala 24x7 te acompañamos para operar dentro de los estándares de seguridad, cumplimiento y continuidad.",
     "heroCta": "Descarga el portafolio completo aquí",
@@ -687,7 +693,8 @@
     "ctaButton": "Contacta a un experto"
   },
   "generativeAi": {
-    "title": "Generative AI - Escala 24x7",
+    "title": "Soluciones de IA en AWS con Escala 24x7",
+    "metaDescription": "AI Solutions Consultant de Escala 24x7 acompaña la adopción de IA en AWS en cualquier nivel de madurez del negocio.",
     "heroTitle": "AI Solutions Consultant",
     "heroDescriptionBr": "En Escala 24x7 te acompañamos para que hagas una inversión efectiva en GenAI.",
     "heroCta": "Descarga el portafolio completo aquí",

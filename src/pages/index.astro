@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import HeroSlider from '../components/HeroSlider.astro';
 import StatsCarousel from '../components/StatsCarousel.astro';
 import QuizSection from '../components/QuizSection.astro';
@@ -17,11 +18,12 @@ const currentPath = Astro.url.pathname;
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <GoogleAnalytics />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escala - Servicios en la nube con el enfoque Cloud Done Right®</title>
-    <meta name="description" content="Soluciones en la nube desarrolladas para garantizar valor, eficiencia y continuidad desde el primer día.">
-    <link rel="icon" type="image/jpeg" href="/icons/escala-favicon.jpg" />
+    <title>Servicios en la nube con expertos AWS</title>
+    <meta name="description" content="Soluciones con enfoque Cloud Done Right®: migración, IA generativa, data y seguridad en AWS para maximizar valor y continuidad a tu negocio.">
+    <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     
     <!-- Google Fonts - Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
