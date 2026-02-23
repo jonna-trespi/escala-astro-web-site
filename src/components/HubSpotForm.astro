@@ -1,0 +1,445 @@
+---
+/**
+ * HubSpot Form Embed
+ *
+ * Contenedor donde HubSpot inyecta el formulario (script externo).
+ * Data attributes: data-region, data-form-id, data-portal-id.
+ *
+ * Clases que usa HubSpot (para estilizar el formulario inyectado):
+ * - .hs-form-html          → contenedor raíz del form
+ * - .hs-form-field          → cada campo (margin-bottom)
+ * - .hs-form-html label     → etiquetas (en el HTML se ocultan con display: none)
+ * - .hs-form-html input[type="text|email|tel"], select, textarea
+ * - .hs-form-html .hs-error-msgs, .hs-error-msgs li
+ * - .hs-form-html .hs-form-checkbox-display, .hs-form-radio-display
+ * - .hs-form-html input[type="submit"], .hs-button
+ * - .hs-form-html .submitted-message
+ */
+interface Props {
+  /** Clase adicional en el wrapper (ej. para ajustar al diseño de la sección) */
+  class?: string;
+  /** Idioma de la página (es, en, pt) para traducir labels y placeholders */
+  lang?: 'es' | 'en' | 'pt';
+}
+
+const { class: className = '', lang = 'es' } = Astro.props;
+
+/** Texto de label en inglés (HubSpot) → traducción por idioma. Se usa para placeholder y para reemplazar el label. */
+const labelTranslations: Record<string, { es: string; en: string; pt: string }> = {
+  'First Name': { es: 'Nombre', en: 'First Name', pt: 'Nome' },
+  'Last Name': { es: 'Apellido', en: 'Last Name', pt: 'Sobrenome' },
+  'Email': { es: 'Correo electrónico', en: 'Email', pt: 'E-mail' },
+  'Email*': { es: 'Correo electrónico', en: 'Email', pt: 'E-mail' },
+  'Company name': { es: 'Empresa', en: 'Company name', pt: 'Nome da empresa' },
+  'Company name*': { es: 'Empresa', en: 'Company name', pt: 'Nome da empresa' },
+  'Company Name': { es: 'Empresa', en: 'Company name', pt: 'Nome da empresa' },
+  'Phone': { es: 'Teléfono', en: 'Phone', pt: 'Telefone' },
+  'Country': { es: 'País', en: 'Country', pt: 'País' },
+  'Message': { es: 'Mensaje', en: 'Message', pt: 'Mensagem' },
+  'Comments': { es: 'Comentarios', en: 'Comments', pt: 'Comentários' },
+};
+
+const submitButtonText: Record<string, string> = { es: 'Enviar', en: 'Submit', pt: 'Enviar' };
+const submittedMessageText: Record<string, string> = { es: 'Formulario enviado', en: 'Form submitted', pt: 'Formulário enviado' };
+const formId = '1dd7b115-dad7-46b7-8e07-7790e41cada3';
+const portalId = '48294971';
+---
+
+<div class:list={['hubspot-form-wrapper', className]} data-lang={lang}>
+  <div
+    class="hs-form-html"
+    data-region="na1"
+    data-form-id={formId}
+    data-portal-id={portalId}
+  ></div>
+</div>
+
+<script src={`https://js.hsforms.net/forms/embed/developer/${portalId}.js`} defer></script>
+<script define:vars={{ labelTranslations, submitButtonText, submittedMessageText }}>
+  (function () {
+    const wrapper = document.querySelector('.hubspot-form-wrapper');
+    if (!wrapper) return;
+    const lang = (wrapper.getAttribute('data-lang') || 'es').toLowerCase();
+
+    function applySubmittedMessage() {
+      const msg = wrapper.querySelector('.submitted-message, [class*="submitted"], [class*="Submitted"]');
+      if (msg && submittedMessageText[lang] && msg.textContent !== submittedMessageText[lang]) {
+        msg.textContent = submittedMessageText[lang];
+        return true;
+      }
+      return false;
+    }
+
+    function applySubmitButtonText() {
+      const btn = wrapper.querySelector('button[type="submit"], input[type="submit"], .hsfc-Button');
+      if (btn && submitButtonText[lang]) {
+        if (btn.tagName === 'INPUT') btn.setAttribute('value', submitButtonText[lang]);
+        else btn.textContent = submitButtonText[lang];
+        return true;
+      }
+      return false;
+    }
+
+    function getTranslation(labelText) {
+      const key = labelText.trim();
+      const t = labelTranslations[key] || labelTranslations[key.replace(/\*$/, '')];
+      if (t && t[lang]) return t[lang];
+      return key;
+    }
+
+    function applyPlaceholdersAndHideLabels() {
+      const form = wrapper.querySelector('form');
+      if (!form) return false;
+      const labels = form.querySelectorAll('label[id$="-label"], label.hsfc-FieldLabel, .hs-form-field label');
+      if (labels.length === 0) return false;
+      let applied = 0;
+      labels.forEach(function (label) {
+        const span = label.querySelector('span');
+        const rawText = (span ? span.textContent : label.textContent) || '';
+        const text = rawText.trim();
+        if (!text) return;
+        const forId = label.getAttribute('for');
+        const input = forId ? form.querySelector('#' + CSS.escape(forId)) : label.nextElementSibling;
+        if (!input) return;
+        var type = (input.type || '').toLowerCase();
+        var isCheckboxOrRadio = input.tagName === 'INPUT' && (type === 'checkbox' || type === 'radio');
+        if (isCheckboxOrRadio) return;
+        if (input.tagName === 'INPUT' || input.tagName === 'SELECT' || input.tagName === 'TEXTAREA') {
+          const translated = getTranslation(text);
+          input.setAttribute('placeholder', translated);
+          if (span) span.textContent = translated;
+          else label.textContent = translated;
+          label.classList.add('hubspot-label-as-placeholder');
+          applied++;
+        }
+      });
+      if (applied > 0) wrapper.classList.add('hubspot-labels-as-placeholders');
+      return applied > 0;
+    }
+
+    function onFormReady() {
+      var labelsDone = applyPlaceholdersAndHideLabels();
+      var btnDone = applySubmitButtonText();
+      return labelsDone || btnDone;
+    }
+    var observer = new MutationObserver(function () {
+      if (onFormReady()) observer.disconnect();
+    });
+    observer.observe(wrapper, { childList: true, subtree: true });
+    if (onFormReady()) observer.disconnect();
+    else setTimeout(function () { onFormReady(); applySubmitButtonText(); }, 2000);
+    var successCheck = setInterval(function () {
+      if (applySubmittedMessage()) clearInterval(successCheck);
+    }, 1500);
+  })();
+</script>
+
+<style>
+  /* ─── Wrapper (contenedor del embed) ─── */
+  .hubspot-form-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Ocultar el bloque de texto descriptivo del form (ej. "We'd love to hear from you!...") */
+  .hubspot-form-wrapper :global(.hsfc-RichText) {
+    display: none;
+  }
+
+  /* ─── Contenedor raíz del formulario inyectado por HubSpot ─── */
+  .hubspot-form-wrapper :global(.hs-form-html) {
+    color: var(--neutral-100, #ffffff);
+  }
+
+  /* Campos: text, email, tel, select, textarea */
+  .hubspot-form-wrapper :global(.hs-form-html input[type="text"]),
+  .hubspot-form-wrapper :global(.hs-form-html input[type="email"]),
+  .hubspot-form-wrapper :global(.hs-form-html input[type="tel"]),
+  .hubspot-form-wrapper :global(.hs-form-html select),
+  .hubspot-form-wrapper :global(.hs-form-html textarea) {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: var(--neutral-100, #ffffff);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html input::placeholder),
+  .hubspot-form-wrapper :global(.hs-form-html textarea::placeholder) {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html input:focus),
+  .hubspot-form-wrapper :global(.hs-form-html select:focus),
+  .hubspot-form-wrapper :global(.hs-form-html textarea:focus) {
+    outline: none;
+    border-color: #00C19F;
+    background: rgba(0, 193, 159, 0.05);
+  }
+
+  /* Espaciado entre campos */
+  .hubspot-form-wrapper :global(.hs-form-html .hs-form-field) {
+    margin-bottom: 1rem;
+  }
+
+  /* Labels: visibles por defecto, con poco margen para ganar espacio */
+  .hubspot-form-wrapper :global(.hs-form-html label) {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+  }
+
+  /* Cuando el script aplica placeholders, ocultamos labels para ganar espacio */
+  .hubspot-form-wrapper.hubspot-labels-as-placeholders :global(.hs-form-html label.hubspot-label-as-placeholder) {
+    display: none;
+  }
+
+  .hubspot-form-wrapper.hubspot-labels-as-placeholders :global(.hs-form-html .hs-form-field) {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Mensajes de error */
+  .hubspot-form-wrapper :global(.hs-form-html .hs-error-msgs) {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.25rem;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html .hs-error-msgs li) {
+    color: #ff6b6b;
+    font-size: 13px;
+  }
+
+  /* Checkbox / radio */
+  .hubspot-form-wrapper :global(.hs-form-html input[type="checkbox"]),
+  .hubspot-form-wrapper :global(.hs-form-html input[type="radio"]) {
+    width: auto;
+    margin-right: 8px;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html .hs-form-checkbox-display),
+  .hubspot-form-wrapper :global(.hs-form-html .hs-form-radio-display) {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Temas de interés: grid en varias columnas + estilo botón multiselect */
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Cualquier hijo que contenga el checkbox (label o div) como botón */
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > *:has(input[type="checkbox"])),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options label),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options [role="group"] > label) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options label:hover),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options [role="group"] > label:hover) {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > *:has(input:checked)),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options label:has(input:checked)),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options [role="group"] > label:has(input:checked)) {
+    background: #00C19F;
+    color: #1A1A1A;
+    border-color: #00C19F;
+  }
+
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options input[type="checkbox"]) {
+    margin-right: 0;
+    accent-color: #00C19F;
+  }
+
+  /* Fallback: grupo de checkboxes con clase antigua (varias columnas) */
+  .hubspot-form-wrapper :global(.hs-form-field .hs-form-checkbox-display) {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-field .hs-form-checkbox-display > label) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-field .hs-form-checkbox-display > label:hover) {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-field .hs-form-checkbox-display > label:has(input:checked)) {
+    background: #00C19F;
+    color: #1A1A1A;
+    border-color: #00C19F;
+  }
+
+  /* Estructura clásica HubSpot: ul.inputs-list / li.hs-form-checkbox → grid + botón */
+  .hubspot-form-wrapper :global(.hs-form-html ul.inputs-list.multi-container),
+  .hubspot-form-wrapper :global(.hs-form-html .multi-container) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html li.hs-form-checkbox) {
+    margin: 0;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html li.hs-form-checkbox .hs-form-checkbox-display) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html li.hs-form-checkbox .hs-form-checkbox-display:hover) {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html li.hs-form-checkbox .hs-form-checkbox-display:has(input:checked)) {
+    background: #00C19F;
+    color: #1A1A1A;
+    border-color: #00C19F;
+  }
+
+  /* Fila del botón: centrada (formulario nuevo HubSpot hsfc-*) */
+  .hubspot-form-wrapper :global(.hsfc-NavigationRow),
+  .hubspot-form-wrapper :global(.hsfc-NavigationRow_Buttons) {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .hubspot-form-wrapper :global(.hsfc-NavigationRow_Buttons) {
+    width: 100%;
+  }
+
+  /* Botón de envío: turquesa característico y centrado */
+  .hubspot-form-wrapper :global(.hs-form-html input[type="submit"]),
+  .hubspot-form-wrapper :global(.hs-form-html .hs-button),
+  .hubspot-form-wrapper :global(.hsfc-Button),
+  .hubspot-form-wrapper :global(button[type="submit"].hsfc-Button) {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem 1.5rem;
+    background: #00C19F !important;
+    border: none !important;
+    border-radius: 8px;
+    color: #1A1A1A !important;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html input[type="submit"]:hover),
+  .hubspot-form-wrapper :global(.hs-form-html .hs-button:hover),
+  .hubspot-form-wrapper :global(.hsfc-Button:hover),
+  .hubspot-form-wrapper :global(button[type="submit"].hsfc-Button:hover) {
+    background: #00A585 !important;
+    transform: translateY(-2px);
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html input[type="submit"]:active),
+  .hubspot-form-wrapper :global(.hs-form-html .hs-button:active),
+  .hubspot-form-wrapper :global(.hsfc-Button:active),
+  .hubspot-form-wrapper :global(button[type="submit"].hsfc-Button:active) {
+    transform: translateY(0);
+  }
+
+  /* Select (dropdown) */
+  .hubspot-form-wrapper :global(.hs-form-html select) {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23ffffff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .hubspot-form-wrapper :global(.hs-form-html select option) {
+    background: #0f2230;
+    color: #ffffff;
+  }
+
+  /* Mensaje de éxito tras enviar */
+  .hubspot-form-wrapper :global(.hs-form-html .submitted-message) {
+    text-align: center;
+    color: #00C19F;
+    font-size: 1.125rem;
+    padding: 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    .hubspot-form-wrapper :global(.hs-form-html input[type="text"]),
+    .hubspot-form-wrapper :global(.hs-form-html input[type="email"]),
+    .hubspot-form-wrapper :global(.hs-form-html input[type="tel"]),
+    .hubspot-form-wrapper :global(.hs-form-html select),
+    .hubspot-form-wrapper :global(.hs-form-html textarea) {
+      padding: 0.875rem 1rem;
+    }
+
+    .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options),
+    .hubspot-form-wrapper :global(.hs-form-html ul.inputs-list.multi-container),
+    .hubspot-form-wrapper :global(.hs-form-html .multi-container) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options),
+    .hubspot-form-wrapper :global(.hs-form-html ul.inputs-list.multi-container),
+    .hubspot-form-wrapper :global(.hs-form-html .multi-container) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
