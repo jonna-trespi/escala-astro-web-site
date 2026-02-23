@@ -1,0 +1,236 @@
+---
+import Icon from './Icon.astro';
+import { getT } from '../i18n';
+import type { Locale } from '../i18n';
+import es from '../i18n/es.json';
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+const dict = lang === 'en' ? en : lang === 'pt' ? pt : es;
+const t = getT(dict);
+
+const clients = [
+  '/logos/home-clientes/logo-clientes-1.png',
+  '/logos/home-clientes/logo-clientes-2.png',
+  '/logos/home-clientes/logo-clientes-3.png',
+  '/logos/home-clientes/logo-clientes-4.png',
+  '/logos/home-clientes/logo-clientes-5.png',
+  '/logos/home-clientes/logo-clientes-6.png',
+  '/logos/home-clientes/logo-clientes-7.png',
+  '/logos/home-clientes/logo-clientes-8.png',
+  '/logos/home-clientes/logo-clientes-9.png',
+  '/logos/home-clientes/logo-clientes-10.png'
+];
+
+const clientsRow1 = clients.slice(0, 5);
+const clientsRow2 = clients.slice(5, 10);
+---
+
+<section class="clients-section">
+  <div class="clients-container">
+    <h2 class="clients-title">{t('clientsSection.title')}</h2>
+    
+    <div class="clients-carousel">
+      <!-- Primera fila: scroll hacia la izquierda -->
+      <div class="clients-carousel-row">
+        <div class="clients-track clients-track--left">
+          <div class="clients-grid">
+            {clientsRow1.map((logo) => (
+              <div class="client-logo">
+                <img src={logo} alt={t('clientsSection.logoAlt')} />
+              </div>
+            ))}
+          </div>
+          <div class="clients-grid" aria-hidden="true">
+            {clientsRow1.map((logo) => (
+              <div class="client-logo">
+                <img src={logo} alt={t('clientsSection.logoAlt')} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <!-- Segunda fila: scroll hacia la derecha -->
+      <div class="clients-carousel-row">
+        <div class="clients-track clients-track--right">
+          <div class="clients-grid" aria-hidden="true">
+            {clientsRow2.map((logo) => (
+              <div class="client-logo">
+                <img src={logo} alt={t('clientsSection.logoAlt')} />
+              </div>
+            ))}
+          </div>
+          <div class="clients-grid">
+            {clientsRow2.map((logo) => (
+              <div class="client-logo">
+                <img src={logo} alt={t('clientsSection.logoAlt')} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .clients-section {
+    width: 100%;
+    background-color: var(--neutral-200);
+    padding: 100px 0;
+  }
+
+  .clients-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  .clients-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--neutral-800);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .clients-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .clients-carousel-row {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .clients-track {
+    display: flex;
+    will-change: transform;
+  }
+
+  .clients-track--left {
+    animation: scrollLeft 40s linear infinite;
+  }
+
+  .clients-track--right {
+    animation: scrollRight 40s linear infinite;
+  }
+
+  .clients-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scrollRight {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    gap: 0rem 2rem;
+    flex-shrink: 0;
+    padding: 0 2rem;
+  }
+
+  .client-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    height: 80px;
+  }
+
+  .client-logo:hover {
+    transform: translateY(-5px);
+  }
+
+  .client-logo img {
+    max-width: 100%;
+    max-height: 50px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .clients-container {
+      padding: 0 60px;
+    }
+
+    .clients-title {
+      font-size: 28px;
+    }
+
+    .clients-grid {
+      gap: 2rem 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .clients-section {
+      padding: 60px 0;
+    }
+
+    .clients-container {
+      padding: 0 2rem;
+    }
+
+    .clients-title {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    /* En móvil cada grid ocupa todo el ancho visible para evitar solapamiento */
+    .clients-track {
+      width: 200%;
+    }
+
+    .clients-grid {
+      width: 50%;
+      min-width: 50%;
+      box-sizing: border-box;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: 1fr;
+      gap: 0 0.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .client-logo {
+      height: 56px;
+      padding: 0.35rem;
+      min-width: 0;
+    }
+
+    .client-logo img {
+      max-height: 40px;
+      max-width: 100%;
+    }
+  }
+</style>
+

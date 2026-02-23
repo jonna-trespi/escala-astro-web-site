@@ -1,0 +1,930 @@
+---
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import { getT, localePrefix } from '../../i18n';
+import type { Locale } from '../../i18n';
+import en from '../../i18n/en.json';
+
+const lang: Locale = 'en';
+const currentPath = Astro.url.pathname;
+const dict = en;
+const t = getT(dict);
+const basePath = localePrefix(lang);
+import "../../styles/global.css";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t('partner.title')}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header lang={lang} currentPath={currentPath} />
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-wrapper">
+          <div class="hero-banner">
+            <div class="hero-container">
+              <h1 class="hero-title-partner">
+                {t('partner.heroTitle')}
+              </h1>
+              <p class="hero-subtitle-partner">
+                {t('partner.heroSubtitle')}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partner Stefanini + Ecosistema Section -->
+      <section class="partner-intro-section">
+        <div class="partner-intro-bg">
+          <img src="/images/soluciones_tabs_bg.jpg" alt="" class="partner-intro-bg-img" />
+        </div>
+
+        <div class="partner-intro-container">
+          <div class="partner-intro-grid">
+            <div class="partner-intro-left">
+              <div class="partner-intro-logos">
+                <img src="/logos/blog/logo-stefanini.png" alt={t('partner.stefaniniAlt')} class="partner-logo-stefanini" />
+                <span class="partner-logos-separator"></span>
+                <img src="/logos/blog/logo-escala.png" alt={t('partner.escalaAlt')} class="partner-logo-escala" />
+              </div>
+              <h3 class="partner-intro-title">
+                {t('partner.introTitle')} <span class="partner-intro-title-green">{t('partner.introTitleGreen')}</span>
+              </h3>
+              <p class="partner-intro-parrafo">
+                {t('partner.introParagraph')}
+              </p>
+              <a href={`${basePath}/sobre-nosotros`} class="btn btn-primary">
+                {t('partner.knowMore')}
+                <Icon name="north_east" size={20} />
+              </a>
+            </div>
+
+            <div class="partner-intro-right">
+              <h3 class="partner-ecosistema-title">{t('partner.ecosistemaTitle')}</h3>
+              <div class="partner-ecosistema-list">
+                <div class="partner-ecosistema-item">
+                  <div class="partner-ecosistema-icon">
+                    <img src="/icons/partner/partner-icon1.png" alt="" />
+                  </div>
+                  <div class="partner-ecosistema-text">
+                    <h4 class="partner-ecosistema-item-title">{t('partner.eco1Title')}</h4>
+                    <p class="partner-ecosistema-item-desc">{t('partner.eco1Desc')}</p>
+                  </div>
+                </div>
+                <div class="partner-ecosistema-item">
+                  <div class="partner-ecosistema-icon">
+                    <img src="/icons/partner/partner-icon2.png" alt="" />
+                  </div>
+                  <div class="partner-ecosistema-text">
+                    <h4 class="partner-ecosistema-item-title">{t('partner.eco2Title')}</h4>
+                    <p class="partner-ecosistema-item-desc">{t('partner.eco2Desc')}</p>
+                  </div>
+                </div>
+                <div class="partner-ecosistema-item">
+                  <div class="partner-ecosistema-icon">
+                    <img src="/icons/partner/partner-icon3.png" alt="" />
+                  </div>
+                  <div class="partner-ecosistema-text">
+                    <h4 class="partner-ecosistema-item-title">{t('partner.eco3Title')}</h4>
+                    <p class="partner-ecosistema-item-desc">{t('partner.eco3Desc')}</p>
+                  </div>
+                </div>
+                <div class="partner-ecosistema-item">
+                  <div class="partner-ecosistema-icon">
+                    <img src="/icons/partner/partner-icon4.png" alt="" />
+                  </div>
+                  <div class="partner-ecosistema-text">
+                    <h4 class="partner-ecosistema-item-title">{t('partner.eco4Title')}</h4>
+                    <p class="partner-ecosistema-item-desc">{t('partner.eco4Desc')}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="partner-spotlight-separator" />
+
+          <div class="partner-spotlight-grid">
+            <div class="partner-spotlight-card">
+              <img src="/logos/partner/dana-logo.png" alt="DANAconnect" class="partner-spotlight-logo" />
+              <p class="partner-spotlight-titulo">{t('partner.danaTitle')}</p>
+              <h4 class="partner-spotlight-subtitulo">{t('partner.danaSubtitle')}</h4>
+              <p class="partner-spotlight-parrafo">
+                {t('partner.danaParagraph')}
+              </p>
+              <ul class="partner-spotlight-list">
+                <li><span class="material-symbols-outlined">check</span> {t('partner.danaLi1')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('partner.danaLi2')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('partner.danaLi3')}</li>
+              </ul>
+              <div class="partner-spotlight-cta-wrap">
+                <a href="https://es.danaconnect.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                  {t('partner.knowMore')}
+                  <Icon name="north_east" size={20} />
+                </a>
+              </div>
+            </div>
+
+            <div class="partner-spotlight-card">
+              <img src="/logos/partner/lightedge-logo.png" alt="Lightedge" class="partner-spotlight-logo" />
+              <p class="partner-spotlight-titulo">{t('partner.lightedgeTitle')}</p>
+              <h4 class="partner-spotlight-subtitulo">{t('partner.lightedgeSubtitle')}</h4>
+              <p class="partner-spotlight-parrafo">
+                {t('partner.lightedgeParagraph')}
+              </p>
+              <ul class="partner-spotlight-list">
+                <li><span class="material-symbols-outlined">check</span> {t('partner.lightedgeLi1')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('partner.lightedgeLi2')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('partner.lightedgeLi3')}</li>
+              </ul>
+              <div class="partner-spotlight-cta-wrap">
+                <a href="https://lightedge.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                  {t('partner.knowMore')}
+                  <Icon name="north_east" size={20} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Otros socios estratégicos -->
+      <section class="partner-otros-section">
+        <div class="partner-otros-container">
+          <h2 class="partner-otros-title">{t('partner.otherPartnersTitle')}</h2>
+          <div class="partner-otros-logos">
+            <a href="https://www.automationanywhere.com/" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-1.png" alt="Partner 1" class="partner-otros-logo" /></a>
+            <a href="https://www.trendmicro.com/es_mx/business.html" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-2.png" alt="Partner 2" class="partner-otros-logo" /></a>
+            <a href="https://www.castsoftware.com/" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-3.png" alt="Partner 3" class="partner-otros-logo" /></a>
+            <a href="https://www.hashicorp.com/es" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-4.png" alt="Partner 4" class="partner-otros-logo" /></a>
+            <a href="https://cast.ai/" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-5.png" alt="Partner 5" class="partner-otros-logo" /></a>
+            <a href="/" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-6.png" alt="Partner 6" class="partner-otros-logo" /></a>
+            <a href="https://www.atlassian.com/" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-7.png" alt="Partner 7" class="partner-otros-logo" /></a>
+            <a href="https://www.temenos.com/" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-8.png" alt="Partner 8" class="partner-otros-logo" /></a>
+            <a href="https://cloudamize.com/en/" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-9.png" alt="Partner 9" class="partner-otros-logo" /></a>
+            <a href="https://www.backbase.com/es" target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-10.png" alt="Partner 10" class="partner-otros-logo" /></a>
+            <a href="https://www.invisirisk.com/ " target="_blank" rel="noopener noreferrer" class="partner-otros-link"><img src="/logos/partner/partner-logo-11.png" alt="Partner 11" class="partner-otros-logo" /></a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const interestButtons = document.querySelectorAll('.interest-btn');
+        interestButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            button.classList.toggle('selected');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    background-color: #0c0c0c;
+  }
+
+  .hero-wrapper {
+    padding: 24px;
+    height: 90vh;
+    min-height: 700px;
+  }
+
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    background-image: url("/images/partner/partner-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 100px);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title-partner {
+    color: var(--neutral-100);
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 59px;
+    margin: 0 0 1rem 0;
+    text-align: center;
+  }
+
+  .hero-subtitle-partner {
+    color: var(--neutral-100);
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0;
+    opacity: 0.9;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  /* Partner Intro Section (Stefanini + Ecosistema) */
+  .partner-intro-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 100px 0;
+  }
+
+  .partner-intro-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .partner-intro-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .partner-intro-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  .partner-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .partner-intro-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .partner-intro-logos {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 54px;
+  }
+
+  .partner-logo-stefanini {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .partner-logos-separator {
+    width: 1px;
+    height: 70px;
+    background: #ccc;
+    flex-shrink: 0;
+  }
+
+  .partner-logo-escala {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .partner-intro-title {
+    color: #1a1a1a;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+    margin-bottom: 24px;
+  }
+
+  .partner-intro-title-green {
+    color: #00725D;
+  }
+
+  .partner-intro-parrafo {
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #1a1a1a;
+    margin: 0;
+    margin-bottom: 24px;
+  }
+
+  .partner-intro-left .btn {
+    align-self: flex-start;
+  }
+
+  .partner-intro-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .partner-ecosistema-title {
+    color: #1a1a1a;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .partner-ecosistema-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .partner-ecosistema-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .partner-ecosistema-icon {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .partner-ecosistema-icon img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+  }
+
+  .partner-ecosistema-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .partner-ecosistema-item-title {
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .partner-ecosistema-item-desc {
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4a4a4a;
+    margin: 0;
+  }
+
+  /* Partner Spotlight Cards (DANAconnect + Lightedge) */
+  .partner-spotlight-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 4rem 0;
+  }
+
+  .partner-spotlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    align-items: stretch;
+  }
+
+  .partner-spotlight-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-height: 100%;
+  }
+
+  .partner-spotlight-logo {
+    width: auto;
+    height: 90px;
+    object-fit: contain;
+    align-self: flex-start;
+  }
+
+  .partner-spotlight-subtitulo {
+    font-family: 'Nexa', sans-serif;
+    font-size: 20px;
+    line-height: 125%;
+    color: #1a1a1a;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .partner-spotlight-titulo {
+    font-family: 'Infra', sans-serif;
+    font-size: 24px;
+    line-height: 24px;
+    color: #00725D;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .partner-spotlight-parrafo {
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #4a4a4a;
+    margin: 0;
+  }
+
+  .partner-spotlight-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .partner-spotlight-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #1a1a1a;
+  }
+
+  .partner-spotlight-list .material-symbols-outlined {
+    color: #00725D;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .partner-spotlight-cta-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  /* Otros socios estratégicos */
+  .partner-otros-section {
+    background-color: #020E1E;
+    padding: 4rem 0;
+  }
+
+  .partner-otros-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  .partner-otros-title {
+    font-family: 'Infra', sans-serif;
+    font-size: 24px;
+    line-height: 24px;
+    color: #fff;
+    margin: 0 0 56px 0;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .partner-otros-logos {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem 1.5rem;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+  }
+
+  .partner-otros-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  .partner-otros-logo {
+    max-width: 100%;
+    height: auto;
+    max-height: 56px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Content Section */
+  .contact-form-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 100px 0;
+  }
+
+  .contact-form-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .contact-form-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .contact-form-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .contact-form-title {
+    color: #1A1A1A;
+    font-family: 'Nexa', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 3rem 0;
+    text-align: left;
+  }
+
+  .contact-form-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-form-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-form-intro-title {
+    color: #1A1A1A;
+    font-family: 'Nexa', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .countries-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+
+  .contact-form-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-card-title {
+    color: #1A1A1A;
+    font-family: 'Nexa', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .form-card-text {
+    color: #1A1A1A;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group-full {
+    grid-column: 1 / -1;
+  }
+
+  .form-input {
+    padding: 1rem;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #00C19F;
+    box-shadow: 0 0 0 3px rgba(0, 193, 159, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: #999;
+  }
+
+  .form-label {
+    color: #1A1A1A;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .interest-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .interest-btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #E5E5E5;
+    border-radius: 24px;
+    background: white;
+    color: #666;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .interest-btn:hover {
+    border-color: #00C19F;
+    color: #00C19F;
+  }
+
+  .interest-btn.selected {
+    background: #00C19F;
+    border-color: #00C19F;
+    color: #1A1A1A;
+    font-weight: 600;
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    background: #00C19F;
+    color: #1A1A1A;
+    width: 100%;
+  }
+
+  .btn-submit:hover {
+    background: #00A585;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 193, 159, 0.4);
+  }
+
+  .btn-submit .material-symbols-outlined {
+    font-size: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-container {
+      padding: 0 3rem;
+    }
+
+    .hero-title-partner {
+      font-size: 48px;
+      line-height: 52px;
+    }
+
+    .hero-subtitle-partner {
+      font-size: 16px;
+    }
+
+    .partner-intro-container {
+      padding: 0 60px;
+    }
+
+    .partner-intro-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .partner-intro-title {
+      font-size: 28px;
+    }
+
+    .partner-spotlight-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .partner-spotlight-titulo {
+      font-size: 20px;
+      line-height: 22px;
+    }
+
+    .partner-spotlight-subtitulo {
+      font-size: 18px;
+    }
+
+    .partner-otros-container {
+      padding: 0 50px;
+    }
+
+    .partner-otros-logos {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .contact-form-container {
+      padding: 0 50px;
+    }
+
+    .contact-form-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .contact-form-title {
+      font-size: 42px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-wrapper {
+      min-height: 100vh;
+    }
+
+    .hero-banner {
+      padding-top: 80px;
+    }
+
+    .hero-container {
+      padding: 0 1.5rem;
+      min-height: auto;
+    }
+
+    .hero-title-partner {
+      font-size: 36px;
+      line-height: 42px;
+    }
+
+    .hero-subtitle-partner {
+      font-size: 14px;
+    }
+
+    .partner-intro-section {
+      padding: 60px 0;
+    }
+
+    .partner-intro-container {
+      padding: 0 1.5rem;
+    }
+
+    .partner-intro-title {
+      font-size: 24px;
+    }
+
+    .partner-intro-parrafo {
+      font-size: 15px;
+    }
+
+    .partner-ecosistema-title {
+      font-size: 20px;
+    }
+
+    .partner-ecosistema-item-title {
+      font-size: 16px;
+    }
+
+    .partner-spotlight-separator {
+      margin: 3rem 0;
+    }
+
+    .partner-spotlight-titulo {
+      font-size: 18px;
+      line-height: 20px;
+    }
+
+    .partner-spotlight-subtitulo {
+      font-size: 16px;
+    }
+
+    .partner-spotlight-parrafo {
+      font-size: 15px;
+    }
+
+    .partner-otros-section {
+      padding: 3rem 0;
+    }
+
+    .partner-otros-container {
+      padding: 0 1.5rem;
+    }
+
+    .partner-otros-title {
+      font-size: 20px;
+      line-height: 24px;
+      margin-bottom: 2rem;
+    }
+
+    .partner-otros-logos {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem 1rem;
+    }
+
+    .partner-otros-logo {
+      max-height: 40px;
+    }
+
+    .contact-form-section {
+      padding: 80px 0;
+    }
+
+    .contact-form-container {
+      padding: 0 30px;
+    }
+
+    .contact-form-title {
+      font-size: 32px;
+      margin-bottom: 2rem;
+    }
+
+    .contact-form-intro-title {
+      font-size: 20px;
+    }
+
+    .countries-image {
+      max-width: 100%;
+    }
+  }
+</style>

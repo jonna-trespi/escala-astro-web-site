@@ -1,0 +1,811 @@
+---
+import Icon from './Icon.astro';
+import { getT, pathForLocale, localePrefix, type Locale } from '../i18n';
+import esDict from '../i18n/es.json';
+import enDict from '../i18n/en.json';
+import ptDict from '../i18n/pt.json';
+
+interface Props {
+  lang?: Locale;
+  currentPath?: string;
+}
+
+const { lang = 'es', currentPath = '/' } = Astro.props;
+
+const dict = lang === 'en' ? enDict : lang === 'pt' ? ptDict : esDict;
+const t = getT(dict as Record<string, unknown>);
+const prefix = localePrefix(lang);
+const isExternal = (url: string) => url.startsWith('http');
+
+type MenuItem = {
+  label: string;
+  link?: string;
+  submenu?: Array<{ label: string; description?: string; link?: string; separator?: boolean; icon?: string }>;
+};
+
+const menuSchema = [
+  {
+    labelKey: 'nav.company',
+    submenu: [
+      { labelKey: 'nav.about', descriptionKey: 'nav.aboutDesc', link: '/sobre-nosotros', icon: 'menu-item-icon-1.png' },
+      { labelKey: 'nav.allies', descriptionKey: 'nav.alliesDesc', link: '/partnerships', icon: 'menu-item-icon-2.png' },
+      { labelKey: 'nav.specializations', descriptionKey: 'nav.specializationsDesc', link: '/aws-especializaciones', icon: 'menu-item-icon-3.png' },
+      { labelKey: 'nav.workWithUs', descriptionKey: 'nav.workWithUsDesc', link: 'https://escala24x7.careers.hibob.com/jobs', icon: 'menu-item-icon-4.png' },
+    ]
+  },
+  {
+    labelKey: 'nav.solutions',
+    submenu: [
+      { labelKey: 'nav.cloudMigration', descriptionKey: 'nav.cloudMigrationDesc', link: '/soluciones/cloud-migration', icon: 'menu-item-icon-5.png' },
+      { labelKey: 'nav.data', descriptionKey: 'nav.dataDesc', link: '/soluciones/data-management', icon: 'menu-item-icon-6.png' },
+      { labelKey: 'nav.security', descriptionKey: 'nav.securityDesc', link: '/soluciones/cloud-security', icon: 'menu-item-icon-7.png' },
+      { labelKey: 'nav.ai', descriptionKey: 'nav.aiDesc', link: '/soluciones/ai-solutions', icon: 'menu-item-icon-8.png' },
+      { labelKey: 'nav.managed', descriptionKey: 'nav.managedDesc', link: '/soluciones/managed-services', separator: true, icon: 'menu-item-icon-9.png' }
+    ]
+  },
+  {
+    labelKey: 'nav.industries',
+    submenu: [
+      { labelKey: 'nav.finance', descriptionKey: 'nav.financeDesc', link: '/industrias/finanzas', icon: 'menu-item-icon-10.png' },
+      { labelKey: 'nav.manufacturing', descriptionKey: 'nav.manufacturingDesc', link: '/industrias/manufactura', icon: 'menu-item-icon-11.png' },
+      { labelKey: 'nav.energy', descriptionKey: 'nav.energyDesc', link: '/industrias/energia', icon: 'menu-item-icon-12.png' },
+      { labelKey: 'nav.travel', descriptionKey: 'nav.travelDesc', link: '/industrias/viajes-hosteleria', icon: 'menu-item-icon-13.png' },
+      { labelKey: 'nav.retail', descriptionKey: 'nav.retailDesc', link: '/industrias/retail-cpg', icon: 'menu-item-icon-14.png' }
+    ]
+  },
+  {
+    labelKey: 'nav.resources',
+    submenu: [
+      { labelKey: 'nav.caseStudies', descriptionKey: 'nav.caseStudiesDesc', link: '/casos-de-exito', icon: 'menu-item-icon-15.png' },
+      { labelKey: 'nav.blog', descriptionKey: 'nav.blogDesc', link: '/blog', icon: 'menu-item-icon-16.png' }
+    ]
+  },
+  {
+    labelKey: 'nav.contactSupport',
+    submenu: [
+      { labelKey: 'nav.contact', descriptionKey: 'nav.contactDesc', link: '/contacto', icon: 'menu-item-icon-17.png' },
+      { labelKey: 'nav.supportPortal', descriptionKey: 'nav.supportPortalDesc', link: 'https://escala24x7.atlassian.net/servicedesk/customer/user/login?destination=portals', icon: 'menu-item-icon-18.png' }
+    ]
+  }
+];
+
+const menuItems: MenuItem[] = menuSchema.map((item) => ({
+  label: t(item.labelKey),
+  submenu: item.submenu?.map((s) => ({
+    label: t((s as { labelKey: string }).labelKey),
+    description: (s as { descriptionKey?: string }).descriptionKey ? t((s as { descriptionKey: string }).descriptionKey) : undefined,
+    link: isExternal((s as { link: string }).link) ? (s as { link: string }).link : `${prefix}${(s as { link: string }).link}`,
+    separator: (s as { separator?: boolean }).separator,
+    icon: (s as { icon?: string }).icon
+  }))
+}));
+
+const langLabel = lang === 'es' ? 'ES' : lang === 'en' ? 'EN' : 'PT';
+const langNames = { es: t('language.es'), en: t('language.en'), pt: t('language.pt') };
+const pathEs = pathForLocale(currentPath, 'es');
+const pathEn = pathForLocale(currentPath, 'en');
+---
+
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <!-- Logo -->
+      <div class="logo">
+        <a href={prefix === '' ? '/' : `${prefix}/`}>
+          <img src="/logos/logo-escala.png" alt="Escala" class="logo-img" />
+        </a>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="nav">
+        <ul class="nav-list">
+          {menuItems.map((item) => (
+            <li class="nav-item">
+              {item.link ? (
+                <a href={item.link} class="nav-link nav-link-direct">
+                  {item.label}
+                </a>
+              ) : (
+                <>
+                  <button class="nav-link">
+                    {item.label}
+                    <Icon name="expand_more" size={16} />
+                  </button>
+                  
+                  <!-- Submenu -->
+                  {item.submenu && (
+                    <div class="submenu">
+                      <div class="submenu-content">
+                        {item.submenu.map((subitem: any) => (
+                          <>
+                            {subitem.separator && <hr class="submenu-separator" />}
+                            <a href={subitem.link || '#'} class="submenu-item" target={subitem.link?.startsWith('http') ? '_blank' : undefined} rel={subitem.link?.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                              <div class="submenu-icon-wrap">
+                                <img src={subitem.icon ? `/icons/menu/${subitem.icon}` : '/icons/menu-item-icon.png'} alt="" class="submenu-icon-img" />
+                              </div>
+                              <div class="submenu-text">
+                                <span class="submenu-title">{subitem.label}</span>
+                                {subitem.description && (
+                                  <span class="submenu-description">{subitem.description}</span>
+                                )}
+                              </div>
+                            </a>
+                          </>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Language selector -->
+      <div class="language">
+        <button class="language-btn">
+          <img src="/icons/menu/menu-item-icon-1.png" alt="" class="language-btn-icon" />
+          <span class="language-text">{langLabel}</span>
+          <Icon name="expand_more" size={16} />
+        </button>
+        <div class="submenu language-submenu">
+          <div class="submenu-content">
+            <a href={pathEs} class="submenu-item">
+              <div class="submenu-icon-wrap">
+                <img src="/icons/menu/menu-item-icon-1.png" alt="" class="submenu-icon-img" />
+              </div>
+              <div class="submenu-text">
+                <span class="submenu-title">{langNames.es}</span>
+              </div>
+            </a>
+            <a href={pathEn} class="submenu-item">
+              <div class="submenu-icon-wrap">
+                <img src="/icons/menu/menu-item-icon-1.png" alt="" class="submenu-icon-img" />
+              </div>
+              <div class="submenu-text">
+                <span class="submenu-title">{langNames.en}</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation (inside header) -->
+    <div class="mobile-nav-container" id="mobile-nav-container">
+      <nav class="mobile-nav">
+        {menuItems.map((item) => (
+          <div class="mobile-nav-item">
+            {item.submenu ? (
+              <>
+                <button class="mobile-nav-toggle">
+                  <span class="mobile-nav-label">{item.label}</span>
+                  <span class="material-symbols-outlined mobile-nav-icon">expand_more</span>
+                </button>
+                <div class="mobile-submenu">
+                  {item.submenu.map((subitem: any) => (
+                    <>
+                      {subitem.separator && <hr class="mobile-submenu-separator" />}
+                      <a href={subitem.link || '#'} class="mobile-submenu-item" target={subitem.link?.startsWith('http') ? '_blank' : undefined} rel={subitem.link?.startsWith('http') ? 'noopener noreferrer' : undefined}>
+                        <img src={subitem.icon ? `/icons/menu/${subitem.icon}` : '/icons/menu-item-icon.png'} alt="" class="mobile-submenu-icon" />
+                        <div class="mobile-submenu-text">
+                          <span class="mobile-submenu-title">{subitem.label}</span>
+                          {subitem.description && (
+                            <span class="mobile-submenu-description">{subitem.description}</span>
+                          )}
+                        </div>
+                      </a>
+                    </>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <a href={item.link || '#'} class="mobile-nav-link">
+                {item.label}
+              </a>
+            )}
+          </div>
+        ))}
+        
+        <!-- Language selector for mobile (same routes as desktop: pathEs, pathEn) -->
+        <div class="mobile-nav-item mobile-language">
+          <button class="mobile-nav-toggle mobile-language-btn" type="button">
+            <span class="mobile-nav-label">
+              <img src="/icons/menu/menu-item-icon-1.png" alt="" class="mobile-submenu-icon" />
+              {langNames[lang]}
+            </span>
+            <span class="material-symbols-outlined mobile-nav-icon">expand_more</span>
+          </button>
+          <div class="mobile-submenu">
+            <a href={pathEs} class="mobile-submenu-item mobile-language-option">
+              <span class="mobile-submenu-title">{langNames.es}</span>
+            </a>
+            <a href={pathEn} class="mobile-submenu-item mobile-language-option">
+              <span class="mobile-submenu-title">{langNames.en}</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(57, 57, 57, 0.7);
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
+    width: calc(100% - 200px);
+    max-width: 1200px;
+    border-radius: 8px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+  }
+
+  /* Logo */
+  .logo {
+    flex-shrink: 0;
+    margin-right: 32px;
+  }
+
+  .logo a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  /* Navigation */
+  .nav {
+    flex: 1;
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--neutral-100);
+    text-decoration: none;
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .nav-link-direct {
+    padding: 0;
+  }
+
+  .nav-link:hover {
+    color: #00C19F;
+  }
+
+  .nav-link :global(.icon) {
+    transition: transform 0.3s ease;
+  }
+
+  .nav-item:hover .nav-link :global(.icon) {
+    transform: rotate(180deg);
+  }
+
+  .submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 100;
+    padding-top: 20px;
+  }
+
+  .nav-item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  .submenu-content {
+    background: rgba(57, 57, 57, 0.7);
+    backdrop-filter: blur(10px) !important;
+    transition: background 0.3s ease;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 315px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    margin-top: 8px;
+  }
+
+  /* Multi-column for Soluciones and Industrias */
+  .nav-item:nth-child(2) .submenu-content,
+  .nav-item:nth-child(3) .submenu-content {
+    grid-template-columns: repeat(2, 1fr);
+    width: 630px;
+  }
+
+  /* Single column for Compañía */
+  .nav-item:nth-child(1) .submenu-content {
+    width: 315px;
+  }
+
+  .submenu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .submenu-item:hover {
+    background: rgba(94, 94, 94, 0.3);
+  }
+
+  .submenu-icon-wrap {
+    padding: 8px;
+    background: rgba(250, 250, 250, 0.05);
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+  }
+
+  .submenu-item:hover .submenu-icon-wrap {
+    background: #00C19F;
+  }
+
+  .submenu-icon {
+    flex-shrink: 0;
+    color: #FFFFFF !important;
+  }
+
+  .submenu-icon-img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+  }
+
+  .submenu-item:hover .submenu-icon-img {
+    filter: brightness(0.1);
+  }
+
+  .submenu-item :global(.submenu-icon) {
+    color: #FFFFFF !important;
+  }
+
+  .submenu-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .submenu-title {
+    color: #FFFFFF;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    transition: color 0.3s ease;
+  }
+
+  .submenu-description {
+    color: #FFFFFF;
+    font-family: 'Infra', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    opacity: 0.8;
+    transition: color 0.3s ease;
+  }
+
+  .submenu-item:hover .submenu-icon {
+    color: var(--light-green-400) !important;
+  }
+
+  .submenu-item:hover :global(.submenu-icon) {
+    color: var(--light-green-400) !important;
+  }
+
+  .submenu-item:hover .submenu-title {
+    color: #FFFFFF;
+  }
+
+  .submenu-item:hover .submenu-description {
+    color: #FFFFFF;
+    opacity: 0.8;
+  }
+
+  .submenu-separator {
+    grid-column: 1 / -1;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 0;
+  }
+
+  /* Language selector */
+  .language-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--neutral-100);
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .language-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .language-btn :global(.language-icon) {
+    color: #FFFFFF;
+  }
+
+  .language-text {
+    font-family: 'Infra', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .language {
+    position: relative;
+  }
+
+  /* Submenú de idioma: mismo estilo que el resto, alineado a la derecha */
+  .language .language-submenu {
+    left: auto;
+    right: 0;
+    transform: none;
+    padding-top: 8px;
+  }
+
+  .language:hover .language-submenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  .language .language-submenu .submenu-content {
+    width: max-content;
+    min-width: 140px;
+    padding: 0.5rem;
+  }
+
+  .language .language-submenu .submenu-item {
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .language-btn-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  /* Mobile language */
+  .mobile-language {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .mobile-language-option {
+    padding-left: 1rem !important;
+  }
+
+  /* Mobile menu button */
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1002;
+  }
+
+  .mobile-menu-btn span {
+    width: 24px;
+    height: 2px;
+    background: var(--neutral-100);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  /* Mobile navigation container (inside header) */
+  .mobile-nav-container {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 1.5rem;
+  }
+
+  .mobile-nav-container.active {
+    max-height: 2000px;
+    padding: 1.5rem;
+  }
+
+  /* Mobile navigation */
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-nav-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .mobile-nav-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border: none;
+    color: var(--neutral-100);
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .mobile-nav-label {
+    flex: 1;
+  }
+
+  .mobile-nav-icon {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-nav-item.active .mobile-nav-icon {
+    transform: rotate(180deg);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    width: 100%;
+    color: var(--neutral-100);
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+
+  /* Mobile submenu */
+  .mobile-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-nav-item.active .mobile-submenu {
+    max-height: 1000px;
+  }
+
+  .mobile-submenu-separator {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 1rem;
+  }
+
+  .mobile-submenu-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-submenu-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .mobile-submenu-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    object-fit: contain;
+    margin-top: 2px;
+  }
+
+  .mobile-submenu-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-submenu-title {
+    color: var(--neutral-100);
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+
+  .mobile-submenu-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Infra', sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  /* Responsive */
+  @media (max-width: 1400px) {
+    .header {
+      width: calc(100% - 100px);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .header {
+      width: calc(100% - 60px);
+      top: 20px;
+    }
+
+    .nav-list {
+      gap: 1rem;
+    }
+
+    .nav-link {
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      width: calc(100% - 40px);
+      top: 20px;
+    }
+
+    .nav-link,
+    .submenu-label,
+    .mobile-nav-link,
+    .mobile-submenu-item {
+      line-height: 1.2;
+    }
+
+    .nav {
+      display: none;
+    }
+
+    .language {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .mobile-nav-container {
+      display: block;
+    }
+
+    .submenu {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNavContainer = document.getElementById('mobile-nav-container');
+  const mainHeader = document.getElementById('main-header');
+
+  function toggleMobileMenu() {
+    mobileMenuBtn?.classList.toggle('active');
+    mobileNavContainer?.classList.toggle('active');
+    mainHeader?.classList.toggle('menu-open');
+  }
+
+  mobileMenuBtn?.addEventListener('click', toggleMobileMenu);
+
+  // Mobile submenu toggles
+  const mobileNavToggles = document.querySelectorAll('.mobile-nav-toggle');
+  mobileNavToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const navItem = toggle.closest('.mobile-nav-item');
+      navItem?.classList.toggle('active');
+    });
+  });
+
+  // Close mobile menu when clicking on a link
+  const mobileLinks = document.querySelectorAll('.mobile-submenu-item, .mobile-nav-link');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileNavContainer?.classList.contains('active')) {
+        toggleMobileMenu();
+      }
+    });
+  });
+</script>
+

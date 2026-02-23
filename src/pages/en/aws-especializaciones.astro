@@ -1,0 +1,884 @@
+---
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getT, localePrefix } from '../../i18n';
+import type { Locale } from '../../i18n';
+import en from '../../i18n/en.json';
+
+const lang: Locale = 'en';
+const currentPath = Astro.url.pathname;
+const dict = en;
+const t = getT(dict);
+const basePath = localePrefix(lang);
+import "../../styles/global.css";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t('especializaciones.title')}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header lang={lang} currentPath={currentPath} />
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-wrapper">
+          <div class="hero-banner">
+            <div class="hero-container">
+              <h1 class="hero-title-especializaciones">
+                {t('especializaciones.heroTitle1')}<br />{t('especializaciones.heroTitle2')}
+              </h1>
+              <p class="hero-subtitle-especializaciones">
+                {t('especializaciones.heroSubtitle')}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Especializaciones AWS Section -->
+      <section class="especializaciones-aws-section">
+        <div class="especializaciones-aws-bg">
+          <img src="/images/soluciones_tabs_bg.jpg" alt="" class="especializaciones-aws-bg-img" />
+        </div>
+
+        <div class="especializaciones-aws-container">
+          <div class="especializaciones-aws-top">
+            <div class="especializaciones-aws-left">
+              <h3 class="especializaciones-aws-title">
+                {t('especializaciones.sectionTitle')}<span class="especializaciones-aws-title-green">{t('especializaciones.sectionTitleGreen')}</span>
+              </h3>
+              <p class="especializaciones-aws-parrafo">
+                {t('especializaciones.parrafo1')}
+              </p>
+              <p class="especializaciones-aws-parrafo" set:html={t('especializaciones.parrafo2')}></p>
+              <p class="especializaciones-aws-parrafo" set:html={t('especializaciones.parrafo3')}></p>
+            </div>
+
+            <div class="especializaciones-aws-right">
+              <img src="/logos/especializaciones/aws-partner-logo.png" alt={t('especializaciones.awsLogoAlt')} class="especializaciones-aws-logo" />
+            </div>
+          </div>
+
+          <div class="especializaciones-aws-cards">
+            <a href={`${basePath}/soluciones/cloud-migration`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-1.png" alt="Migration and Modernization" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card1Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card1Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card1Li1')}</li>
+                <li>{t('especializaciones.card1Li2')}</li>
+                <li>{t('especializaciones.card1Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/ai-solutions`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-2.png" alt="Generative AI" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card2Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card2Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card2Li1')}</li>
+                <li>{t('especializaciones.card2Li2')}</li>
+                <li>{t('especializaciones.card2Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/industrias/finanzas`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-3.png" alt="Financial Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card3Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card3Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card3Li1')}</li>
+                <li>{t('especializaciones.card3Li2')}</li>
+                <li>{t('especializaciones.card3Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/cloud-security`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-4.png" alt="Security Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card4Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card4Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card4Li1')}</li>
+                <li>{t('especializaciones.card4Li2')}</li>
+                <li>{t('especializaciones.card4Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/cloud-security`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-5.png" alt="MSSP" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card5Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card5Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card5Li1')}</li>
+                <li>{t('especializaciones.card5Li2')}</li>
+                <li>{t('especializaciones.card5Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/data-management`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-6.png" alt="Data & Analytics" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card6Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card6Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card6Li1')}</li>
+                <li>{t('especializaciones.card6Li2')}</li>
+                <li>{t('especializaciones.card6Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/managed-services`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-7.png" alt="Cloud Operations Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card7Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card7Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card7Li1')}</li>
+                <li>{t('especializaciones.card7Li2')}</li>
+                <li>{t('especializaciones.card7Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/cloud-security`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-8.png" alt="Resilience Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card8Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card8Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card8Li1')}</li>
+                <li>{t('especializaciones.card8Li2')}</li>
+                <li>{t('especializaciones.card8Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/data-management`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-9.png" alt="DevOps Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card9Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card9Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card9Li1')}</li>
+                <li>{t('especializaciones.card9Li2')}</li>
+                <li>{t('especializaciones.card9Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/cloud-migration`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-10.png" alt="SAP Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card10Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card10Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card10Li1')}</li>
+                <li>{t('especializaciones.card10Li2')}</li>
+                <li>{t('especializaciones.card10Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/industrias/energia`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-11.png" alt="Energy Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card11Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card11Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card11Li1')}</li>
+                <li>{t('especializaciones.card11Li2')}</li>
+                <li>{t('especializaciones.card11Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/ai-solutions`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-12.png" alt="Digital Workplace Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card12Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card12Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card12Li1')}</li>
+                <li>{t('especializaciones.card12Li2')}</li>
+                <li>{t('especializaciones.card12Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/data-management`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-13.png" alt="Public Safety / Disaster Response Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card13Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card13Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card13Li1')}</li>
+                <li>{t('especializaciones.card13Li2')}</li>
+                <li>{t('especializaciones.card13Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+
+            <a href={`${basePath}/soluciones/cloud-migration`} class="especializaciones-card">
+              <div class="especializaciones-card-top">
+                <img src="/logos/especializaciones/aws-partner-14.png" alt="Small and Medium Business Services" class="especializaciones-card-badge" />
+                <div class="especializaciones-card-head">
+                  <h4 class="especializaciones-card-title">{t('especializaciones.card14Title')}</h4>
+                  <p class="especializaciones-card-desc">{t('especializaciones.card14Desc')}</p>
+                </div>
+              </div>
+              <ul class="especializaciones-card-list">
+                <li>{t('especializaciones.card14Li1')}</li>
+                <li>{t('especializaciones.card14Li2')}</li>
+                <li>{t('especializaciones.card14Li3')}</li>
+              </ul>
+              <span class="especializaciones-card-link">{t('especializaciones.knowMore')}</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const interestButtons = document.querySelectorAll('.interest-btn');
+        interestButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            button.classList.toggle('selected');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    background-color: #0c0c0c;
+  }
+
+  .hero-wrapper {
+    padding: 24px;
+    height: 90vh;
+    min-height: 700px;
+  }
+
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    background-image: url("/images/especializaciones/espe-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 100px);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title-especializaciones {
+    color: var(--neutral-100);
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 59px;
+    margin: 0 0 1rem 0;
+    text-align: center;
+  }
+
+  .hero-subtitle-especializaciones {
+    color: var(--neutral-100);
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0;
+    opacity: 0.9;
+    text-align: center;
+  }
+
+  /* Especializaciones AWS Section */
+  .especializaciones-aws-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 100px 0;
+  }
+
+  .especializaciones-aws-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .especializaciones-aws-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .especializaciones-aws-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  .especializaciones-aws-top {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .especializaciones-aws-title {
+    color: #1a1a1a;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 32px;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .especializaciones-aws-title-green {
+    color: #00725D;
+  }
+
+  .especializaciones-aws-parrafo {
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: #4a4a4a;
+    margin: 0 0 1rem 0;
+  }
+
+  .especializaciones-aws-parrafo strong {
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .especializaciones-aws-right {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: sticky;
+    top: 120px;
+  }
+
+  .especializaciones-aws-logo {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .especializaciones-aws-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 512px);
+    gap: 24px;
+    margin-top: 4rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .especializaciones-card {
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    border-radius: 16px;
+    padding: 16px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .especializaciones-card:hover {
+    background: #EBFFFB;
+  }
+
+  .especializaciones-card-top {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .especializaciones-card-badge {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  .especializaciones-card-head {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .especializaciones-card-title {
+    color: #1a1a1a;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 125%;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .especializaciones-card-desc {
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #4a4a4a;
+    margin: 0;
+  }
+
+  .especializaciones-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #4a4a4a;
+  }
+
+  .especializaciones-card-list li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .especializaciones-card-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #00725D;
+  }
+
+  .especializaciones-card-link {
+    display: inline-block;
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #0A4AA5;
+    text-decoration: underline;
+    margin-top: auto;
+    align-self: flex-end;
+  }
+
+  /* Content Section */
+  .contact-form-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 100px 0;
+  }
+
+  .contact-form-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .contact-form-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .contact-form-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .contact-form-title {
+    color: #1A1A1A;
+    font-family: 'Nexa', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 3rem 0;
+    text-align: left;
+  }
+
+  .contact-form-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-form-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-form-intro-title {
+    color: #1A1A1A;
+    font-family: 'Nexa', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .countries-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+
+  .contact-form-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-card-title {
+    color: #1A1A1A;
+    font-family: 'Nexa', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .form-card-text {
+    color: #1A1A1A;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group-full {
+    grid-column: 1 / -1;
+  }
+
+  .form-input {
+    padding: 1rem;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #00C19F;
+    box-shadow: 0 0 0 3px rgba(0, 193, 159, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: #999;
+  }
+
+  .form-label {
+    color: #1A1A1A;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .interest-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .interest-btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #E5E5E5;
+    border-radius: 24px;
+    background: white;
+    color: #666;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .interest-btn:hover {
+    border-color: #00C19F;
+    color: #00C19F;
+  }
+
+  .interest-btn.selected {
+    background: #00C19F;
+    border-color: #00C19F;
+    color: #1A1A1A;
+    font-weight: 600;
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    background: #00C19F;
+    color: #1A1A1A;
+    width: 100%;
+  }
+
+  .btn-submit:hover {
+    background: #00A585;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 193, 159, 0.4);
+  }
+
+  .btn-submit .material-symbols-outlined {
+    font-size: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-container {
+      padding: 0 3rem;
+    }
+
+    .hero-title-especializaciones {
+      font-size: 48px;
+      line-height: 52px;
+    }
+
+    .hero-subtitle-especializaciones {
+      font-size: 16px;
+    }
+
+    .especializaciones-aws-container {
+      padding: 0 60px;
+    }
+
+    .especializaciones-aws-top {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .especializaciones-aws-right {
+      position: static;
+      order: -1;
+      justify-content: flex-start;
+    }
+
+    .especializaciones-aws-logo {
+      max-width: 240px;
+    }
+
+    .especializaciones-aws-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-form-container {
+      padding: 0 50px;
+    }
+
+    .contact-form-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .contact-form-title {
+      font-size: 42px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-wrapper {
+      min-height: 100vh;
+    }
+
+    .hero-banner {
+      padding-top: 80px;
+    }
+
+    .hero-container {
+      padding: 0 1.5rem;
+      min-height: auto;
+    }
+
+    .hero-title-especializaciones {
+      font-size: 36px;
+      line-height: 42px;
+    }
+
+    .hero-subtitle-especializaciones {
+      font-size: 14px;
+    }
+
+    .especializaciones-aws-section {
+      padding: 60px 0;
+    }
+
+    .especializaciones-aws-container {
+      padding: 0 1.5rem;
+    }
+
+    .especializaciones-aws-title {
+      font-size: 26px;
+      line-height: 30px;
+    }
+
+    .especializaciones-aws-parrafo {
+      font-size: 15px;
+    }
+
+    .especializaciones-aws-logo {
+      max-width: 200px;
+    }
+
+    .especializaciones-aws-cards {
+      grid-template-columns: 1fr;
+      margin-top: 2rem;
+      gap: 24px;
+    }
+
+    .especializaciones-card-title {
+      font-size: 18px;
+    }
+
+    .contact-form-section {
+      padding: 80px 0;
+    }
+
+    .contact-form-container {
+      padding: 0 30px;
+    }
+
+    .contact-form-title {
+      font-size: 32px;
+      margin-bottom: 2rem;
+    }
+
+    .contact-form-intro-title {
+      font-size: 20px;
+    }
+
+    .countries-image {
+      max-width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,380 @@
+---
+import Icon from './Icon.astro';
+import { getT, localePrefix } from '../i18n';
+import type { Locale } from '../i18n';
+import es from '../i18n/es.json';
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+const dict = lang === 'en' ? en : lang === 'pt' ? pt : es;
+const t = getT(dict);
+const basePath = localePrefix(lang);
+
+const solutions = [
+  { id: 'transformacion', icon: '/icons/icon_soluciones_1.png', title: t('solutionsSection.s1Title'), description: t('solutionsSection.s1Desc'), link: `${basePath}/soluciones/cloud-migration` },
+  { id: 'ia-generativa', icon: '/icons/icon_soluciones_2.png', title: t('solutionsSection.s2Title'), description: t('solutionsSection.s2Desc'), link: `${basePath}/soluciones/ai-solutions` },
+  { id: 'estrategia-datos', icon: '/icons/icon_soluciones_3.png', title: t('solutionsSection.s3Title'), description: t('solutionsSection.s3Desc'), link: `${basePath}/soluciones/data-management` },
+  { id: 'seguridad', icon: '/icons/icon_soluciones_4.png', title: t('solutionsSection.s4Title'), description: t('solutionsSection.s4Desc'), link: `${basePath}/soluciones/cloud-security` }
+];
+
+const industries = [
+  { id: 'finanzas', icon: '/icons/icon_industrias_1.png', title: t('solutionsSection.i1Title'), description: t('solutionsSection.i1Desc'), link: `${basePath}/industrias/finanzas` },
+  { id: 'manufactura', icon: '/icons/icon_industrias_2.png', title: t('solutionsSection.i2Title'), description: t('solutionsSection.i2Desc'), link: `${basePath}/industrias/manufactura` },
+  { id: 'energia', icon: '/icons/icon_industrias_3.png', title: t('solutionsSection.i3Title'), description: t('solutionsSection.i3Desc'), link: `${basePath}/industrias/energia` },
+  { id: 'retail', icon: '/icons/icon_industrias_4.png', title: t('solutionsSection.i4Title'), description: t('solutionsSection.i4Desc'), link: `${basePath}/industrias/retail-cpg` },
+  { id: 'viajes-hosteleria', icon: '/icons/icon_industrias_5.png', title: t('solutionsSection.i5Title'), description: t('solutionsSection.i5Desc'), link: `${basePath}/industrias/viajes-hosteleria` }
+];
+---
+
+<section class="solutions-section" id="soluciones">
+  <div class="solutions-container">
+    <div class="solutions-header">
+      <h2 class="solutions-title">
+        {t('solutionsSection.title')}
+      </h2>
+      <p class="solutions-subtitle">
+        <strong>{t('solutionsSection.subtitleStrong')}<span style="color: #00C19F;">.</span></strong><br>
+        {t('solutionsSection.subtitleLine2')}<br>
+        {t('solutionsSection.subtitleLine3')}
+      </p>
+
+      <!-- Tabs -->
+      <div class="solutions-tabs">
+        <button class="tab-button active" data-tab="soluciones">
+          {t('solutionsSection.tabSolutions')}
+        </button>
+        <button class="tab-button" data-tab="industrias">
+          {t('solutionsSection.tabIndustries')}
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content active" id="soluciones-content">
+      <div class="solutions-grid">
+        {solutions.map((solution) => (
+          <div class="solution-card">
+            <div class="solution-icon">
+              <img src={solution.icon} alt={solution.title} />
+            </div>
+            <h3 class="solution-title">{solution.title}</h3>
+            <p class="solution-description">{solution.description}</p>
+            <a href={solution.link} class="solution-btn">
+              <Icon name="north_east" size={20} />
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="tab-content" id="industrias-content">
+      <div class="solutions-grid industries-grid">
+        {industries.map((industry) => (
+          <div class="solution-card">
+            <div class="solution-icon">
+              <img src={industry.icon} alt={industry.title} />
+            </div>
+            <h3 class="solution-title">{industry.title}</h3>
+            <p class="solution-description">{industry.description}</p>
+            <a href={industry.link} class="solution-btn">
+              <Icon name="north_east" size={20} />
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .solutions-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 0;
+    overflow: hidden;
+    background-image: url('/images/soluciones_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .solutions-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+    z-index: 1;
+  }
+
+  .solutions-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .solutions-title {
+    color: var(--neutral-100);
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .solutions-subtitle {
+    color: var(--neutral-100);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 3rem;
+  }
+
+  .solutions-subtitle strong {
+    font-weight: 700;
+  }
+
+  /* Tabs */
+  .solutions-tabs {
+    display: inline-flex;
+    background: var(--neutral-500);
+    border-radius: 8px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .tab-button {
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--neutral-800);
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .tab-button:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .tab-button.active {
+    background: #041E42;
+    color: var(--neutral-100);
+  }
+
+  /* Tab Content */
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Solutions Grid */
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .industries-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .solution-card {
+    background: transparent;
+    border: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    position: relative;
+    align-items: flex-start;
+  }
+
+  .solution-card:last-child {
+    border-right: none;
+  }
+
+  .solution-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .solution-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .solution-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .solution-title {
+    color: var(--neutral-100);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .solution-description {
+    color: var(--neutral-100);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+
+  .solution-btn {
+    width: 48px;
+    height: 48px;
+    background: #00C19F;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #1A1A1A;
+    align-self: flex-end;
+    text-decoration: none;
+  }
+
+  .solution-btn:hover {
+    background: #00A585;
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .solutions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .solution-card:nth-child(2n) {
+      border-right: none;
+    }
+
+    .solution-card:nth-child(2n+1) {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .industries-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .solutions-container {
+      padding: 0 60px;
+    }
+
+    .solutions-title {
+      font-size: 42px;
+    }
+
+    .solutions-subtitle {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .solutions-section {
+      padding: 60px 0;
+    }
+
+    .solutions-container {
+      padding: 0 2rem;
+    }
+
+    .solutions-title {
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
+    .solutions-subtitle {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .solution-title,
+    .solution-description,
+    .tab-button {
+      line-height: 1.2;
+    }
+
+    .solutions-grid,
+    .industries-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .solution-card {
+      padding: 2rem 1.5rem;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .solution-card:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
+
+<script>
+  // Tabs functionality
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabName = button.getAttribute('data-tab');
+      
+      // Remove active class from all buttons and contents
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      // Show corresponding content
+      const targetContent = document.getElementById(`${tabName}-content`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+</script>
+

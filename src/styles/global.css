@@ -1,0 +1,329 @@
+/* Fuentes personalizadas */
+/* Nexa - Para títulos */
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/nexa-font/Nexa-XBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/nexa-font/Nexa-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/nexa-font/Nexa-Book.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/nexa-font/Nexa-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Infra - Para párrafos, botones y links */
+@font-face {
+  font-family: 'Infra';
+  src: url('/fonts/infra-font/Infra-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Infra';
+  src: url('/fonts/infra-font/Infra-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Infra';
+  src: url('/fonts/infra-font/Infra-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Reset y estilos globales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colores Neutral */
+  --neutral-50: #FAFAFA;
+  --neutral-100: #FFFFFF;
+  --neutral-200: #FAFAFA;
+  --neutral-300: #F4F4F4;
+  --neutral-400: #E6E6E6;
+  --neutral-500: #DBDBDB;
+  --neutral-600: #999999;
+  --neutral-700: #5E5E5E;
+  --neutral-800: #1A1A1A;
+  --neutral-900: #0C0B0B;
+  
+  /* Primary Turquoise (Aquamarine) */
+  --primary-turquoise-100: #E3F8FF;
+  --primary-turquoise-200: #FAFFCC;
+  --primary-turquoise-300: #F6FF91;
+  --primary-turquoise-400: #3FF7B2;
+  --primary-turquoise-500: #00D847;
+  --primary-turquoise-600: #00C047;
+  --primary-turquoise-700: #7DB810;
+  --primary-turquoise-800: #555E0E;
+  --primary-turquoise-900: #556E05;
+  
+  /* Deep Blue */
+  --deep-blue-100: #E3F8FF;
+  --deep-blue-200: #B5F2FF;
+  --deep-blue-300: #82EAFF;
+  --deep-blue-400: #4FE1FF;
+  --deep-blue-500: #00A5D4;
+  --deep-blue-600: #0085A0;
+  --deep-blue-700: #00585D;
+  --deep-blue-800: #00424E;
+  --deep-blue-900: #01424F;
+  
+  /* Verde (Secondary) */
+  --verde-100: #FAFFCC;
+  --verde-200: #EAFDF4;
+  --verde-300: #B5F2C5;
+  --verde-400: #10D474;
+  --verde-500: #10674A;
+  --verde-600: #08505F;
+  --verde-700: #0E383F;
+  --verde-800: #0D261A;
+  
+  /* Rojo (Secondary) */
+  --rojo-100: #FFFBFB;
+  --rojo-200: #FFEEED;
+  --rojo-300: #FFD4D8;
+  --rojo-400: #FCBBB7;
+  --rojo-500: #FA4A48;
+  --rojo-600: #FF3D23;
+  --rojo-700: #CB1104;
+  --rojo-800: #744605;
+  
+  /* Aliases para compatibilidad */
+  --light-green-500: #00D847;
+  --light-green-600: #00C047;
+  --light-green-400: #3FF7B2;
+  --aquamarine-400: #4FE1FF;
+  --aquamarine-500: #00A5D4;
+  
+  /* Color de fondo oscuro para hero */
+  --bg-dark: #0F1F2E;
+  --bg-dark-lighter: #1a2937;
+}
+
+body {
+  font-family: 'Infra', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--neutral-800);
+  background-color: #000000;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 100%;
+  background-color: var(--neutral-100);
+  position: relative;
+}
+
+/* CTA unificado (referencia: HeroSlider) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-family: 'Infra', sans-serif;
+  color: #1A1A1A;
+}
+
+a.btn {
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #00C19F;
+}
+
+.btn-primary:hover {
+  background: #00a589;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+}
+
+.btn-secondary:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nexa', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+  line-height: 1;
+}
+
+p, a, button, input, textarea, select, label, span {
+  font-family: 'Infra', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Headline 1 */
+h1 {
+  font-weight: 800;
+  font-size: 96px;
+  line-height: auto;
+}
+
+/* Headline 2 */
+h2 {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 95%;
+}
+
+/* Headline 3 */
+h3 {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+}
+
+/* Headline 4 */
+h4 {
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 95%;
+}
+
+/* Subtitle 1 */
+.subtitle-1 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+/* Subtitle 2 */
+.subtitle-2 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: auto;
+}
+
+/* Body Primary */
+.body-primary {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+/* Body Primary Highlight */
+.body-primary-highlight {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+/* Body Secondary */
+.body-secondary {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+/* Button text */
+.button-text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+/* Caption */
+.caption {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: auto;
+}
+
+/* Google Material Icons */
+.material-icons,
+.material-symbols-outlined {
+  font-family: 'Material Icons', 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  body {
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+  
+  h2 {
+    font-size: 36px;
+  }
+  
+  h3 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  
+  h4 {
+    font-size: 24px;
+  }
+}
+

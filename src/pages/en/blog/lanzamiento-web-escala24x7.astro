@@ -1,0 +1,346 @@
+---
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+const lang = 'en';
+const currentPath = Astro.url.pathname;
+import "../../../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escala 24x7 consolidates its integration into Stefanini Group - Blog</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header lang={lang} currentPath={currentPath} />
+    <main>
+      <!-- Blog Article Section -->
+      <section class="blog-article-section">
+        <div class="container">
+          <div class="article-wrapper">
+            <!-- Article Header -->
+            <div class="article-header">
+              <time class="article-date">January 26, 2026</time>
+              <h1 class="article-title">
+                Escala 24x7 consolidates its integration into Stefanini Group with the <span class="article-title-highlight">evolution of its corporate identity.</span>
+              </h1>
+            </div>
+
+            <!-- Article Content -->
+            <div class="article-content">
+              <p class="article-lead">
+                Following the milestone of its alliance with Stefanini Group at the beginning of this year, Escala 24x7 takes a firm step in its regional consolidation strategy by presenting the evolution of its corporate identity. This update clearly reflects the strategic alignment between Escala 24x7’s leadership in Amazon Web Services (AWS) and the backing of Stefanini, one of the most relevant technology groups globally.
+              </p>
+
+              <!-- First Image -->
+              <div class="article-image">
+                <img src="/images/blog/blog-image-1.jpg" alt="Escala 24x7 Stefanini integration" />
+              </div>
+
+              <!-- Section 1 -->
+              <h2 class="article-subtitle">An evolution with strategic purpose</h2>
+              <p class="article-text">
+                The new visual identity aims to convey solidity, institutional backing and integration into a global ecosystem present in more than 41 countries, while preserving the essence, autonomy and positioning that Escala 24x7 has built as an AWS Premier Partner in Latin America.
+              </p>
+
+              <h3 class="article-section-title">This evolution of our image aligns with the alliance’s key objectives:</h3>
+              <ul class="article-list">
+                <li><strong>Drive digital transformation,</strong> combining Escala 24x7’s agility and specialization with Stefanini Group’s large-scale execution capability.</li>
+                <li><strong>Expand the reach of AWS solutions,</strong> strengthening regional presence and accessing new markets in Latin America.</li>
+                <li><strong>Ensure operational continuity,</strong> reaffirming that, although Escala 24x7’s image is evolving, its leadership, expert team and strategic relationship with AWS remain unchanged.</li>
+              </ul>
+
+              <p class="article-text">
+                "When we announced our alliance with Stefanini, we made it clear that the goal was to offer even more robust and innovative AWS solutions", said Alejandro Planas, CEO of Escala 24x7. "Today, our image evolves to live up to that promise. Moving forward with Stefanini’s visual DNA is a statement of strength that assures our customers they have the backing of a global leader, while keeping the personalized service and deep specialization that have always defined us, without losing the autonomy and agility that set us apart".
+              </p>
+
+              <p class="article-text">
+                For Stefanini Group, this visual alignment represents a key step to present a unified Cloud-First proposition in the region, through a gradual transition that preserves the value of the brand and Escala 24x7’s track record, aligning it with Stefanini’s vision as a full partner in digital transformation and benefiting our customers.
+              </p>
+
+              <!-- Second Image -->
+              <div class="article-image">
+                <img src="/images/blog/blog-image-2.jpg" alt="Continuity and future" />
+              </div>
+
+              <!-- Section 2 -->
+              <h2 class="article-subtitle">Continuity and future</h2>
+              <p class="article-text">
+                The evolution of the corporate identity does not imply changes to existing commercial agreements or contact channels. On the contrary, it strengthens Escala 24x7’s ability to operate as a strategic AWS Partner in Latin America, now with the backing of a global infrastructure that accelerates technology adoption and the sustainable growth of its customers.
+              </p>
+              <p class="article-text">
+                With this step, Escala 24x7 and Stefanini Group reaffirm their commitment to continue driving cloud innovation under a solid, coherent identity aligned with their long-term vision. It is the expression of a shared vision, built on trust, experience and commitment to our customers. Escala 24x7 and Stefanini Group move forward together with a clear purpose: to keep supporting organizations in technology decisions that create real impact, today and in the future.
+              </p>
+
+              <!-- Logos Section -->
+              <div class="article-logos">
+                <div class="logo-item">
+                  <img src="/logos/blog/logo-stefanini.png" alt="Stefanini Group" />
+                </div>
+                <div class="logo-item">
+                  <img src="/logos/blog/logo-escala.png" alt="Escala 24x7 by Stefanini" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  /* Blog Article Section */
+  .blog-article-section {
+    background-image: url("/images/blog/blog-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 140px 0 100px 0;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  /* Article Header */
+  .article-header {
+    padding: 60px 60px 40px 60px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .article-category {
+    display: inline-block;
+    background: #00C19F;
+    color: #041E42;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .article-date {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+  }
+
+  .article-title {
+    font-family: 'Nexa', sans-serif;
+    color: #041E42;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .article-title-highlight {
+    color: #00725D;
+  }
+
+  /* Article Content */
+  .article-content {
+    padding: 50px 60px 60px 60px;
+  }
+
+  .article-lead {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #2a2a2a;
+    margin-bottom: 40px;
+  }
+
+  .article-subtitle {
+    font-family: 'Nexa', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #041E42;
+    line-height: 1.3;
+    margin: 48px 0 24px 0;
+  }
+
+  .article-section-title {
+    font-family: 'Nexa', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin: 32px 0 20px 0;
+  }
+
+  .article-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 24px;
+  }
+
+  .article-list {
+    margin: 24px 0;
+    padding-left: 24px;
+  }
+
+  .article-list li {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 16px;
+  }
+
+  .article-list li strong {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  /* Article Images */
+  .article-image {
+    width: 100%;
+    margin: 40px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .article-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Logos Section */
+  .article-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 60px;
+    padding: 40px 0;
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-item img {
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .blog-article-section {
+      padding: 120px 0 80px 0;
+    }
+
+    .container {
+      padding: 0 60px;
+    }
+
+    .article-header {
+      padding: 50px 40px 30px 40px;
+    }
+
+    .article-title {
+      font-size: 36px;
+    }
+
+    .article-content {
+      padding: 40px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+    }
+
+    .article-subtitle {
+      font-size: 24px;
+    }
+
+    .article-logos {
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-article-section {
+      padding: 100px 0 60px 0;
+    }
+
+    .container {
+      padding: 0 20px;
+    }
+
+    .article-wrapper {
+      border-radius: 12px;
+    }
+
+    .article-header {
+      padding: 40px 24px 24px 24px;
+    }
+
+    .article-title {
+      font-size: 28px;
+    }
+
+    .article-content {
+      padding: 32px 24px 40px 24px;
+    }
+
+    .article-lead {
+      font-size: 16px;
+    }
+
+    .article-subtitle {
+      font-size: 22px;
+      margin: 32px 0 20px 0;
+    }
+
+    .article-section-title {
+      font-size: 18px;
+    }
+
+    .article-text,
+    .article-list li {
+      font-size: 15px;
+    }
+
+    .article-image {
+      margin: 32px 0;
+    }
+
+    .article-logos {
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 40px;
+      padding: 30px 0;
+    }
+
+    .logo-item img {
+      max-width: 150px;
+    }
+  }
+</style>

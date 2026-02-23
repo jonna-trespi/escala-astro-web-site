@@ -1,0 +1,1505 @@
+---
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { getT, localePrefix } from '../../../i18n';
+import type { Locale } from '../../../i18n';
+import en from '../../../i18n/en.json';
+import '../../../styles/global.css';
+
+const lang: Locale = 'en';
+const currentPath = Astro.url.pathname;
+const t = getT(en);
+const basePath = localePrefix(lang);
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{t('managedServices.title')}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <Header lang={lang} currentPath={currentPath} />
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-wrapper">
+        <div class="hero-banner">
+          <div class="hero-container">
+            <div class="hero-content">
+              <div class="hero-left">
+                <h1 class="hero-title">{t('managedServices.heroTitle')}</h1>
+                <p class="hero-description-text">
+                  {t('managedServices.heroDescription')}
+                </p>
+              </div>
+              <div class="hero-right">
+                <div class="hero-stat-box">
+                  <div class="hero-stat-text">
+                    {t('managedServices.heroStatText')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Use Cases Section -->
+  <section class="use-cases-section">
+      <!-- Title -->
+      <div class="use-cases-title-container">
+        <h4 class="use-cases-pretitle">{t('managedServices.useCasesPretitle')}</h4>
+        <h2 class="use-cases-title" set:html={t('managedServices.useCasesTitleBr')}></h2>
+      </div>
+
+      <!-- Administración de infraestructura en AWS (Cloud EMx) -->
+      <div class="use-cases-container">
+        <div class="use-cases-header">
+          <h3 class="use-cases-category-title">{t('managedServices.categoryEmx')}</h3>
+          <p class="use-cases-category-subtitle">{t('managedServices.useCaseSubtitle')}</p>
+        </div>
+
+        <div class="use-cases-card">
+          <div class="use-cases-tabs">
+            <button class="tab-button active">{t('managedServices.tabCost')}</button>
+            <button class="tab-button">{t('managedServices.tabSupport')}</button>
+            <button class="tab-button">{t('managedServices.tabInfra')}</button>
+          </div>
+
+          <!-- Tab 1: Control de costos -->
+          <div class="use-cases-content active" data-tab="0">
+            <div class="use-cases-text">
+              <h4 class="use-cases-content-title">{t('managedServices.costTitle')}</h4>
+              <p class="use-cases-content-description">
+                {t('managedServices.costDesc')}
+              </p>
+              <p class="use-cases-content-intro">
+                {t('managedServices.costIntro')}
+              </p>
+              <ul class="use-cases-list">
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.costLi1')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.costLi2')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.costLi3')}</li>
+              </ul>
+              <!-- <button class="use-cases-link accordion-trigger" data-accordion="emx-1">
+                <span class="material-symbols-outlined accordion-icon">add</span>
+                Nuestras soluciones
+              </button>
+              <div class="accordion-content" id="emx-1">
+                <p class="accordion-text">
+                  Amazon CloudWatch, AWS Cost Explorer, AWS Budgets, AWS Trusted Advisor, procesos ITIL y frameworks de Escala 24x7.
+                </p>
+              </div> -->
+            </div>
+            <div class="use-cases-image">
+              <img src="/images/cases/managed_services/case_1.jpg" alt={t('managedServices.altCost')} />
+            </div>
+          </div>
+
+          <!-- Tab 2: Soporte y acompañamiento -->
+          <div class="use-cases-content" data-tab="1">
+            <div class="use-cases-text">
+              <h4 class="use-cases-content-title">{t('managedServices.supportTitle')}</h4>
+              <p class="use-cases-content-description">{t('managedServices.supportDesc')}
+              </p>
+              <p class="use-cases-content-intro">
+                {t('managedServices.supportIntro')}
+              </p>
+              <ul class="use-cases-list">
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.supportLi1')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.supportLi2')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.supportLi3')}</li>
+              </ul>
+              <!-- <button class="use-cases-link accordion-trigger" data-accordion="emx-2">
+                <span class="material-symbols-outlined accordion-icon">add</span>
+                Nuestras soluciones
+              </button>
+              <div class="accordion-content" id="emx-2">
+                <p class="accordion-text">
+                  AWS Support, AWS Well-Architected Framework, procesos ITIL, equipo certificado Escala 24x7.
+                </p>
+              </div> -->
+            </div>
+            <div class="use-cases-image">
+              <img src="/images/cases/managed_services/case_2.jpg" alt={t('managedServices.altSupport')} />
+            </div>
+          </div>
+
+          <!-- Tab 3: Gestión de infraestructura -->
+          <div class="use-cases-content" data-tab="2">
+            <div class="use-cases-text">
+              <h4 class="use-cases-content-title">{t('managedServices.infraTitle')}</h4>
+              <p class="use-cases-content-description">
+                {t('managedServices.infraDesc')}
+              </p>
+              <p class="use-cases-content-intro">
+                {t('managedServices.infraIntro')}
+              </p>
+              <ul class="use-cases-list">
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.infraLi1')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.infraLi2')}</li>
+              </ul>
+              <!-- <button class="use-cases-link accordion-trigger" data-accordion="emx-3">
+                <span class="material-symbols-outlined accordion-icon">add</span>
+                Nuestras soluciones
+              </button>
+              <div class="accordion-content" id="emx-3">
+                <p class="accordion-text">
+                  AWS Systems Manager, AWS Backup, AWS Config, Amazon CloudWatch, AWS Security Hub, frameworks de Escala 24x7.
+                </p>
+              </div> -->
+            </div>
+            <div class="use-cases-image">
+              <img src="/images/cases/managed_services/case_3.jpg" alt={t('managedServices.altInfra')} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soluciones avanzadas -->
+      <div class="use-cases-container">
+        <div class="use-cases-header">
+          <h3 class="use-cases-category-title">{t('managedServices.categoryAdvanced')}</h3>
+          <p class="use-cases-category-subtitle">{t('managedServices.useCaseSubtitle')}</p>
+        </div>
+
+        <div class="use-cases-card">
+          <div class="use-cases-tabs">
+            <button class="tab-button active">{t('managedServices.tabIbm')}</button>
+            <button class="tab-button">{t('managedServices.tabCx')}</button>
+          </div>
+
+          <!-- Tab 1: Servicios administrados para IBM -->
+          <div class="use-cases-content active" data-tab="0">
+            <div class="use-cases-text">
+              <h4 class="use-cases-content-title">{t('managedServices.ibmTitle')}</h4>
+              <p class="use-cases-content-description">
+                {t('managedServices.ibmDesc')}
+              </p>
+              <p class="use-cases-content-intro">
+                {t('managedServices.ibmIntro')}
+              </p>
+              <ul class="use-cases-list">
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.ibmLi1')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.ibmLi2')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.ibmLi3')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.ibmLi4')}</li>
+              </ul>
+              <!-- <button class="use-cases-link accordion-trigger" data-accordion="advanced-1">
+                <span class="material-symbols-outlined accordion-icon">add</span>
+                Nuestras soluciones
+              </button>
+              <div class="accordion-content" id="advanced-1">
+                <p class="accordion-text">
+                  AWS Mainframe Modernization, Amazon EC2 para IBM Power, gestión de AS/400 y AIX, frameworks de Escala 24x7.
+                </p>
+              </div> -->
+            </div>
+            <div class="use-cases-image">
+              <img src="/images/cases/managed_services/case_1.jpg" alt={t('managedServices.altIbm')} />
+            </div>
+          </div>
+
+          <!-- Tab 2: Servicios de automatización de CX -->
+          <div class="use-cases-content" data-tab="1">
+            <div class="use-cases-text">
+              <h4 class="use-cases-content-title">{t('managedServices.cxTitle')}</h4>
+              <p class="use-cases-content-description">
+                {t('managedServices.cxDesc')}
+              </p>
+              <p class="use-cases-content-intro">
+                {t('managedServices.cxIntro')}
+              </p>
+              <ul class="use-cases-list">
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.cxLi1')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.cxLi2')}</li>
+                <li><span class="material-symbols-outlined">check</span> {t('managedServices.cxLi3')}</li>
+              </ul>
+              <!-- <button class="use-cases-link accordion-trigger" data-accordion="advanced-2">
+                <span class="material-symbols-outlined accordion-icon">add</span>
+                Nuestras soluciones
+              </button>
+              <div class="accordion-content" id="advanced-2">
+                <p class="accordion-text">
+                  Amazon Connect, Amazon Lex, Amazon Polly, Amazon Transcribe, Amazon Comprehend, frameworks de Escala 24x7.
+                </p>
+              </div> -->
+            </div>
+            <div class="use-cases-image">
+              <img src="/images/cases/managed_services/case_1.jpg" alt={t('managedServices.altCx')} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Accelerator Section -->
+  <section class="accelerator-section">
+    <div class="accelerator-container">
+      <!-- Title -->
+      <h2 class="accelerator-title" set:html={t('managedServices.acceleratorTitleBr')}></h2>
+
+      <!-- Features Grid - Solo 3 columnas para Managed Services -->
+      <div class="features-grid features-grid-three">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="/icons/solutions/icon_sol_2.png" alt={t('managedServices.feature1Alt')} />
+          </div>
+          <h3 class="feature-title">{t('managedServices.feature1Title')}</h3>
+          <p class="feature-description">
+            {t('managedServices.feature1Desc')}
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="/icons/solutions/icon_sol_3.png" alt={t('managedServices.feature2Alt')} />
+          </div>
+          <h3 class="feature-title">{t('managedServices.feature2Title')}</h3>
+          <p class="feature-description">
+            {t('managedServices.feature2Desc')}
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="/icons/solutions/icon_sol_4.png" alt={t('managedServices.feature3Alt')} />
+          </div>
+          <h3 class="feature-title">{t('managedServices.feature3Title')}</h3>
+          <p class="feature-description">
+            {t('managedServices.feature3Desc')}
+          </p>
+        </div>
+      </div>
+
+      <!-- CTA Card -->
+      <div class="cta-card">
+        <div class="cta-card-content">
+          <div class="cta-card-text">
+            <h2 class="cta-card-title">
+              {t('managedServices.ctaTitle')}
+            </h2>
+            <p class="cta-card-description">
+              {t('managedServices.ctaDescription')}
+            </p>
+          </div>
+          <a href={`${basePath}/contacto`} class="btn btn-primary">
+            {t('managedServices.ctaButton')}
+            <span class="material-symbols-outlined">north_east</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer Component -->
+      <Footer />
+    </div>
+  </section>
+</body>
+</html>
+
+<style>
+  /* Contenido dentro de márgenes: sin overflow horizontal */
+  .hero-section,
+  .use-cases-section,
+  .accelerator-section {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  .hero-container,
+  .what-is-container,
+  .use-cases-container,
+  .use-cases-title-container,
+  .accelerator-container {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-left,
+  .hero-content,
+  .use-cases-text,
+  .cta-card-text {
+    min-width: 0;
+  }
+
+  .cta-card-description {
+    max-width: 100%;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    background-color: #0C0C0C;
+  }
+
+  .hero-wrapper {
+    padding: 24px;
+    height: 90vh;
+    min-height: 700px;
+  }
+
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    background-image: url('/images/hero_managed_services.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 200px);
+    justify-content: center;
+  }
+
+  .hero-title {
+    color: var(--neutral-100);
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 72px;
+    margin-bottom: 0;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 6rem;
+    align-items: flex-end;
+    padding: 24px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+    align-items: flex-start;
+    justify-content: flex-end;
+    max-width: 550px;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 6rem;
+    right: 6rem;
+  }
+
+  /* Stat Box específico para Cloud Migration */
+  .hero-stat-box {
+    position: relative;
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-bottom: 0;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: rgba(250, 250, 250, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(254, 254, 254, 0.5);
+  }
+
+
+  .hero-stat-number {
+    color: #0DFFD3;
+    font-family: 'Nexa', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .hero-stat-percent {
+    font-family: 'Nexa', sans-serif;
+    font-size: 56px;
+    color: #0DFFD3;
+  }
+
+  .hero-stat-text {
+    color: var(--neutral-100);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0;
+    opacity: 0.9;
+    flex: 1;
+  }
+
+  .hero-stat-source {
+    color: var(--neutral-100);
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 0;
+    opacity: 0.7;
+    text-align: right;
+  }
+
+  .hero-description-text {
+    color: var(--neutral-100);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 0;
+    opacity: 0.9;
+  }
+
+  .hero-description-main,
+  .hero-description {
+    color: var(--neutral-100);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 0;
+    opacity: 0.9;
+  }
+
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background: #00C19F;
+    color: var(--neutral-800);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hero-button:hover {
+    background: #00A585;
+    transform: translateY(-2px);
+  }
+
+  .hero-button .material-symbols-outlined {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Use Cases Section */
+  .use-cases-section {
+    width: 100%;
+    background-image: url('/images/soluciones_tabs_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 80px 0;
+  }
+
+  .use-cases-title-container {
+    max-width: 1000px;
+    margin: 0 auto 96px auto;
+    padding: 0 100px;
+    padding-bottom: 54px;
+    text-align: center;
+    border-bottom: 1px solid #999999;
+  }
+
+  .use-cases-pretitle {
+    color: var(--neutral-800);
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .use-cases-title {
+    color: var(--neutral-800);
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .use-cases-title strong {
+    font-weight: 700;
+  }
+
+  :global(.use-cases-title-green) {
+    color: #00725D;
+  }
+
+  /* What is Cloud Migration - Inside use-cases-section */
+  .what-is-container {
+    max-width: 1400px;
+    margin: 0 auto 100px auto;
+    padding: 0 100px;
+  }
+
+  .what-is-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .what-is-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .what-is-title {
+    color: #1a1a1a;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 48px;
+    margin: 0;
+  }
+
+  .what-is-description {
+    color: #1a1a1a;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    margin: 0;
+  }
+
+  .what-is-image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .what-is-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .what-is-features {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .what-is-feature {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .feature-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #041E42;
+    color: var(--neutral-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .feature-text {
+    flex: 1;
+  }
+
+  .feature-text h4 {
+    color: var(--neutral-800);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .feature-text p {
+    color: #1a1a1a;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .use-cases-container {
+    max-width: 1400px;
+    margin: 0 auto 60px auto;
+    padding: 0 100px;
+  }
+
+  .use-cases-container:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .use-cases-header {
+    margin-bottom: 40px;
+  }
+
+  .use-cases-category-title {
+    color: var(--neutral-800);
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  .use-cases-category-subtitle {
+    color: #1a1a1a;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+
+  .use-cases-card {
+    background: var(--neutral-100);
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .use-cases-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .tab-button {
+    flex: 1;
+    padding: 16px 24px;
+    background: transparent;
+    color: var(--neutral-800);
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .tab-button.active {
+    background: #041E42;
+    color: var(--neutral-100);
+    border-radius: 8px 8px 0 0;
+    margin: 4px;
+  }
+
+  .tab-button:hover:not(.active) {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .use-cases-content {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 48px 60px;
+  }
+
+  .use-cases-content.active {
+    display: grid;
+  }
+
+  .use-cases-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .use-cases-content-title {
+    font-family: 'Infra', sans-serif;
+    color: var(--neutral-800);
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 500;
+  }
+
+  .use-cases-content-intro {
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .use-cases-content-description {
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: 1rem;
+  }
+
+  .use-cases-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .use-cases-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: #1a1a1a;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .use-cases-list .material-symbols-outlined {
+    color: #00C19F;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .use-cases-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #00C19F;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .use-cases-link:hover {
+    color: #00A585;
+  }
+
+  .use-cases-link .material-symbols-outlined {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .accordion-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .accordion-trigger.active .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    display: none;
+    overflow: hidden;
+  }
+
+  .accordion-content.active {
+    display: block;
+  }
+
+  .accordion-text {
+    color: #1a1a1a;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .use-cases-image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .use-cases-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* CTA Final Section */
+  /* Accelerator Section */
+  .accelerator-section {
+    width: 100%;
+    background-image: url('/images/soluciones_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 100px 0 80px 0;
+  }
+
+  .accelerator-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  .accelerator-title {
+    color: var(--neutral-100);
+    font-size: 44px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 64px;
+    line-height: 1.2;
+  }
+
+  /* Features Grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-bottom: 8rem;
+    align-items: stretch;
+  }
+
+  .features-grid-three {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .feature-item {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem 2.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    min-height: 100%;
+  }
+
+  .feature-item:last-child {
+    border-right: none;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feature-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .feature-title {
+    color: var(--neutral-100);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 124%;
+    min-height: 2.5em; /* reserva espacio para 2 líneas: títulos alineados */
+  }
+
+  .feature-description {
+    color: var(--neutral-300);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0;
+    flex: 1; /* ocupa el resto de la tarjeta: misma altura total */
+  }
+
+  /* CTA Card */
+  .cta-card {
+    margin-bottom: 5rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-card-content {
+    /* Efecto glass: fondo semitransparente + blur para dejar ver el fondo de la sección */
+    background: radial-gradient(
+      circle,
+      rgba(1, 66, 79, 0.25) 0%,
+      rgba(2, 68, 81, 0.25) 50%,
+      rgba(0, 48, 58, 0.25) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 44px 96px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card-content .cta-card-text,
+  .cta-card-content .btn {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-card-text {
+    flex: 1;
+    text-align: left;
+  }
+
+  .cta-card-title {
+    color: var(--neutral-100);
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .cta-card-description {
+    color: var(--neutral-300);
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 20px;
+    width: 80%;
+    max-width: 100%;
+  }
+
+  .cta-card-content .btn {
+    flex-shrink: 0;
+    align-self: flex-end;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-wrapper {
+      padding: 1.25rem;
+      min-height: 650px;
+    }
+
+    .hero-banner {
+      padding-top: 90px;
+    }
+
+    .hero-container {
+      padding: 0 2rem;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .hero-left {
+      max-width: 100%;
+      gap: 2rem;
+    }
+
+    .hero-right {
+      align-items: flex-start;
+      position: static;
+    }
+
+    .hero-title {
+      font-size: 48px;
+    }
+
+    .hero-description-text,
+    .hero-description-main,
+    .hero-description {
+      font-size: 18px;
+    }
+
+    .hero-stat-box {
+      max-width: 100%;
+      position: static;
+      margin-top: 2rem;
+    }
+
+    .accelerator-container {
+      padding: 0 2.5rem;
+    }
+
+    .what-is-container {
+      padding: 0 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .what-is-content {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .what-is-title {
+      font-size: 36px;
+    }
+
+    .hero-stat-box {
+      gap: 1.25rem;
+    }
+
+    .hero-stat-number {
+      font-size: 56px;
+    }
+
+    .hero-stat-percent {
+      font-size: 38px;
+    }
+
+    .hero-stat-text {
+      font-size: 13px;
+    }
+
+    .accelerator-title {
+      font-size: 38px;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+    }
+
+    .feature-item {
+      padding: 2rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .feature-item:nth-child(2n) {
+      border-right: none;
+    }
+
+    .feature-item:nth-child(3),
+    .feature-item:nth-child(4) {
+      border-bottom: none;
+    }
+
+    .feature-icon img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .cta-card-content {
+      padding: 2.5rem 2rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .cta-card-text {
+      text-align: center;
+    }
+
+    .cta-card-title {
+      font-size: 32px;
+    }
+
+    .cta-card-description {
+      font-size: 15px;
+    }
+
+    .use-cases-title-container,
+    .use-cases-container {
+      padding: 0 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title {
+      font-size: 48px;
+    }
+
+    .use-cases-pretitle {
+      font-size: 28px;
+    }
+
+    .use-cases-title {
+      font-size: 36px;
+    }
+
+    .use-cases-content {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem;
+    }
+
+    .use-cases-content.active {
+      display: grid;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* 1. Contenido dentro de márgenes: padding uniforme mobile */
+
+    /* 2. Todos los textos: line-height 1.2 en mobile */
+    .hero-title,
+    .hero-description-text,
+    .hero-description-main,
+    .hero-description,
+    .hero-stat-text,
+    .hero-stat-source,
+    .hero-stat-number,
+    .hero-stat-percent,
+    .use-cases-pretitle,
+    .use-cases-title,
+    .use-cases-category-title,
+    .use-cases-category-subtitle,
+    .use-cases-content-title,
+    .use-cases-content-intro,
+    .use-cases-list li,
+    .what-is-title,
+    .what-is-description,
+    .feature-text h4,
+    .feature-text p,
+    .tab-button,
+    .use-cases-content-intro,
+    .use-cases-content-description,
+    .accelerator-title,
+    .feature-title,
+    .feature-description,
+    .cta-card-title,
+    .cta-card-description {
+      line-height: 1.2;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .hero-wrapper {
+      padding: 16px;
+      min-height: 90vh;
+    }
+
+    .hero-banner {
+      padding-top: 80px;
+    }
+
+    .hero-container {
+      padding: 0 1.5rem;
+      gap: 2rem;
+      min-height: auto;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-left: 0;
+      padding-right: 0;
+      min-width: 0;
+    }
+
+    .hero-left {
+      max-width: 100%;
+      gap: 2rem;
+      min-width: 0;
+      overflow-x: hidden;
+    }
+
+    .hero-right {
+      align-items: flex-start;
+      position: static;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.2;
+      margin-bottom: 0;
+    }
+
+    .hero-description-text,
+    .hero-description-main,
+    .hero-description {
+      font-size: 16px;
+    }
+
+    .hero-button {
+      width: 100%;
+      max-width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 14px;
+      justify-content: center;
+      text-align: center;
+      white-space: normal;
+      box-sizing: border-box;
+    }
+
+    .accelerator-container {
+      padding: 0 1.5rem;
+    }
+
+    .what-is-container {
+      padding: 0 1.5rem;
+    }
+
+    .what-is-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .what-is-title {
+      font-size: 28px;
+    }
+
+    .what-is-description {
+      font-size: 15px;
+    }
+
+    .what-is-features {
+      gap: 1.5rem;
+    }
+
+    .feature-number {
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+    }
+
+    .feature-text h4 {
+      font-size: 16px;
+    }
+
+    .feature-text p {
+      font-size: 14px;
+    }
+
+    .hero-stat-box {
+      padding: 24px;
+      max-width: 100%;
+      gap: 1.5rem;
+      position: static;
+      margin-top: 2rem;
+    }
+
+    .hero-stat-number {
+      font-size: 40px;
+    }
+
+    .hero-stat-percent {
+      font-size: 28px;
+    }
+
+    .hero-stat-text {
+      font-size: 14px;
+    }
+
+    .hero-stat-source {
+      font-size: 11px;
+      text-align: left;
+    }
+
+    .accelerator-section {
+      padding: 3rem 0;
+    }
+
+    .accelerator-title {
+      font-size: 28px;
+      margin-bottom: 2rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .feature-item {
+      padding: 2rem 1.5rem;
+      border-right: none;
+      gap: 0.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .feature-item:last-child {
+      border-bottom: none;
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-icon img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-description {
+      font-size: 14px;
+    }
+
+    .cta-card {
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .cta-card-content {
+      padding: 2.5rem 1.5rem;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .cta-card-content .btn {
+      align-self: center;
+    }
+
+    .cta-card-text {
+      text-align: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cta-card-title {
+      font-size: 26px;
+    }
+
+    .cta-card-description {
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .use-cases-section {
+      padding: 3rem 0;
+    }
+
+    .use-cases-title-container,
+    .use-cases-container {
+      padding: 0 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .use-cases-title-container {
+      padding-bottom: 2rem;
+    }
+
+    .what-is-container {
+      padding: 0 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title {
+      font-size: 36px;
+    }
+
+    .hero-description-text,
+    .hero-description-main,
+    .hero-description {
+      font-size: 14px;
+    }
+
+    .use-cases-pretitle {
+      font-size: 24px;
+    }
+
+    .use-cases-title {
+      font-size: 28px;
+    }
+
+    .use-cases-category-title {
+      font-size: 24px;
+    }
+
+    .use-cases-content-title {
+      font-size: 22px;
+    }
+
+    .use-cases-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .use-cases-content {
+      padding: 1.5rem 1.25rem;
+      gap: 2rem;
+    }
+
+    .use-cases-content.active {
+      display: grid;
+    }
+
+    .features-grid {
+      margin-bottom: 2.5rem;
+    }
+
+    .use-cases-tabs {
+      flex-direction: column;
+      gap: 0.5rem;
+      border-bottom: none;
+    }
+
+    .tab-button {
+      flex: none;
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .tab-button.active {
+      border-radius: 8px;
+    }
+
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Tabs functionality
+    const tabContainers = document.querySelectorAll('.use-cases-card');
+    
+    tabContainers.forEach(container => {
+      const tabButtons = container.querySelectorAll('.tab-button');
+      const tabContents = container.querySelectorAll('.use-cases-content');
+      
+      tabButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons and contents
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          // Add active class to clicked button and corresponding content
+          button.classList.add('active');
+          tabContents[index].classList.add('active');
+        });
+      });
+    });
+    
+    // Accordion functionality
+    const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+    
+    accordionTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const accordionId = trigger.getAttribute('data-accordion');
+        
+        // Toggle active classes
+        if (accordionId) {
+          const accordionContent = document.getElementById(accordionId);
+          if (accordionContent) {
+            trigger.classList.toggle('active');
+            accordionContent.classList.toggle('active');
+          }
+        }
+      });
+    });
+  });
+</script>
+
+
+
+

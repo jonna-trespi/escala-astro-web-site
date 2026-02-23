@@ -1,0 +1,161 @@
+---
+import { getT } from '../i18n';
+import es from '../i18n/es.json';
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+const dict = lang === 'en' ? en : lang === 'pt' ? pt : es;
+const t = getT(dict);
+
+const statKeys = ['specialists', 'certifications', 'implementations', 'countries'] as const;
+const stats = statKeys.map((key) => t(`statsCarousel.${key}`));
+---
+
+<section class="stats-carousel">
+  <div class="stats-wrapper">
+    <div class="stats-track">
+      <div class="stats-content">
+        {stats.map((stat, index) => (
+          <>
+            <div class="stat-item">
+              <span class="stat-text">{stat}</span>
+            </div>
+            {index < stats.length - 1 && (
+              <div class="stat-separator">
+                <img src="/icons/star_icon.png" alt="" class="separator-icon" />
+              </div>
+            )}
+          </>
+        ))}
+      </div>
+      <!-- Duplicar para efecto infinito -->
+      <div class="stats-content" aria-hidden="true">
+        {stats.map((stat, index) => (
+          <>
+            <div class="stat-item">
+              <span class="stat-text">{stat}</span>
+            </div>
+            {index < stats.length - 1 && (
+              <div class="stat-separator">
+                <img src="/icons/star_icon.png" alt="" class="separator-icon" />
+              </div>
+            )}
+          </>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-carousel {
+    width: 100%;
+    height: 64px;
+    background: linear-gradient(
+      90deg,
+      #001E4A 0%,
+      #00725D 100%
+    );
+    overflow: hidden;
+    position: relative;
+  }
+
+  .stats-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  .stats-track {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 16px 0;
+    animation: scroll 30s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .stats-track:hover {
+    animation-play-state: paused;
+  }
+
+  .stats-content {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 40px;
+    gap: 40px;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .stat-text {
+    color: var(--neutral-100);
+    font-family: 'Infra', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+
+  .stat-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .separator-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    opacity: 0.8;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .stats-carousel {
+      height: auto;
+      min-height: 50px;
+    }
+
+    .stats-track {
+      padding: 12px 0;
+    }
+
+    .stat-text {
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .stats-content {
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .separator-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>
+

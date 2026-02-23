@@ -1,0 +1,1837 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+const lang = 'es';
+const currentPath = Astro.url.pathname;
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casos de Éxito - Escala 24x7</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header lang={lang} currentPath={currentPath} />
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-wrapper">
+          <div class="hero-banner">
+            <div class="hero-container">
+              <div class="hero-content">
+                <h1 class="hero-title">Casos de éxito</h1>
+                <p class="hero-subtitle">
+                  No lo decimos nosotros.<br />
+                  Lo confirman nuestros clientes.
+                </p>
+                <p class="hero-description">
+                  Cuando la operación no podía fallar, estas empresas eligieron Escala 24x7. Conoce cómo transformaron lo crítico en ventaja.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cases Section -->
+      <section class="cases-section">
+        <div class="cases-container">
+          <!-- Filters -->
+          <div class="cases-filters">
+            <!-- Tabs -->
+            <div class="cases-tabs">
+              <button class="cases-tab active" data-filter="finanzas">Finanzas</button>
+              <button class="cases-tab" data-filter="energia">Energía</button>
+              <button class="cases-tab" data-filter="retail">Retail</button>
+              <button class="cases-tab" data-filter="manufactura">Manufactura</button>
+              <button class="cases-tab" data-filter="viajes">Viajes y hotelería</button>
+              <!-- <button class="cases-tab" data-filter="otras">Otras industrias</button> -->
+            </div>
+
+            <!-- Country Filter -->
+            <div class="country-filter">
+              <button class="country-filter-btn" id="country-filter-btn">
+                <span class="filter-text">Filtrar por país</span>
+                <span class="material-symbols-outlined">expand_more</span>
+              </button>
+              <div class="country-dropdown" id="country-dropdown">
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="argentina" />
+                  <span>Argentina</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="chile" />
+                  <span>Chile</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="colombia" />
+                  <span>Colombia</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="costa-rica" />
+                  <span>Costa Rica</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="ecuador" />
+                  <span>Ecuador</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="salvador" />
+                  <span>El Salvador</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="honduras" />
+                  <span>Honduras</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="nicaragua" />
+                  <span>Nicaragua</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="panama" />
+                  <span>Panamá</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="peru" />
+                  <span>Perú</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="republica-dominicana" />
+                  <span>República Dominicana</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="canada" />
+                  <span>Canadá</span>
+                </label>
+                <label class="country-option">
+                  <input type="checkbox" name="country" value="usa" />
+                  <span>Estados Unidos</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Descripción por categoría -->
+          <p class="category-description" id="category-description">Innovación financiera sin margen de error. Operación segura, continua y lista para escalar.</p>
+          <div class="category-description-separator" aria-hidden="true"></div>
+
+          <!-- Cases Grid -->
+          <div class="cases-grid" id="cases-grid">
+            <!-- 1. Allianz - Video -->
+            <div class="case-item" data-category="finanzas" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="XJAqoAyafZ8" data-video-title="Allianz">
+                  <img src="https://img.youtube.com/vi/XJAqoAyafZ8/maxresdefault.jpg" alt="Allianz - Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay">
+                    <div class="case-play-btn"><Icon name="play_arrow" size={42} /></div>
+                  </div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-allianz.png" alt="Allianz" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Modernizó su infraestructura tecnológica, reduciendo un 85% los incidentes y aumentando 
+                  la estabilidad, escalabilidad y capacidad de innovación con IA conversacional.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/69403bb899fafd9aea5f4778_GEN%20AI%20ALLIANZ.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Allianz - Video -->
+            <div class="case-item" data-category="finanzas" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="KexqTC5scdg" data-video-title="Allianz">
+                  <img src="https://img.youtube.com/vi/KexqTC5scdg/maxresdefault.jpg" alt="Allianz - Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay">
+                    <div class="case-play-btn"><Icon name="play_arrow" size={42} /></div>
+                  </div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-allianz.png" alt="Allianz" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Modernizó su infraestructura tecnológica con una migración completa a la nube, incorporando más de 200 servidores y aplicaciones críticas. Esto redujo los incidentes operativos, mejoró la estabilidad y escalabilidad de sus sistemas, y logró una reducción de costos estimada entre 30% y 40% a mediano plazo.</p>
+                <div class="case-link-row">
+                  <a target="_blank" href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f0ff6a104426efa169f2c_ALLIANZ.pdf" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Grupo San Cristóbal - Video -->
+            <div class="case-item" data-category="finanzas" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="sGs-cSgdD9g" data-video-title="Grupo San Cristóbal">
+                  <img src="https://img.youtube.com/vi/sGs-cSgdD9g/maxresdefault.jpg" alt="Grupo San Cristóbal - Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay">
+                    <div class="case-play-btn"><Icon name="play_arrow" size={42} /></div>
+                  </div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-grupo-san-cristobal.png" alt="Grupo San Cristóbal" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Modernizó sus operaciones tecnológicas migrando su infraestructura y su implementación de SAP S/4HANA a la nube de AWS. Esta adopción permitió habilitar automatización, digitalización e iniciativas de IoT en sus obras a nivel nacional, mejorando la operación diaria de los proyectos, la gestión de la información y la escalabilidad del negocio.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f0e9f594b278f1a3e4c55_SAN%20CRISTOBAL.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Cabal - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="argentina">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Cabal - Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cabal.png" alt="Cabal" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Modernizó sus aplicaciones financieras al migrarlas a una arquitectura contenerizada en AWS, implementando CI/CD con Escala 24x7. Esto automatizó despliegues, redujo tiempos de provisión y actualización, y permitió escalar bajo demanda, todo mientras mantenía altos estándares de seguridad y cumplimiento normativo.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f0ec60951732f378ec34b_CABAL.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5–18. Finanzas (14 tarjetas más) -->
+            <div class="case-item" data-category="finanzas" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="BUW2_vFYto4" data-video-title="Caso Finanzas">
+                  <img src="https://img.youtube.com/vi/BUW2_vFYto4/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-mercantil.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Fortaleció la seguridad y agilidad de sus operaciones. Tras una migración sin interrupciones, realizó un assessment de seguridad en la nube, reduciendo riesgos operativos y garantizando visibilidad en tiempo real, lo que le permitió ofrecer servicios más seguros y continuos.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/694496941a2ac059e73c0696_Caso%20de%20E%CC%81xito%20-%20Mercantil%20Andina.pdf" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Guou - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="chile">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="NIJwXEuDgIg" data-video-title="Caso Finanzas">
+                  <img src="https://img.youtube.com/vi/NIJwXEuDgIg/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-guou.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/chile-icon.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Implementó una arquitectura 100% serverless que mejoró la seguridad, automatizó procesos críticos y modernizó su plataforma digital, permitiendo un escalado seguro y eficiente. Esto resultó en una reducción del 40% en costos de ejecución, un aumento en los estándares de seguridad y mayor confianza operativa para crecer sin comprometer la continuidad ni la reputación del negocio.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/641dddb91c9aa12dcfd9b1bd_Caso%20de%20Exito%20-%20GUOU%20Finance.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. Snap - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="costa-rica">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="BZKQLLszly4" data-video-title="Caso Finanzas">
+                  <img src="https://img.youtube.com/vi/BZKQLLszly4/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-snap.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/cr-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Implementó un sistema inteligente de procesamiento de documentos y automatizó el 21% de las solicitudes, alcanzando 85% de adopción interna y mayor foco en innovación.</p>
+              </div>
+            </div>
+
+            <!-- 8. Snap - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="costa-rica">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Cabal - Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-snap.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/cr-icon.png" alt="Colombia" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró el 100% de su infraestructura, eliminando inversiones en hardware y acelerando la innovación para soportar su crecimiento en EE. UU. y Reino Unido.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/69403c238e1e2a136ffdca85_Snap%20FInance%20AI.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9. Credix - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="costa-rica">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-credix.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/cr-icon.png" alt="México" class="case-country-icon" />
+                </div>
+                <p class="case-body">Consolidó su infraestructura en la nube para escalar su modelo fintech, logrando mayor eficiencia de costos, elasticidad operativa y rapidez para lanzar nuevos productos, además de habilitar trabajo remoto para más de 100 colaboradores en tiempo récord sin afectar la continuidad del negocio.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f10c0bd83b9944033afe1_CREDIX.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 10. Pibank Ecuador - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="ecuador">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="Q4-MiQXvFP4" data-video-title="Caso Finanzas">
+                  <img src="https://img.youtube.com/vi/Q4-MiQXvFP4/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-pibank.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/ec-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Modernizó su arquitectura tecnológica con un enfoque basado en microservicios para escalar su modelo de banca directa en España, Colombia y Estados Unidos, logrando mayor eficiencia operativa, optimización de costos y agilidad para lanzar productos financieros innovadores en nuevos mercados.</p>
+              </div>
+            </div>
+
+            <!-- 11. Banco Salvadoreño - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="salvador">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <p class="category-description">Banco Salvadoreño</p>
+                  <img src="/icons/recursos/sal-icon.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su aplicativo crítico de gestión de riesgos y fraude a la nube para fortalecer la resiliencia y continuidad del negocio, alcanzando un 99.95% de disponibilidad, reduciendo el RTO a menos de 30 minutos, el RPO a menos de 10 minutos y disminuyendo en 50% los tiempos de despliegue y gestión de infraestructura.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/65c15469267456b0461ab9a6_Caso%20de%20Exito%20Banco%20Salvadoreno.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 12. Lafise - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="nicaragua">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="s6w5wmV1ZwM" data-video-title="Caso Finanzas">
+                  <img src="https://img.youtube.com/vi/s6w5wmV1ZwM/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-lafise.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/nic-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Ejecutó una transformación digital y cultural que aceleró el onboarding digital, logrando que más del 50% de los nuevos clientes se registraran por canales digitales y mejorando la experiencia del cliente a escala regional.</p>
+              </div>
+            </div>
+
+            <!-- 13. Unibank - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="panama">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-unibank.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/pan-icon.png" alt="Perú" class="case-country-icon" />
+                </div>
+                <p class="case-body">La organización financiera migró su sistema crítico de pagos desde una nube privada a la nube pública, trasladando Oracle RAC sin interrupciones, lo que permitió garantizar una disponibilidad cercana al 100%, mejorar la escalabilidad para manejar transacciones en tiempo real y optimizar costos operativos sin afectar la continuidad del negocio.</p>
+              </div>
+            </div>
+
+            <!-- 14. Banco Panameño - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="panama">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <p class="category-description">Banco Panameño</p>
+                  <img src="/icons/recursos/pan-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Fortaleció la arquitectura de su sitio web institucional en AWS para garantizar alta resiliencia, seguridad y escalabilidad, logrando una disponibilidad del 99,99%, reducción del 50% en tiempos de carga y una estrategia de recuperación ante desastres que asegura la continuidad operativa incluso en escenarios críticos.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/65c152529e7349658844247b_Caso%20de%20Exito%20Banco%20Panameno.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 15. BIM Canada - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="canada">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="D9T8Mwrzhoo" data-video-title="Caso Finanzas">
+                  <img src="https://img.youtube.com/vi/D9T8Mwrzhoo/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-bim.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/can-icon.png" alt="Colombia" class="case-country-icon" />
+                </div>
+                <p class="case-body">La empresa ha llevado a cabo una modernización integral de su infraestructura tecnológica, lo que ha resultado en una plataforma que no solo es más segura, sino también escalable y eficiente. Este proceso ha permitido reducir significativamente los costos operativos y, al mismo tiempo, ha acelerado el ritmo de innovación dentro de la organización, facilitando la implementación de nuevas soluciones y mejorando la experiencia del cliente.</p>
+              </div>
+            </div>
+
+            <!-- 16. Banesco RD - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="republica-dominicana">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-banesco.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/dom-icon.png" alt="México" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró el 100% de sus operaciones a la nube de AWS, mejorando su infraestructura y asegurando alta disponibilidad y seguridad. Esto resultó en una operación resiliente, con replicación de datos inmediata, reportes 5 veces más rápidos y un ahorro anual superior al 50%, lo que les permitió enfocarse en su negocio asegurador y escalar su modelo digital en República Dominicana.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f12f0f774d83750047951_Banesco%20Seguros.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 17. Apryl USA - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="usa">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-apryl.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/usa-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Construyó su plataforma sobre AWS para escalar de forma segura y eficiente. Gracias a una arquitectura cloud nativa y serverless, logró alta disponibilidad y redujo sus tiempos de procesamiento de datos de semanas a solo días, habilitando el crecimiento de su negocio y el uso avanzado de analítica y machine learning.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f131d720a9f5e2cf78402_AAPRYL.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 18. Pibank USA - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="finanzas" data-country="usa">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-pibank.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/usa-icon.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Lanzó una banca 100 % digital con arquitectura basada en microservicios, automatización DevOps y diseño centrado en el usuario, optimizando eficiencia, escalabilidad y experiencia del cliente.</p>
+              </div>
+            </div>
+
+            <!-- Energía (7) -->
+            <div class="case-item" data-category="energia" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="DpLxIoWtZw4" data-video-title="Sacde">
+                  <img src="https://img.youtube.com/vi/DpLxIoWtZw4/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-sacde.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Modernizó sus operaciones con SAP S/4HANA, habilitando automatización, digitalización e iniciativas de IoT que mejoraron la eficiencia operativa y el control de proyectos distribuidos.</p>
+              </div>
+            </div>
+
+            <div class="case-item" data-category="energia" data-country="argentina">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <p class="category-description">Empresa de energía de Argentina</p>
+                  <img src="/icons/recursos/arg-icon.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Implementó analítica de datos en AWS integrando ingesta, almacenamiento, consulta y visualización en la nube. Con esta arquitectura logró 99.99% de disponibilidad, acceso a datos en tiempo casi real, visualizaciones ejecutivas y capacidades de análisis predictivo, habilitando una toma de decisiones más ágil y preparada para su expansión on-shore y off-shore.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/6690764c8f8b9c4397541476_Caso%20de%20Exito%20Empresa%20de%20Energia%20Argentina.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="case-item" data-category="energia" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="SjGt5QTRBgQ" data-video-title="Energía">
+                  <img src="https://img.youtube.com/vi/SjGt5QTRBgQ/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-pampa.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Colombia" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su plataforma SAP a SAP HANA en AWS para unificar infraestructuras tras adquirir Petrobras Argentina. Gracias a la elasticidad de la nube, logró aprovisionar capacidades rápidamente, reducir los tiempos de implementación en un 50% y operar a un costo tres veces menor que con infraestructura física, permitiendo nuevos proyectos en semanas.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f0e81594b277e8a3e4c0f_PAMPA%20ENERGIA.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 19. Pecom Argentina - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="energia" data-country="argentina">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-pecom.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="México" class="case-country-icon" />
+                </div>
+                <p class="case-body">Implementó un Data Lake para unificar grandes volúmenes de datos en silos, permitiendo análisis en tiempo real y automatizando la ingesta de información. Esto redujo los costos de procesamiento y almacenamiento en un 90%, aceleró los procesos analíticos y mejoró la toma de decisiones con mayor eficiencia y seguridad.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/643ed5771db252343199a5fc_PECOM.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 20. Empresa de energía del Caribe - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="energia" data-country="colombia">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <p class="category-description">Empresa de energía del Caribe</p>
+                  <img src="/icons/recursos/col-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su sistema crítico de mantenimiento de planta a una infraestructura resiliente, capaz de operar en condiciones climáticas extremas. Esto garantizó continuidad operativa ante desastres naturales, alcanzando 99.99% de disponibilidad, reduciendo tiempos de mantenimiento y permitiendo ajustar costos según la demanda.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f103b42b03b0487e44022_EMPRESA%20ENERGETICA%20DEL%20CARIBE.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 21. Magdalena Guatemala - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="energia" data-country="guatemala">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="h5GD7giFTqY" data-video-title="Energía">
+                  <img src="https://img.youtube.com/vi/h5GD7giFTqY/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-magdalena.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/gua-icon.png" alt="Perú" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su ERP SAP S/4HANA y operaciones críticas a la nube pública para ganar elasticidad y soportar picos de demanda, logrando una reducción de costos superior al 50%, alta disponibilidad durante la transición y habilitando proyectos de innovación como IoT, analítica y planes de recuperación ante desastres.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f1120548ac6408b06e167_IMSA.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 22. ISA Nicaragua - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="energia" data-country="nicaragua">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-isa.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/nic-icon.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Implementó una infraestructura escalable para monitorear en tiempo real la logística de su cosecha, ajustando el uso de recursos según la estacionalidad del negocio, lo que permitió reducir cerca del 50% los costos de infraestructura, mejorar la toma de decisiones operativas y escalar rápidamente sin inversiones en hardware.</p>
+                <div class="case-link-row">
+                  <a href="https://www.escala24x7.com/single-post/ser-san-antonio-se-beneficia-de-la-escalabilidad-de-amazon-web-services" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Retail (4) -->
+
+            <!-- 23. El Ecuador - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="retail" data-country="ecuador">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <p class="category-description">Empresa de retail de Ecuador</p>
+                  <img src="/icons/recursos/ec-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su infraestructura heredada a la nube para eliminar tiempos de inactividad, reducir costos operativos y ganar resiliencia, logrando una reducción del 37% en el TCO, una disponibilidad del 99.8% y un aumento del 80% en la productividad, acelerando además la adopción de nuevas tecnologías.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/6690763fbbbc91a6820175fd_Caso%20de%20Exito%20Empresa%20de%20Retail%20Ecuador.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 24. Sportline Panama - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="retail" data-country="panama">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-sportline.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/pan-icon.png" alt="México" class="case-country-icon" />
+                </div>
+                <p class="case-body">Implementó un Data Lake en la nube de AWS para centralizar, procesar y analizar grandes volúmenes de datos del negocio. La solución permitió habilitar analítica casi en tiempo real, automatizar la gestión de la infraestructura y reducir costos operativos, fortaleciendo la toma de decisiones estratégicas y la agilidad del negocio retail.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/643ed5dc29db86fe443e8d45_SPORTLINE.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 25. Magna Dominican Republic - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="retail" data-country="republica-dominicana">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-magna.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/dom-icon.png" alt="Colombia" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migraron su SAP y datacenter a la nube de AWS, reemplazando una infraestructura costosa por un entorno escalable y administrado. Esta transformación les permitió reducir los tiempos de implementación, asegurar la continuidad operativa y expandir el negocio hasta un 300% en 10 veces menos tiempo, consolidando su crecimiento regional con mayor agilidad y control de costos.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f12dbd5add65e360ef1bd_MAGNA%20MOTORS.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 26. Camsoft Dominican Republic - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="retail" data-country="republica-dominicana">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-camsoft.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/dom-icon.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Realizó un Well-Architected Review (WAR) para optimizar su infraestructura en AWS. En menos de 20 días, identificaron vulnerabilidades, redujeron el sobredimensionamiento de servidores, implementaron monitoreo con Amazon CloudWatch y mejoraron la gobernanza, logrando mayor visibilidad y control de costos.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f1304720a9f8a4bf783d0_GRUPO%20MALLEN.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Manufactura (6) -->
+
+            <!-- 27. Establishment Labs Costa Rica - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="manufactura" data-country="costa-rica">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-el.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/cr-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Evaluó y optimizó su arquitectura en la nube mediante un Well-Architected Review, fortaleciendo la seguridad, confiabilidad y eficiencia operativa de sus sistemas, mejorando el control sobre sus recursos y alineando su infraestructura con los más altos estándares de calidad de la industria.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/64275102e3fdc2b7f3facdea_Caso%20de%20E%CC%81xito%20FinOps%20-%20Establishment%20Labs.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 28. Establishment Labs Costa Rica - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="manufactura" data-country="costa-rica">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="N9M5x1gB1xY" data-video-title="Manufactura">
+                  <img src="https://img.youtube.com/vi/N9M5x1gB1xY/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-el.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/cr-icon.png" alt="México" class="case-country-icon" />
+                </div>
+                <p class="case-body">Establishment Labs implementó una estrategia FinOps para optimizar la virtualización de aplicaciones, ajustando el autoescalamiento según patrones reales de uso, lo que permitió reducir en un 65% los costos operativos anuales y asegurar la sostenibilidad financiera de su infraestructura.</p>
+              </div>
+            </div>
+
+            <!-- 29. Ag Guatemala - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="manufactura" data-country="guatemala">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="iRHRWnPyYRE" data-video-title="Manufactura">
+                  <img src="https://img.youtube.com/vi/iRHRWnPyYRE/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-ag.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/gua-icon.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Modernizó su infraestructura para ganar elasticidad y flexibilidad operativa, permitiéndole responder con mayor agilidad a la demanda del mercado, mejorar la continuidad del negocio y escalar sus operaciones sin fricción.</p>
+              </div>
+            </div>
+
+            <!-- 30. Dinant Honduras - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="manufactura" data-country="honduras">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="Fb_XjrD5Ags" data-video-title="Manufactura">
+                  <img src="https://img.youtube.com/vi/Fb_XjrD5Ags/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-dinant.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/hon-icon.png" alt="Colombia" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su SAP on-premise a SAP HANA en la nube para ganar escalabilidad, alta disponibilidad y resiliencia, logrando reducir hasta USD 80,000 anuales en costos, habilitar planes de recuperación ante desastres y estabilizar la operación regional sin interrupciones.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f11dbce323d8346b4c710_DINANT.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 31. Quimmco Mexico - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="manufactura" data-country="mexico">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/blog/blog-image-1.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-quimmco.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/mex-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su data center y su ERP Oracle EBS a la nube para superar la obsolescencia tecnológica y habilitar trabajo distribuido, logrando mayor agilidad, escalabilidad y seguridad, reduciendo vulnerabilidades y proyectando ahorros de entre 5% y 10% en costos operativos a mediano plazo.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f1233ee5d89df2fcceacd_GRUPO%20QUIMMCO.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 32. Mirgor Argentina - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="manufactura" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="s85zq6H8jQ8" data-video-title="Manufactura">
+                  <img src="https://img.youtube.com/vi/s85zq6H8jQ8/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-mirgor.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Perú" class="case-country-icon" />
+                </div>
+                <p class="case-body">Optimizó y unificó la gestión de su infraestructura y datos en AWS, integrando sus sistemas, adoptando infraestructura como código y habilitando analítica casi en tiempo real para sus distintas unidades de negocio. Esta estrategia permitió reducir hasta un 42% los costos de infraestructura, acelerar despliegues de horas a minutos y mejorar la eficiencia operativa y la escalabilidad del negocio.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/64cd32c8de92767eccbb24d6_GRUPO%20MIRGOR.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Viajes y hoteleria (2) -->
+
+            <!-- 33. Flybondi Argentina - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="viajes" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="gfaygu41g10" data-video-title="Viajes">
+                  <img src="https://img.youtube.com/vi/gfaygu41g10/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-flybondi.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/arg-icon.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su plataforma de ventas a una arquitectura 100% serverless en AWS para soportar altos picos de tráfico y reducir costos operativos. El nuevo modelo le permite escalar automáticamente, atender hasta 800 mil visitas diarias, mejorar la seguridad y liberar al equipo para enfocarse en desarrollo, innovación y analítica en tiempo real para la toma de decisiones.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f0e5206f2d1beac6f6f79_FLYBONDI.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 34. Exito Colombia - Sin video ni paper (tipo 4) -->
+            <div class="case-item" data-category="viajes" data-country="colombia">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="n-IAFF2mW8s" data-video-title="Viajes">
+                  <img src="https://img.youtube.com/vi/n-IAFF2mW8s/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={42} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-exito.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/col-icon.png" alt="México" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migró su infraestructura a la nube para soportar el crecimiento acelerado de su operación multicanal, logrando mayor estabilidad, alta disponibilidad y elasticidad para responder a picos de demanda, optimizando costos y mejorando el monitoreo en tiempo real de ventas y operación.</p>
+                <div class="case-link-row">
+                  <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f1086987034ad2004b5cf_VIAJES%20EXITO.pdf" target="_blank" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Otras industrias (10) -->
+            <!-- <div class="case-item" data-category="otras" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="sGs-cSgdD9g" data-video-title="Caso">
+                  <img src="https://img.youtube.com/vi/sGs-cSgdD9g/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={48} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Migración integral a AWS: infraestructura, aplicaciones y datos con mínima interrupción y soporte 24x7.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="chile">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/recursos/casos-hero.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Seguridad y cumplimiento en la nube: políticas unificadas, auditoría y gestión de identidades para múltiples equipos.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="colombia">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="gfaygu41g10" data-video-title="Caso">
+                  <img src="https://img.youtube.com/vi/gfaygu41g10/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={48} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="Colombia" class="case-country-icon" />
+                </div>
+                <p class="case-body">CI/CD y DevOps en AWS: pipelines automatizados, entornos reproducibles y despliegues seguros y frecuentes.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="mexico">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/recursos/casos-hero.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="México" class="case-country-icon" />
+                </div>
+                <p class="case-body">Data lake y analytics: almacenamiento escalable, procesamiento y visualización para toma de decisiones.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="KexqTC5scdg" data-video-title="Caso">
+                  <img src="https://img.youtube.com/vi/KexqTC5scdg/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={48} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Backup, recuperación y continuidad de negocio: estrategia DR probada y tiempos de recuperación objetivos definidos.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="peru">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/recursos/casos-hero.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="Perú" class="case-country-icon" />
+                </div>
+                <p class="case-body">Optimización de costos en la nube: right-sizing, reservas y monitoreo proactivo con Escala 24x7.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="chile">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="sGs-cSgdD9g" data-video-title="Caso">
+                  <img src="https://img.youtube.com/vi/sGs-cSgdD9g/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={48} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="Chile" class="case-country-icon" />
+                </div>
+                <p class="case-body">Observabilidad y monitoreo: logs, métricas, alertas y dashboards unificados para operación y desarrollo.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="colombia">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/recursos/casos-hero.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="Colombia" class="case-country-icon" />
+                </div>
+                <p class="case-body">Multi-cuenta y landing zone: estructura segura y gobernada para crecer en AWS con estándares enterprise.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="argentina">
+              <div class="case-media">
+                <button type="button" class="case-video" data-video-id="gfaygu41g10" data-video-title="Caso">
+                  <img src="https://img.youtube.com/vi/gfaygu41g10/maxresdefault.jpg" alt="Caso de éxito" class="case-video-thumb" />
+                  <div class="case-video-overlay"><div class="case-play-btn"><Icon name="play_arrow" size={48} /></div></div>
+                </button>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="Argentina" class="case-country-icon" />
+                </div>
+                <p class="case-body">Soporte gestionado 24x7: operación, incidentes, cambios y evolución continua de la infraestructura en AWS.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div>
+            <div class="case-item" data-category="otras" data-country="mexico">
+              <div class="case-media">
+                <div class="case-media-image">
+                  <img src="/images/recursos/casos-hero.jpg" alt="Caso de éxito" />
+                </div>
+              </div>
+              <div class="case-content">
+                <div class="case-logos">
+                  <img src="/logos/recursos/logo-cliente.png" alt="Cliente" class="case-client-logo" />
+                  <img src="/icons/recursos/argentina.png" alt="México" class="case-country-icon" />
+                </div>
+                <p class="case-body">Integración de sistemas legacy y SaaS en la nube: APIs, eventos y flujos de datos unificados para el negocio.</p>
+                <div class="case-link-row">
+                  <a href="#" class="case-paper-link">Leer el paper</a>
+                  <span class="case-separator-inline"></span>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+          <!-- Paginación: 8 por página -->
+          <div class="cases-pagination" id="cases-pagination">
+            <span class="pagination-info" id="pagination-info">1/3</span>
+            <div class="pagination-buttons">
+              <button type="button" class="pagination-btn pagination-prev" id="pagination-prev" aria-label="Página anterior">
+                <span class="material-symbols-outlined">arrow_back</span>
+              </button>
+              <button type="button" class="pagination-btn pagination-next" id="pagination-next" aria-label="Página siguiente">
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Modal (pop-up YouTube) -->
+          <div class="video-modal" id="videoModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+              <button type="button" class="modal-close" id="modalClose">
+                <Icon name="close" size={32} />
+              </button>
+              <div class="modal-video">
+                <iframe
+                  id="modalIframe"
+                  src=""
+                  title="Video"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <Footer />
+    </main>
+  </body>
+</html>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    background-color: #020E1E;
+  }
+
+  .hero-wrapper {
+    padding: 0px;
+    height: 80vh;
+    min-height: 700px;
+  }
+
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url("/images/recursos/casos-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-family: 'Nexa', sans-serif;
+    color: var(--neutral-100);
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 72px 0;
+  }
+
+  .hero-subtitle {
+    font-family: 'Nexa', sans-serif;
+    color: var(--neutral-100);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0 0 24px 0;
+  }
+
+  .hero-description {
+    font-family: 'Infra', sans-serif;
+    color: var(--neutral-100);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  /* Cases Section */
+  .cases-section {
+    padding: 80px 0;
+    background: #FFFFFF;
+  }
+
+  .cases-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  .cases-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+    gap: 32px;
+  }
+
+  .cases-tabs {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .cases-tab {
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    border-bottom: none;
+    border-radius: 0;
+    font-family: 'Infra', sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  .cases-tab.active {
+    font-weight: 700;
+    border-bottom: 2px solid #00C19F;
+    margin-bottom: -2px;
+    padding-bottom: 12px;
+  }
+
+  /* Country Filter */
+  .country-filter {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .country-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1A1A1A;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .country-filter-btn:hover {
+    border-color: #00C19F;
+  }
+
+  .country-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 12px;
+    min-width: 200px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 10;
+  }
+
+  .country-dropdown.active {
+    display: block;
+  }
+
+  .country-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+  }
+
+  .country-option:hover {
+    background: #F5F5F5;
+  }
+
+  .country-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .country-option span {
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    color: #1A1A1A;
+  }
+
+  .category-description {
+    font-family: 'Infra', sans-serif;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #1a1a1a;
+    margin: 0 0 32px 0;
+    max-width: 450px;
+  }
+
+  .category-description-separator {
+    height: 1px;
+    background: #999999;
+    margin: 0 0 64px 0;
+  }
+
+  /* Cases Grid */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .case-item {
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .case-item:hover {
+    transform: translateY(-4px);
+  }
+
+  .case-item.hidden,
+  .case-item.page-hidden {
+    display: none;
+  }
+
+  .case-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #E5E5E5;
+  }
+
+  .case-video {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    display: block;
+  }
+
+  .case-video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .case-video:hover .case-video-thumb {
+    transform: scale(1.03);
+  }
+
+  .case-video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.2s ease;
+  }
+
+  .case-video:hover .case-video-overlay {
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .case-play-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1A1A1A;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+  }
+
+  .case-video:hover .case-play-btn {
+    transform: scale(1.08);
+  }
+
+  .case-media-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .case-media-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .case-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .case-logos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .case-client-logo {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .case-country-icon {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .case-body {
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #1A1A1A;
+    margin: 0 0 20px 0;
+    flex: 1;
+  }
+
+  .case-link-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .case-paper-link {
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    color: #0A4AA5;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .case-paper-link:hover {
+    color: #083880;
+  }
+
+  .case-separator-inline {
+    flex: 1;
+    height: 1px;
+    background: #E5E5E5;
+    min-width: 0;
+  }
+
+  /* Paginación */
+  .cases-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 48px;
+    padding-top: 24px;
+  }
+
+  .pagination-info {
+    font-family: 'Infra', sans-serif;
+    font-size: 16px;
+    color: #1A1A1A;
+  }
+
+  .pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pagination-btn {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #D1D1D1;
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: #00725D;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .pagination-btn:hover:not(:disabled) {
+    border-color: #00725D;
+    background: rgba(0, 114, 93, 0.06);
+  }
+
+  .pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .pagination-btn .material-symbols-outlined {
+    font-size: 24px;
+  }
+
+  /* Video Modal */
+  .video-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+  }
+
+  .video-modal.active {
+    display: block;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 10000;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+
+  .modal-video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #111;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .modal-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero-wrapper {
+      padding: 16px;
+    }
+
+    .hero-container {
+      padding: 0 60px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+    }
+
+    .hero-subtitle {
+      font-size: 24px;
+    }
+
+    .cases-container {
+      padding: 0 60px;
+    }
+
+    .cases-filters {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .cases-tabs {
+      justify-content: flex-start;
+    }
+
+    .cases-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      padding: 0 2rem;
+    }
+
+    .hero-title {
+      font-size: 36px;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+    }
+
+    .hero-description {
+      font-size: 16px;
+    }
+
+    .cases-container {
+      padding: 0 2rem;
+    }
+
+    .cases-section {
+      padding: 60px 0;
+    }
+
+    .cases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cases-pagination {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .country-filter-btn {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .country-dropdown {
+      left: 0;
+      right: 0;
+    }
+  }
+</style>
+
+<script>
+  // Video Modal (YouTube pop-up)
+  const videoButtons = document.querySelectorAll('.case-video');
+  const videoModal = document.getElementById('videoModal');
+  const modalClose = document.getElementById('modalClose');
+  const modalOverlay = videoModal?.querySelector('.modal-overlay');
+  const modalIframe = document.getElementById('modalIframe') as HTMLIFrameElement | null;
+
+  videoButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const videoId = button.getAttribute('data-video-id');
+      if (videoId && modalIframe && videoModal) {
+        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&modestbranding=1&rel=0`;
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  function closeVideoModal() {
+    if (videoModal && modalIframe) {
+      videoModal.classList.remove('active');
+      modalIframe.src = '';
+      document.body.style.overflow = '';
+    }
+  }
+
+  modalClose?.addEventListener('click', closeVideoModal);
+  modalOverlay?.addEventListener('click', closeVideoModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal?.classList.contains('active')) closeVideoModal();
+  });
+
+  // Textos descriptivos por categoría
+  const categoryDescriptions: Record<string, string> = {
+    finanzas: 'Innovación financiera sin margen de error. Operación segura, continua y lista para escalar.',
+    energia: 'Energía continua, operación crítica. Cuando cada segundo cuenta, la nube no puede fallar.',
+    retail: 'Retail de alto volumen en la nube. Infraestructura que escala con la demanda, sin interrupciones.',
+    manufactura: 'Manufactura conectada y eficiente. De la planta al cloud: datos, automatización y control en tiempo real.',
+    viajes: 'Viajes y hostel: disponibilidad total. Reservas, operación y experiencia de usuario siempre en línea.',
+    otras: 'Soluciones cloud para todo tipo de industrias. Escalabilidad, seguridad y operación continua a la medida.'
+  };
+
+  function updateCategoryDescription(filter: string | null) {
+    const el = document.getElementById('category-description');
+    if (el && filter && categoryDescriptions[filter]) {
+      el.textContent = categoryDescriptions[filter];
+    }
+  }
+
+  // Tab filtering
+  const tabs = document.querySelectorAll('.cases-tab');
+  const caseItems = document.querySelectorAll('.case-item');
+  const PER_PAGE = 8;
+  let currentPage = 1;
+
+  function applyCategoryFilter(filter: string | null) {
+    if (!filter) return;
+    caseItems.forEach((item) => {
+      if (item.getAttribute('data-category') === filter) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  }
+
+  function getVisibleItems(): Element[] {
+    return Array.from(caseItems).filter((item) => !item.classList.contains('hidden'));
+  }
+
+  function updatePagination() {
+    const visible = getVisibleItems();
+    const totalPages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
+    currentPage = Math.min(Math.max(1, currentPage), totalPages);
+
+    caseItems.forEach((item) => item.classList.remove('page-hidden'));
+    visible.forEach((item, index) => {
+      if (index < (currentPage - 1) * PER_PAGE || index >= currentPage * PER_PAGE) {
+        item.classList.add('page-hidden');
+      }
+    });
+
+    const infoEl = document.getElementById('pagination-info');
+    const prevBtn = document.getElementById('pagination-prev');
+    const nextBtn = document.getElementById('pagination-next');
+    if (infoEl) infoEl.textContent = `${currentPage}/${totalPages}`;
+    if (prevBtn) (prevBtn as HTMLButtonElement).disabled = currentPage <= 1;
+    if (nextBtn) (nextBtn as HTMLButtonElement).disabled = currentPage >= totalPages;
+
+    const paginationEl = document.getElementById('cases-pagination');
+    if (paginationEl) paginationEl.style.display = visible.length > PER_PAGE ? 'flex' : 'none';
+  }
+
+  // Apply initial filter (active tab on load)
+  const initialActiveTab = document.querySelector('.cases-tab.active')?.getAttribute('data-filter');
+  applyCategoryFilter(initialActiveTab || 'finanzas');
+  updateCategoryDescription(initialActiveTab || 'finanzas');
+  updatePagination();
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.getAttribute('data-filter');
+      applyCategoryFilter(filter);
+      updateCategoryDescription(filter);
+      currentPage = 1;
+      updatePagination();
+    });
+  });
+
+  // Country dropdown
+  const countryFilterBtn = document.getElementById('country-filter-btn');
+  const countryDropdown = document.getElementById('country-dropdown');
+
+  countryFilterBtn?.addEventListener('click', () => {
+    countryDropdown?.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!countryFilterBtn?.contains(e.target as Node) && !countryDropdown?.contains(e.target as Node)) {
+      countryDropdown?.classList.remove('active');
+    }
+  });
+
+  // Country filter checkboxes
+  const countryCheckboxes = document.querySelectorAll('input[name="country"]');
+  countryCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const selectedCountries = (Array.from(countryCheckboxes) as HTMLInputElement[])
+        .filter((cb) => cb.checked)
+        .map((cb) => cb.value);
+
+      caseItems.forEach(item => {
+        const itemCountry = item.getAttribute('data-country');
+        const itemCategory = item.getAttribute('data-category');
+        const activeTab = document.querySelector('.cases-tab.active')?.getAttribute('data-filter');
+        const matchesTab = itemCategory === activeTab;
+        const matchesCountry = selectedCountries.length === 0 ||
+          selectedCountries.includes(itemCountry || '');
+
+        if (matchesTab && matchesCountry) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+      currentPage = 1;
+      updatePagination();
+    });
+  });
+
+  // Pagination buttons
+  document.getElementById('pagination-prev')?.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      updatePagination();
+    }
+  });
+  document.getElementById('pagination-next')?.addEventListener('click', () => {
+    const visible = getVisibleItems();
+    const totalPages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
+    if (currentPage < totalPages) {
+      currentPage++;
+      updatePagination();
+    }
+  });
+</script>

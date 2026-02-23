@@ -1,0 +1,353 @@
+---
+import Icon from './Icon.astro';
+import { getT, type Locale } from '../i18n';
+import esDict from '../i18n/es.json';
+import enDict from '../i18n/en.json';
+import ptDict from '../i18n/pt.json';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+const dict = lang === 'en' ? enDict : lang === 'pt' ? ptDict : esDict;
+const t = getT(dict as Record<string, unknown>);
+---
+
+<section class="hero-banner">
+  <div class="hero-wrapper">
+    <div class="hero-container">
+      <div class="hero-background">
+        <img src="/images/hero_banner_1.jpg" alt="" class="hero-bg-img" />
+        <div class="gradient-overlay"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-content-wrapper">
+            <div class="hero-left">
+              <h1 class="hero-title">
+                {t('hero.titleLine1')}<br>
+                {t('hero.titleLine2')}<br>
+                <strong>{t('hero.titleBrand').replace('®', '')}<sup>®</sup></strong>
+              </h1>
+            </div>
+          </div>
+          <div class="hero-right">
+            <p class="hero-subtitle">
+              {t('hero.subtitle')}
+            </p>
+          </div>
+          <div class="hero-buttons">
+            <a href="#soluciones" class="btn btn-primary">
+              {t('hero.btnSolutions')}
+              <Icon name="north_east" size={20} />
+            </a>
+            <button class="btn btn-secondary" id="btn-industrias">
+              {t('hero.btnIndustries')}
+              <Icon name="north_east" size={20} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    background-color: #020E1E;
+  }
+
+  .hero-wrapper {
+    padding: 24px;
+    height: 90vh;
+    min-height: 650px;
+  }
+
+  .hero-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center right;
+    opacity: 0.7;
+    border-radius: 16px;
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .hero-content {
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px;
+    position: relative;
+    padding-top: 100px;
+  }
+
+  .hero-content-wrapper {
+    margin-bottom: 0rem;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    margin-bottom: 60px;
+  }
+
+  .hero-title {
+    color: var(--neutral-100);
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0;
+    font-family: 'Nexa', sans-serif;
+    max-width: 800px;
+  }
+
+  .hero-title strong {
+    font-weight: 700;
+  }
+
+  .hero-title sup {
+    font-size: 0.5em;
+    vertical-align: super;
+  }
+
+  .hero-subtitle {
+    color: var(--neutral-100);
+    font-size: 22px;
+    line-height: 32px;
+    margin: 0;
+    font-family: 'Infra', sans-serif;
+    font-weight: 400;
+    max-width: 380px;
+    text-align: right;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 1400px) {
+    .container {
+      padding: 24px 80px;
+    }
+
+    .hero-title {
+      font-size: 70px;
+    }
+
+    .hero-subtitle {
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .hero-wrapper {
+      padding: 16px;
+      min-height: 600px;
+    }
+
+    .container {
+      padding: 24px 60px;
+    }
+
+    .hero-content {
+      padding-top: 80px;
+    }
+
+    .hero-title {
+      font-size: 56px;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+    }
+
+    .btn {
+      padding: 0.875rem 1.75rem;
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-wrapper {
+      padding: 12px;
+      min-height: 500px;
+    }
+
+    .container {
+      padding: 20px 40px;
+    }
+
+    .hero-content {
+      padding: 16px;
+      padding-top: 60px;
+    }
+
+    .hero-content-wrapper {
+      margin-bottom: 16px;
+    }
+
+    .hero-right {
+      align-items: flex-start;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .hero-title {
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 0.875rem 1.5rem;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 20px;
+    }
+
+    .hero-title {
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+  }
+</style>
+
+<script>
+  // Smooth scroll for solutions link and activate "Soluciones" tab when coming from first CTA
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (this: HTMLAnchorElement, e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerOffset = 120; // Offset for the floating header
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          // If target is #soluciones, always activate "Soluciones" tab (fixes Case 3)
+          if (targetId === '#soluciones') {
+            setTimeout(() => {
+              const solucionesButton = document.querySelector('[data-tab="soluciones"]') as HTMLButtonElement;
+              if (solucionesButton) {
+                solucionesButton.click();
+              }
+            }, 300);
+          }
+        }
+      }
+    });
+  });
+
+  // Button for industries tab
+  const btnIndustrias = document.getElementById('btn-industrias');
+  btnIndustrias?.addEventListener('click', () => {
+    // First scroll to solutions section
+    const solutionsSection = document.getElementById('soluciones');
+    if (solutionsSection) {
+      const headerOffset = 120;
+      const elementPosition = solutionsSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Wait for scroll to start, then activate industries tab
+      setTimeout(() => {
+        const industriasButton = document.querySelector('[data-tab="industrias"]') as HTMLButtonElement;
+        if (industriasButton) {
+          industriasButton.click();
+        }
+      }, 400);
+    }
+  });
+</script>

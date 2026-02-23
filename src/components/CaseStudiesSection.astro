@@ -1,0 +1,439 @@
+---
+import Icon from './Icon.astro';
+import { getT, localePrefix } from '../i18n';
+import type { Locale } from '../i18n';
+import es from '../i18n/es.json';
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'es' } = Astro.props;
+const dict = lang === 'en' ? en : lang === 'pt' ? pt : es;
+const t = getT(dict);
+const basePath = localePrefix(lang);
+
+const caseStudies = [
+  { id: 'case1', videoId: 'sGs-cSgdD9g', thumbnail: 'https://img.youtube.com/vi/sGs-cSgdD9g/maxresdefault.jpg', title: t('caseStudiesSection.case1Title'), description: t('caseStudiesSection.case1Desc'), size: 'large' as const },
+  { id: 'case2', videoId: 'gfaygu41g10', thumbnail: 'https://img.youtube.com/vi/gfaygu41g10/maxresdefault.jpg', title: t('caseStudiesSection.case2Title'), size: 'small' as const },
+  { id: 'case3', videoId: 'KexqTC5scdg', thumbnail: 'https://img.youtube.com/vi/KexqTC5scdg/maxresdefault.jpg', title: t('caseStudiesSection.case3Title'), size: 'small' as const }
+];
+---
+
+<section class="case-studies-section">
+  <div class="case-studies-container">
+    <div class="case-studies-card">
+      <div class="case-studies-header">
+        <h2 class="case-studies-title">{t('caseStudiesSection.title')}</h2>
+        <p class="case-studies-subtitle">
+          {t('caseStudiesSection.subtitleLine1')}<br>
+          {t('caseStudiesSection.subtitleLine2')}<strong>{t('caseStudiesSection.subtitleStrong')}</strong>
+        </p>
+      </div>
+
+      <div class="cases-grid">
+        {caseStudies.map((caseStudy) => (
+          <button 
+            class={`case-video case-${caseStudy.size}`}
+            data-video-id={caseStudy.videoId}
+            data-video-title={caseStudy.title}
+          >
+            <img src={caseStudy.thumbnail} alt={caseStudy.title} class="video-thumbnail" />
+            <div class="video-overlay">
+              <div class="play-button">
+                <Icon name="play_arrow" size={24} />
+              </div>
+            </div>
+            <div class="video-label">
+              {'description' in caseStudy && caseStudy.description && <p class="video-description">{caseStudy.description}</p>}
+              <span class="video-title">{caseStudy.title}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <div class="case-studies-cta">
+        <a href={`${basePath}/casos-de-exito`} class="btn btn-primary">
+          {t('caseStudiesSection.cta')}
+          <Icon name="north_east" size={20} />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">
+        <Icon name="close" size={32} />
+      </button>
+      <div class="modal-video">
+        <iframe
+          id="modalIframe"
+          src=""
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .case-studies-section {
+    width: 100%;
+    background-color: var(--neutral-200);
+    padding: 80px 0;
+  }
+
+  .case-studies-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  .case-studies-card {
+    background-image: url('/images/casos_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--neutral-100);
+    border-radius: 24px;
+    padding: 85px 60px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .case-studies-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .case-studies-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--neutral-800);
+    margin-bottom: 1rem;
+  }
+
+  .case-studies-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--neutral-700);
+    line-height: 20px;
+  }
+
+  .case-studies-subtitle strong {
+    font-weight: 700;
+  }
+
+  /* Cases Grid */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .case-large {
+    grid-row: 1 / 3;
+  }
+
+  .case-video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    background: var(--neutral-800);
+    transition: all 0.3s ease;
+  }
+
+  .case-video:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+  }
+
+  .case-video:hover .video-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .play-button {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-800);
+    transition: all 0.3s ease;
+  }
+
+  .case-video:hover .play-button {
+    background: var(--neutral-100);
+    transform: scale(1.1);
+  }
+
+  .video-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    padding: 32px 50px;
+    color: var(--neutral-100);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+  }
+
+  .video-description {
+    font-family: 'Infra', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .video-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  /* Legacy support for videos without description */
+  .video-label span:not(.video-title) {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .case-studies-cta {
+    text-align: center;
+  }
+
+  /* Video Modal */
+  .video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+  }
+
+  .video-modal.active {
+    display: block;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+  }
+
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 10000;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--neutral-100);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-100);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+
+  .modal-video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: var(--neutral-800);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .modal-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .case-studies-container {
+      padding: 0 60px;
+    }
+
+    .case-studies-card {
+      padding: 40px;
+    }
+
+    .cases-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+
+    .case-large {
+      grid-row: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .case-studies-section {
+      padding: 60px 0;
+    }
+
+    .case-studies-container {
+      padding: 0 2rem;
+    }
+
+    .case-studies-card {
+      padding: 30px;
+    }
+
+    .case-studies-title {
+      font-size: 36px;
+      line-height: 1.2;
+    }
+
+    .case-studies-subtitle {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .cases-grid {
+      gap: 1.5rem;
+    }
+
+    .play-button {
+      width: 40px;
+      height: 40px;
+    }
+
+    .play-button :global(.icon) {
+      font-size: 36px;
+    }
+
+    .modal-content {
+      width: 95%;
+    }
+
+    .modal-close {
+      top: -40px;
+      width: 40px;
+      height: 40px;
+    }
+
+    /* En mobile solo el título: ocultar descripción y padding 16px desde la esquina inferior izquierda */
+    .video-description {
+      display: none;
+    }
+
+    .video-label {
+      padding: 16px;
+      gap: 0;
+    }
+  }
+</style>
+
+<script>
+  // Video Modal functionality
+  const videoButtons = document.querySelectorAll('.case-video');
+  const videoModal = document.getElementById('videoModal');
+  const modalClose = document.getElementById('modalClose');
+  const modalOverlay = videoModal?.querySelector('.modal-overlay');
+  const modalIframe = document.getElementById('modalIframe') as HTMLIFrameElement;
+
+  videoButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const videoId = button.getAttribute('data-video-id');
+      
+      if (videoId && modalIframe && videoModal) {
+        // Set video URL with autoplay
+        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&modestbranding=1&rel=0`;
+        
+        // Show modal
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  // Close modal
+  function closeModal() {
+    if (videoModal && modalIframe) {
+      videoModal.classList.remove('active');
+      modalIframe.src = '';
+      document.body.style.overflow = '';
+    }
+  }
+
+  modalClose?.addEventListener('click', closeModal);
+  modalOverlay?.addEventListener('click', closeModal);
+
+  // Close with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal?.classList.contains('active')) {
+      closeModal();
+    }
+  });
+</script>
+
