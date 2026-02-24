@@ -1056,13 +1056,13 @@ const currentPath = Astro.url.pathname;
     transform: translateY(0);
   }
 
-  /* Logos clientes */
+  /* Logos clientes - una sola fila en desktop */
   .clients-logos {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding-top: 2rem;
   }
 
@@ -2358,6 +2358,7 @@ const currentPath = Astro.url.pathname;
     .clients-logos {
       gap: 2rem;
       padding-top: 2rem;
+      flex-wrap: wrap;
     }
 
     .clients-logos img {
