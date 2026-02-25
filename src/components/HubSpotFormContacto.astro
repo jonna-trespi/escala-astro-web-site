@@ -26,6 +26,39 @@ const labelTranslations: Record<string, { es: string; en: string; pt: string }> 
   'Comments': { es: 'Comentarios', en: 'Comments', pt: 'Comentários' },
 };
 
+/** Traducciones para checkboxes: términos/condiciones y temas de interés. Clave puede estar en EN o ES. */
+const checkboxLabelTranslations: Record<string, { es: string; en: string; pt: string }> = {
+  "I agree to receive other communications from Escala24x7.": {
+    es: "Acepto recibir otras comunicaciones de Escala24x7.",
+    en: "I agree to receive other communications from Escala24x7.",
+    pt: "Concordo em receber outras comunicações da Escala24x7.",
+  },
+  "I agree to allow Escala24x7 to store and process my personal data.": {
+    es: "Acepto que Escala24x7 almacene y procese mis datos personales.",
+    en: "I agree to allow Escala24x7 to store and process my personal data.",
+    pt: "Concordo que a Escala24x7 armazene e processe meus dados pessoais.",
+  },
+  "Temas de interés": { es: "Temas de interés", en: "Topics of interest", pt: "Temas de interesse" },
+  "Topics of interest": { es: "Temas de interés", en: "Topics of interest", pt: "Temas de interesse" },
+  "Migración": { es: "Migración", en: "Migration", pt: "Migração" },
+  "Migration": { es: "Migración", en: "Migration", pt: "Migração" },
+  "Modernización": { es: "Modernización", en: "Modernization", pt: "Modernização" },
+  "Modernization": { es: "Modernización", en: "Modernization", pt: "Modernização" },
+  "Seguridad": { es: "Seguridad", en: "Security", pt: "Segurança" },
+  "Security": { es: "Seguridad", en: "Security", pt: "Segurança" },
+  "Resiliencia": { es: "Resiliencia", en: "Resilience", pt: "Resiliência" },
+  "Resilience": { es: "Resiliencia", en: "Resilience", pt: "Resiliência" },
+  "FinOps": { es: "FinOps", en: "FinOps", pt: "FinOps" },
+  "Análisis de Datos": { es: "Análisis de Datos", en: "Data Analytics", pt: "Análise de Dados" },
+  "Data Analytics": { es: "Análisis de Datos", en: "Data Analytics", pt: "Análise de Dados" },
+  "Inteligencia Artificial Generativa": { es: "Inteligencia Artificial Generativa", en: "Generative AI", pt: "Inteligência Artificial Generativa" },
+  "Generative AI": { es: "Inteligencia Artificial Generativa", en: "Generative AI", pt: "Inteligência Artificial Generativa" },
+  "Automatización de Procesos con IA": { es: "Automatización de Procesos con IA", en: "AI Process Automation", pt: "Automação de Processos com IA" },
+  "AI Process Automation": { es: "Automatización de Procesos con IA", en: "AI Process Automation", pt: "Automação de Processos com IA" },
+  "IBM Power a AWS": { es: "IBM Power a AWS", en: "IBM Power to AWS", pt: "IBM Power para AWS" },
+  "IBM Power to AWS": { es: "IBM Power a AWS", en: "IBM Power to AWS", pt: "IBM Power para AWS" },
+};
+
 const submitButtonText: Record<string, string> = { es: 'Enviar', en: 'Submit', pt: 'Enviar' };
 const submittedMessageText: Record<string, string> = { es: 'Formulario enviado', en: 'Form submitted', pt: 'Formulário enviado' };
 const formId = '1dd7b115-dad7-46b7-8e07-7790e41cada3';
@@ -42,11 +75,12 @@ const portalId = '48294971';
 </div>
 
 <script src={`https://js.hsforms.net/forms/embed/developer/${portalId}.js`} defer></script>
-<script define:vars={{ labelTranslations, submitButtonText, submittedMessageText }}>
+<script define:vars={{ labelTranslations, checkboxLabelTranslations, submitButtonText, submittedMessageText }}>
   (function () {
     const wrapper = document.querySelector('.hubspot-form-contacto') || document.querySelector('.hubspot-form-wrapper');
     if (!wrapper) return;
     const lang = (wrapper.getAttribute('data-lang') || 'es').toLowerCase();
+    const langAttr = lang === 'es' ? 'es' : lang === 'pt' ? 'pt' : 'en';
 
     function applySubmittedMessage() {
       const msg = wrapper.querySelector('.submitted-message, [class*="submitted"], [class*="Submitted"]');
@@ -72,6 +106,34 @@ const portalId = '48294971';
       const t = labelTranslations[key] || labelTranslations[key.replace(/\*$/, '')];
       if (t && t[lang]) return t[lang];
       return key;
+    }
+
+    function getCheckboxTranslation(text) {
+      const key = text.trim();
+      const t = checkboxLabelTranslations[key];
+      if (t && t[lang]) return t[lang];
+      return key;
+    }
+
+    /** Traduce labels de checkboxes, radios y títulos de grupo (términos, temas de interés) y corrige lang. */
+    function applyCheckboxAndRadioLabels() {
+      const form = wrapper.querySelector('form');
+      if (!form) return false;
+      const labels = form.querySelectorAll('label[id$="-label"], label.hsfc-FieldLabel, .hs-form-field label, .hsfc-CheckboxFieldGroup_Options label, .hsfc-CheckboxFieldGroup label, [data-hsfc-id="CheckboxFieldGroup"] label');
+      let applied = 0;
+      labels.forEach(function (label) {
+        const span = label.querySelector('span');
+        const rawText = (span ? span.textContent : label.textContent) || '';
+        const text = rawText.trim();
+        if (!text) return;
+        const translated = getCheckboxTranslation(text);
+        if (translated === text) return;
+        if (span) span.textContent = translated;
+        else label.textContent = translated;
+        label.setAttribute('lang', langAttr);
+        applied++;
+      });
+      return applied > 0;
     }
 
     function applyPlaceholdersAndHideLabels() {
@@ -106,15 +168,21 @@ const portalId = '48294971';
 
     function onFormReady() {
       var labelsDone = applyPlaceholdersAndHideLabels();
+      var checkboxDone = applyCheckboxAndRadioLabels();
       var btnDone = applySubmitButtonText();
-      return labelsDone || btnDone;
+      return labelsDone || checkboxDone || btnDone;
     }
     var observer = new MutationObserver(function () {
       if (onFormReady()) observer.disconnect();
     });
     observer.observe(wrapper, { childList: true, subtree: true });
     if (onFormReady()) observer.disconnect();
-    else setTimeout(function () { onFormReady(); applySubmitButtonText(); }, 2000);
+    else setTimeout(function () {
+      onFormReady();
+      applyCheckboxAndRadioLabels();
+      applySubmitButtonText();
+    }, 2000);
+    setTimeout(function () { applyCheckboxAndRadioLabels(); }, 3500);
     var successCheck = setInterval(function () {
       if (applySubmittedMessage()) clearInterval(successCheck);
     }, 1500);
