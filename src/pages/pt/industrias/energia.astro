@@ -641,7 +641,7 @@ const basePath = localePrefix(lang);
 
           <!-- Footer Embedded -->
           <!-- Footer Component -->
-          <Footer />
+          <Footer lang={lang} />
         </div>
       </section>
     </main>
@@ -744,6 +744,7 @@ const basePath = localePrefix(lang);
   </body>
 </html>
 
+
 <style>
   html {
     scroll-behavior: smooth;
@@ -793,7 +794,7 @@ const basePath = localePrefix(lang);
   .hero-title {
     color: var(--neutral-100);
     font-size: 64px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 72px;
     margin-bottom: 64px;
     max-width: 70%;

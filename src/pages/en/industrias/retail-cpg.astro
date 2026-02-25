@@ -644,7 +644,7 @@ const basePath = localePrefix(lang);
 
           <!-- Footer Embedded -->
           <!-- Footer Component -->
-          <Footer />
+          <Footer lang={lang} />
         </div>
       </section>
     </main>
@@ -747,6 +747,7 @@ const basePath = localePrefix(lang);
   </body>
 </html>
 
+
 <style>
   html {
     scroll-behavior: smooth;
@@ -795,15 +796,15 @@ const basePath = localePrefix(lang);
 
   .hero-title {
     color: var(--neutral-100);
-    font-size: 70px;
+    font-size: 64px;
     font-weight: 500;
-    line-height: 1.1;
+    line-height: 72px;
     margin-bottom: 64px;
     max-width: 70%;
   }
 
   .hero-title-bold {
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .hero-content {
@@ -1538,8 +1539,6 @@ const basePath = localePrefix(lang);
     width: 100%;
     height: 100%;
     min-height: 450px;
-    text-decoration: none;
-    color: inherit;
   }
 
   .case-video-card:hover {

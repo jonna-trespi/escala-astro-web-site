@@ -748,6 +748,7 @@ const basePath = localePrefix(lang);
   </body>
 </html>
 
+
 <style>
   html {
     scroll-behavior: smooth;
@@ -796,9 +797,9 @@ const basePath = localePrefix(lang);
 
   .hero-title {
     color: var(--neutral-100);
-    font-size: 70px;
+    font-size: 64px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 72px;
     margin-bottom: 64px;
     max-width: 70%;
   }
@@ -1039,13 +1040,13 @@ const basePath = localePrefix(lang);
     transform: translateY(0);
   }
 
-  /* Logos clientes - una sola fila en desktop */
+  /* Logos clientes */
   .clients-logos {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     padding-top: 2rem;
   }
 
@@ -2341,7 +2342,6 @@ const basePath = localePrefix(lang);
     .clients-logos {
       gap: 2rem;
       padding-top: 2rem;
-      flex-wrap: wrap;
     }
 
     .clients-logos img {
@@ -2929,7 +2929,7 @@ const basePath = localePrefix(lang);
     }
 
     .accelerator-section {
-      padding: 60px 0;
+      padding: 40px 0;
     }
 
     .cases-header {
