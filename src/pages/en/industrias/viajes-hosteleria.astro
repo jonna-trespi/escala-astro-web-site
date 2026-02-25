@@ -3,18 +3,26 @@ import Header from "../../../components/Header.astro";
 import GoogleAnalytics from "../../../components/GoogleAnalytics.astro";
 import Footer from "../../../components/Footer.astro";
 import Icon from "../../../components/Icon.astro";
+import { getT, localePrefix } from '../../../i18n';
+import type { Locale } from '../../../i18n';
+import en from '../../../i18n/en.json';
 import "../../../styles/global.css";
-const lang = 'en';
+
+const lang: Locale = 'en';
 const currentPath = Astro.url.pathname;
+const dict = en;
+const t = getT(dict);
+const basePath = localePrefix(lang);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hospitality - Escala 24x7</title>
+    <title>{t('industriaViajesHosteleria.title')}</title>
+    <meta name="description" content={t('industriaViajesHosteleria.metaDescription')} />
     <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,21 +44,21 @@ const currentPath = Astro.url.pathname;
           <div class="hero-banner">
             <div class="hero-container">
               <h1 class="hero-title">
-                Create <span class="hero-title-bold"
-                  >memorable travel experiences</span
-                > from the first click
+                {t('industriaViajesHosteleria.heroTitle')}<span class="hero-title-bold"
+                  >{t('industriaViajesHosteleria.heroTitleBold')}</span
+                >{t('industriaViajesHosteleria.heroTitleSuffix')}
               </h1>
               <div class="hero-content">
                 <div class="hero-left">
                   <a href="#challenges" class="hero-button">
-                    Modernize your operations
+                    {t('industriaViajesHosteleria.heroButton')}
                     <span class="material-symbols-outlined">north_east</span>
                   </a>
                 </div>
                 <div class="hero-right">
                   <div class="hero-stat-box">
                     <p class="hero-stat-text">
-                      Escala 24x7 and AWS manage key platforms for airlines and the travel sector, ensuring stability and continuous support. We enable transactions, bookings and digital services, even during peak demand.
+                      {t('industriaViajesHosteleria.heroStatText')}
                     </p>
                   </div>
                 </div>
@@ -66,19 +74,19 @@ const currentPath = Astro.url.pathname;
           <div class="challenges-intro">
             <div class="challenges-intro-content">
               <h2 class="challenges-intro-title">
-                Does your operation need to <span
+                {t('industriaViajesHosteleria.challengesTitle')}<span
                   class="challenges-intro-highlight"
-                  >keep pace</span
-                > with the traveler?
+                  >{t('industriaViajesHosteleria.challengesTitleHighlight')}</span
+                >{t('industriaViajesHosteleria.challengesTitleSuffix')}
               </h2>
               <p class="challenges-intro-text">
-                In travel, every click is revenue and every outage is a loss. Learn about the most common challenges in the hospitality and travel industry and how Escala 24x7 helps you address them.
+                {t('industriaViajesHosteleria.challengesIntroText')}
               </p>
             </div>
             <div class="challenges-intro-image">
               <img
                 src="/images/industrias/industrias-escala-imagen-4.jpg"
-                alt="Hospitality Innovation"
+                alt={t('industriaViajesHosteleria.challengesImageAlt')}
               />
             </div>
           </div>
@@ -88,14 +96,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Booking availability"
+                  alt={t('industriaViajesHosteleria.challenge1Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Maintain availability on booking and sales platforms.
+                {t('industriaViajesHosteleria.challenge1Title')}
               </h3>
               <p class="challenge-description">
-                Users demand faster, more secure, 24x7 products and services. We help you build environments that scale without friction and accelerate time-to-market without compromising stability.
+                {t('industriaViajesHosteleria.challenge1Desc')}
               </p>
             </div>
 
@@ -103,14 +111,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Transformar experiencia"
+                  alt={t('industriaViajesHosteleria.challenge2Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Scale automatically without compromising the experience.
+                {t('industriaViajesHosteleria.challenge2Title')}
               </h3>
               <p class="challenge-description">
-                Customers do not tolerate delays, outages or complex processes. We modernize digital platforms, reduce response times and enable smooth, consistent experiences across web and app.
+                {t('industriaViajesHosteleria.challenge2Desc')}
               </p>
             </div>
 
@@ -118,14 +126,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Security in ecosystems"
+                  alt={t('industriaViajesHosteleria.challenge3Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Strengthen security in exposed global ecosystems.
+                {t('industriaViajesHosteleria.challenge3Title')}
               </h3>
               <p class="challenge-description">
-                Every minute of downtime impacts revenue, trust and reputation. We enable proactive operations, disaster recovery, continuous monitoring and incident response to keep your services always available.
+                {t('industriaViajesHosteleria.challenge3Desc')}
               </p>
             </div>
 
@@ -133,14 +141,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Elevar seguridad"
+                  alt={t('industriaViajesHosteleria.challenge4Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Operate multichannel and distributed platforms.
+                {t('industriaViajesHosteleria.challenge4Title')}
               </h3>
               <p class="challenge-description">
-                Every minute of downtime impacts revenue, trust and reputation. We enable proactive operations, disaster recovery, continuous monitoring and incident response to keep your services always available.
+                {t('industriaViajesHosteleria.challenge4Desc')}
               </p>
             </div>
 
@@ -148,14 +156,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Eliminate downtime risk"
+                  alt={t('industriaViajesHosteleria.challenge5Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Eliminate downtime risk during critical moments.
+                {t('industriaViajesHosteleria.challenge5Title')}
               </h3>
               <p class="challenge-description">
-                We execute the evolution of legacy systems through gradual integration strategies, eliminating operational risk during the transition to modern architectures.
+                {t('industriaViajesHosteleria.challenge5Desc')}
               </p>
             </div>
 
@@ -163,22 +171,22 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Real-time data"
+                  alt={t('industriaViajesHosteleria.challenge6Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Use real-time data for business decisions.
+                {t('industriaViajesHosteleria.challenge6Title')}
               </h3>
               <p class="challenge-description">
-                Competitive advantage depends on accurate, timely information. We enable analytics platforms and data governance models to turn information into fast, traceable, secure decisions.
+                {t('industriaViajesHosteleria.challenge6Desc')}
               </p>
             </div>
           </div>
 
           <!-- Logos clientes -->
           <div class="clients-logos">
-            <img src="/logos/industrias/logo-flybondi.png" alt="Western Union" />
-            <img src="/logos/industrias/logo-exito.png" alt="Allianz" />
+            <img src="/logos/industrias/logo-flybondi.png" alt={t('industriaViajesHosteleria.clientLogo1Alt')} />
+            <img src="/logos/industrias/logo-exito.png" alt={t('industriaViajesHosteleria.clientLogo2Alt')} />
           </div>
         </div>
       </section>
@@ -187,30 +195,29 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <!-- Title -->
           <div class="methodology-header">
-            <h2 class="methodology-title">We support you at every step.</h2>
+            <h2 class="methodology-title">{t('industriaViajesHosteleria.methodologyTitle')}</h2>
             <p class="methodology-subtitle">
-              The challenge for the financial sector is to adopt the cloud in a
-              secure, approved, regulated and operable way over time.
+              {t('industriaViajesHosteleria.methodologySubtitle')}
             </p>
           </div>
 
-          <!-- How do we do it? -->
+          <!-- ¿Cómo lo hacemos? -->
           <div class="how-we-do-it">
-            <h3 class="how-title">How do we do it?</h3>
+            <h3 class="how-title">{t('industriaViajesHosteleria.howTitle')}</h3>
 
             <div class="how-grid">
               <div class="how-card">
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-1.png"
-                    alt="Expert advisory"
+                    alt={t('industriaViajesHosteleria.how1Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Expert advisory on solution design.
+                  {t('industriaViajesHosteleria.how1Title')}
                 </h4>
                 <p class="how-card-description">
-                  We build secure, scalable architectures aligned with your country's regulatory requirements.
+                  {t('industriaViajesHosteleria.how1Desc')}
                 </p>
               </div>
 
@@ -218,14 +225,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-2.png"
-                    alt="Proof of Concept development"
+                    alt={t('industriaViajesHosteleria.how2Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Proof of Concept (PoC) development.
+                  {t('industriaViajesHosteleria.how2Title')}
                 </h4>
                 <p class="how-card-description">
-                  We validate technical feasibility and accelerate internal approval of your cloud projects.
+                  {t('industriaViajesHosteleria.how2Desc')}
                 </p>
               </div>
 
@@ -233,14 +240,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-3.png"
-                    alt="Technical support"
+                    alt={t('industriaViajesHosteleria.how3Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Technical support to demonstrate ROI.
+                  {t('industriaViajesHosteleria.how3Title')}
                 </h4>
                 <p class="how-card-description">
-                  We help you build solid business cases and technical arguments that support executive decisions.
+                  {t('industriaViajesHosteleria.how3Desc')}
                 </p>
               </div>
 
@@ -248,14 +255,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-4.png"
-                    alt="Cloud implementation"
+                    alt={t('industriaViajesHosteleria.how4Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Implementation of Cloud processes and tools.
+                  {t('industriaViajesHosteleria.how4Title')}
                 </h4>
                 <p class="how-card-description">
-                  We support the adoption of modern practices: automation, observability, security and continuous operations.
+                  {t('industriaViajesHosteleria.how4Desc')}
                 </p>
               </div>
 
@@ -263,14 +270,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-5.png"
-                    alt="Technical assessment"
+                    alt={t('industriaViajesHosteleria.how5Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Technical assessment of the regulatory framework.
+                  {t('industriaViajesHosteleria.how5Title')}
                 </h4>
                 <p class="how-card-description">
-                  We ensure regulatory compliance in every component of the solution.
+                  {t('industriaViajesHosteleria.how5Desc')}
                 </p>
               </div>
 
@@ -278,14 +285,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-6.png"
-                    alt="Access to compliance center"
+                    alt={t('industriaViajesHosteleria.how6Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Access to the AWS compliance center.
+                  {t('industriaViajesHosteleria.how6Title')}
                 </h4>
                 <p class="how-card-description">
-                  Address regulatory objections with official documentation and certified experts.
+                  {t('industriaViajesHosteleria.how6Desc')}
                 </p>
               </div>
             </div>
@@ -295,17 +302,13 @@ const currentPath = Astro.url.pathname;
           <div class="cloud-emx-section">
             <div class="cloud-emx-header">
               <h3 class="cloud-emx-title">
-                Cloud EMx: Continuous operations for regulated platforms.
+                {t('industriaViajesHosteleria.emxTitle')}
               </h3>
               <p class="cloud-emx-subtitle">
-                The difference that sustains your cloud operation.
+                {t('industriaViajesHosteleria.emxSubtitle')}
               </p>
               <p class="cloud-emx-description">
-                Migrating to the cloud does not guarantee stability. What keeps your business running is how you govern and operate the cloud every day.
-              </p>
-              <p class="cloud-emx-description">
-                With Cloud EMx, you ensure the operation of critical financial
-                platforms with:
+                {t('industriaViajesHosteleria.emxDescription')}
               </p>
             </div>
 
@@ -314,11 +317,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-1.png"
-                    alt="Proactive observability"
+                    alt={t('industriaViajesHosteleria.emx1Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Proactive observability to anticipate failures before they affect your customers
+                  {t('industriaViajesHosteleria.emx1Title')}
                 </h4>
               </div>
 
@@ -326,11 +329,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-2.png"
-                    alt="Incident management"
+                    alt={t('industriaViajesHosteleria.emx2Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Agile incident management and operational correlation
+                  {t('industriaViajesHosteleria.emx2Title')}
                 </h4>
               </div>
 
@@ -338,21 +341,21 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-3.png"
-                    alt="Robust governance"
+                    alt={t('industriaViajesHosteleria.emx3Alt')}
                   />
                 </div>
-                <h4 class="emx-card-title">Robust governance and traceability</h4>
+                <h4 class="emx-card-title">{t('industriaViajesHosteleria.emx3Title')}</h4>
               </div>
 
               <div class="emx-card">
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-4.png"
-                    alt="24x7 availability"
+                    alt={t('industriaViajesHosteleria.emx4Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  24x7 availability and stability
+                  {t('industriaViajesHosteleria.emx4Title')}
                 </h4>
               </div>
 
@@ -360,11 +363,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-5.png"
-                    alt="Regulated investment"
+                    alt={t('industriaViajesHosteleria.emx5Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Regulated investment with full visibility, avoiding budget leakage
+                  {t('industriaViajesHosteleria.emx5Title')}
                 </h4>
               </div>
 
@@ -372,17 +375,17 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-6.png"
-                    alt="Operations frameworks"
+                    alt={t('industriaViajesHosteleria.emx6Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Compliance-native operations frameworks
+                  {t('industriaViajesHosteleria.emx6Title')}
                 </h4>
               </div>
             </div>
 
             <p class="emx-footer-text">
-              Cloud EMx is not a traditional managed service. It is the model that lets you operate, scale and comply in highly regulated financial environments with confidence and continuous control.
+              {t('industriaViajesHosteleria.emxFooterText')}
             </p>
           </div>
         </div>
@@ -394,51 +397,51 @@ const currentPath = Astro.url.pathname;
           <div class="cdr-grid">
             <!-- Large Card -->
             <div class="cdr-card cdr-card-large">
-              <h3 class="cdr-card-title">Cloud Done Right®</h3>
-              <h4 class="cdr-card-subtitle">Strategic transformation of financial platforms.</h4>
-              <p class="cdr-card-text">In banking and financial services, the cloud is not a technology decision: it is a business, risk, compliance and continuity decision.</p>
-              <p class="cdr-card-text">Cloud Done Right® is the model we use to support financial institutions in operating in the cloud with control, visibility and confidence.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdrTitle')}</h3>
+              <h4 class="cdr-card-subtitle">{t('industriaViajesHosteleria.cdrSubtitle')}</h4>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdrText1')}</p>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdrText2')}</p>
             </div>
 
             <!-- Small Cards - Row 1 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Clear strategy</h3>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr1Title')}</h3>
               <p class="cdr-card-text">
-                We connect cloud adoption with business objectives: accelerated growth, spending efficiency, agile product innovation and risk mitigation. Technology is the enabler; sustainable operation is the outcome.
+                {t('industriaViajesHosteleria.cdr1Text')}
               </p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Optimized architecture</h3>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr2Title')}</h3>
               <p class="cdr-card-text">
-                We design resilient ecosystems on AWS that integrate banking core, legacy systems and digital platforms, enabling hybrid schemes that optimize transition, connectivity and regulatory compliance based on data criticality.
+                {t('industriaViajesHosteleria.cdr2Text')}
               </p>
             </div>
 
             <!-- Small Cards - Row 2 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Automation and scalability</h3>
-              <p class="cdr-card-text">We enable pipelines, monitoring and orchestration so your platforms scale without affecting transactions, users or critical processes, with higher speed and lower operational risk.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr3Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr3Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Controlled cost</h3>
-              <p class="cdr-card-text">Cloud spend should behave like a regulated investment, not budget leakage. We implement FinOps practices to ensure visibility, control and savings without sacrificing performance or security.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr4Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr4Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Security and compliance</h3>
-              <p class="cdr-card-text">We protect sensitive data, manage identities and define controls from the start to ensure local compliance, smooth audits and no surprises in reporting.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr5Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr5Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Talent and culture</h3>
-              <p class="cdr-card-text">We work with your teams to strengthen capabilities and adopt practices that sustain innovation and continuous operation of agile financial services. We prepare your organization to lead the market and face the challenges of modern finance.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr6Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr6Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Continuous innovation</h3>
-              <p class="cdr-card-text">We deploy AI and advanced analytics capabilities for early fraud detection, hyper-personalization of services and data-driven decision making that is traceable and secure.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr7Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr7Text')}</p>
             </div>
           </div>
         </div>
@@ -449,18 +452,18 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <div class="seven-r-header">
             <div class="seven-r-header-left">
-              <h2 class="seven-r-title">The 7Rs<br/>of cloud<br/>modernization.</h2>
+              <h2 class="seven-r-title" set:html={t('industriaViajesHosteleria.sevenRTitle')} />
             </div>
             <div class="seven-r-header-right">
-              <p class="seven-r-description">We precisely define the ideal transformation path for each organization, maximizing results without compromising stability or control.</p>
+              <p class="seven-r-description">{t('industriaViajesHosteleria.sevenRDescription')}</p>
             </div>
           </div>
 
           <div class="seven-r-carousel">
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retire</h3>
-                <p class="seven-r-card-subtitle">Remove what no longer adds value.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR1Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR1Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">1</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-1.jpg');"></div>
@@ -468,8 +471,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retain</h3>
-                <p class="seven-r-card-subtitle">Keep what works.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR2Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR2Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">2</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-2.jpg');"></div>
@@ -477,8 +480,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Rehost</h3>
-                <p class="seven-r-card-subtitle">Move systems to the cloud as-is, fast and secure.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR3Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR3Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">3</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-3.jpg');"></div>
@@ -486,8 +489,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Relocate</h3>
-                <p class="seven-r-card-subtitle">Strategically move workloads to new environments.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR4Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR4Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">4</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-4.jpg');"></div>
@@ -495,8 +498,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Replatform</h3>
-                <p class="seven-r-card-subtitle">Adjust applications to leverage native cloud capabilities.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR5Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR5Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">5</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-5.jpg');"></div>
@@ -504,8 +507,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Repurchase</h3>
-                <p class="seven-r-card-subtitle">Replace systems with more modern and efficient solutions.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR6Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR6Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">6</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-6.jpg');"></div>
@@ -513,8 +516,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Refactor</h3>
-                <p class="seven-r-card-subtitle">Reinvent applications to scale and deliver value with agility.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR7Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR7Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">7</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-7.jpg');"></div>
@@ -529,45 +532,45 @@ const currentPath = Astro.url.pathname;
           <!-- Cases Section -->
           <div class="cases-section-wrapper">
             <div class="cases-header">
-              <p class="cases-pretitle">Success stories</p>
-              <h2 class="cases-title">Growth that Scales</h2>
+              <p class="cases-pretitle">{t('industriaViajesHosteleria.casesPretitle')}</p>
+              <h2 class="cases-title">{t('industriaViajesHosteleria.casesTitle')}</h2>
             </div>
 
             <div class="cases-video-grid cases-video-grid-two">
               <button 
                 class="case-video-card"
-                data-video-id="KexqTC5scdg"
-                data-video-title="Allianz"
+                data-video-id="_gOITHU4jNI"
+                data-video-title={t('industriaViajesHosteleria.case1Alt')}
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/KexqTC5scdg/hqdefault.jpg');" role="img" aria-label="Allianz"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/_gOITHU4jNI/hqdefault.jpg');" role="img" aria-label={t('industriaViajesHosteleria.case1Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-flybondi.png" alt="Allianz" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-flybondi.png" alt={t('industriaViajesHosteleria.case1Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migrated its sales platform to a 100% serverless architecture on AWS to support high traffic peaks and reduce operational costs. The new model enables automatic scaling, up to 800 thousand daily visits, improved security and frees the team to focus on development, innovation and real-time analytics for decision making.
+                    {t('industriaViajesHosteleria.case1Description')}
                   </p>
                 </div>
               </button>
 
               <button 
                 class="case-video-card"
-                data-video-id="gfaygu41g10"
-                data-video-title="Mercantil Andina"
+                data-video-id="b_zvjzRRbqQ"
+                data-video-title={t('industriaViajesHosteleria.case2Alt')}
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/gfaygu41g10/hqdefault.jpg');" role="img" aria-label="Mercantil Andina"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/b_zvjzRRbqQ/hqdefault.jpg');" role="img" aria-label={t('industriaViajesHosteleria.case2Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-exito.png" alt="Mercantil Andina" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-exito.png" alt={t('industriaViajesHosteleria.case2Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migrated its infrastructure to the cloud to support the accelerated growth of its multichannel operation, achieving greater stability, high availability and elasticity to respond to demand peaks, optimizing costs and improving real-time monitoring of sales and operations.
+                    {t('industriaViajesHosteleria.case2Description')}
                   </p>
                 </div>
               </button>
@@ -579,14 +582,14 @@ const currentPath = Astro.url.pathname;
             <div class="cta-card-content">
               <div class="cta-card-text">
                 <h2 class="cta-card-title">
-                  The travel experience starts in the cloud.
+                  {t('industriaViajesHosteleria.ctaTitle')}
                 </h2>
                 <p class="cta-card-description">
-                  Stability, scalability and support for airlines, agencies, hotels and travel ecosystems with Escala 24x7.
+                  {t('industriaViajesHosteleria.ctaDescription')}
                 </p>
               </div>
-              <a href="/en/contacto" class="btn btn-primary">
-                Contact an expert
+              <a href={`${basePath}/contacto`} class="btn btn-primary">
+                {t('industriaViajesHosteleria.ctaButton')}
                 <span class="material-symbols-outlined">north_east</span>
               </a>
             </div>
@@ -766,13 +769,13 @@ const currentPath = Astro.url.pathname;
     color: var(--neutral-100);
     font-size: 70px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.1;
     margin-bottom: 64px;
     max-width: 70%;
   }
 
   .hero-title-bold {
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .hero-content {

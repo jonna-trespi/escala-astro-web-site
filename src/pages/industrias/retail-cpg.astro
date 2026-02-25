@@ -3,19 +3,26 @@ import Header from "../../components/Header.astro";
 import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
+import { getT, localePrefix } from '../../i18n';
+import type { Locale } from '../../i18n';
+import es from '../../i18n/es.json';
 import "../../styles/global.css";
-const lang = 'es';
+
+const lang: Locale = 'es';
 const currentPath = Astro.url.pathname;
+const dict = es;
+const t = getT(dict);
+const basePath = localePrefix(lang);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Servicios cloud para retail y CPG</title>
-    <meta name="description" content="Protege ventas, inventarios y transacciones con servicios cloud gestionados para retail y CPG con Escala 24x7." />
+    <title>{t('industriaRetailCpg.title')}</title>
+    <meta name="description" content={t('industriaRetailCpg.metaDescription')} />
     <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,21 +44,21 @@ const currentPath = Astro.url.pathname;
           <div class="hero-banner">
             <div class="hero-container">
               <h1 class="hero-title">
-                Mantén tu <span class="hero-title-bold"
-                  >comercio activo,</span
-                > incluso en las horas más críticas
+                {t('industriaRetailCpg.heroTitle')}<span class="hero-title-bold"
+                  >{t('industriaRetailCpg.heroTitleBold')}</span
+                >{t('industriaRetailCpg.heroTitleSuffix')}
               </h1>
               <div class="hero-content">
                 <div class="hero-left">
                   <a href="#challenges" class="hero-button">
-                    Moderniza tu operación
+                    {t('industriaRetailCpg.heroButton')}
                     <span class="material-symbols-outlined">north_east</span>
                   </a>
                 </div>
                 <div class="hero-right">
                   <div class="hero-stat-box">
                     <p class="hero-stat-text">
-                      En un mercado donde los clientes priorizan la rapidez y el valor, tu infraestructura debe ser un motor de ventas. Con Escala 24x7, protege tu margen de ingresos y asegura la lealtad en cada punto de contacto con nuestras soluciones AWS para retail.
+                      {t('industriaRetailCpg.heroStatText')}
                     </p>
                   </div>
                 </div>
@@ -67,19 +74,19 @@ const currentPath = Astro.url.pathname;
           <div class="challenges-intro">
             <div class="challenges-intro-content">
               <h2 class="challenges-intro-title">
-                ¿Tu operación retail necesita <span
+                {t('industriaRetailCpg.challengesTitle')}<span
                   class="challenges-intro-highlight"
-                  >escalar sin fallas, controlar costos</span
-                > y moverse más rápido?
+                  >{t('industriaRetailCpg.challengesTitleHighlight')}</span
+                >{t('industriaRetailCpg.challengesTitleSuffix')}
               </h2>
               <p class="challenges-intro-text">
-                El comercio moderno no perdona caídas ni atrasos. Conoce los desafíos más comunes del sector y cómo Escala 24x7 te ayuda a resolverlos.
+                {t('industriaRetailCpg.challengesIntroText')}
               </p>
             </div>
             <div class="challenges-intro-image">
               <img
                 src="/images/industrias/industrias-escala-imagen-5.jpg"
-                alt="Innovación Financiera"
+                alt={t('industriaRetailCpg.challengesImageAlt')}
               />
             </div>
           </div>
@@ -89,14 +96,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Agilizar transacciones"
+                  alt={t('industriaRetailCpg.challenge1Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Escalar ventas y tráfico sin interrupciones.
+                {t('industriaRetailCpg.challenge1Title')}
               </h3>
               <p class="challenge-description">
-                Black Friday, Cyber Monday, quincenas, campañas y lanzamientos ponen a prueba tu plataforma. Habilitamos arquitecturas que escalan automáticamente para evitar caídas, filas virtuales o pérdidas de venta.
+                {t('industriaRetailCpg.challenge1Desc')}
               </p>
             </div>
 
@@ -104,14 +111,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Transformar experiencia"
+                  alt={t('industriaRetailCpg.challenge2Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Omnicanalidad unificada.
+                {t('industriaRetailCpg.challenge2Title')}
               </h3>
               <p class="challenge-description">
-                La fragmentación entre eCommerce, tiendas físicas y logística es el enemigo #1 de la experiencia. Sincronizamos tu ecosistema (POS, ERP, Apps, Last-Mile) para que el cliente viva una experiencia única.
+                {t('industriaRetailCpg.challenge2Desc')}
               </p>
             </div>
 
@@ -119,14 +126,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Facilitar continuidad"
+                  alt={t('industriaRetailCpg.challenge3Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Habilitar experiencias perfectas de cliente.
+                {t('industriaRetailCpg.challenge3Title')}
               </h3>
               <p class="challenge-description">
-                Los usuarios no toleran demoras, quiebres de stock ni transacciones fallidas. Optimizamos tiempos de respuesta, modernizamos la arquitectura y habilitamos continuidad operativa 24x7.
+                {t('industriaRetailCpg.challenge3Desc')}
               </p>
             </div>
 
@@ -134,14 +141,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Elevar seguridad"
+                  alt={t('industriaRetailCpg.challenge4Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Elevar la seguridad y proteger las transacciones.
+                {t('industriaRetailCpg.challenge4Title')}
               </h3>
               <p class="challenge-description">
-                El fraude y el robo de datos erosionan la confianza del consumidor. Implementamos identidad, cifrado y monitoreo avanzado para asegurar tus canales.
+                {t('industriaRetailCpg.challenge4Desc')}
               </p>
             </div>
 
@@ -149,14 +156,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Actualizar Core"
+                  alt={t('industriaRetailCpg.challenge5Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Tomar decisiones rápidas con datos confiables.
+                {t('industriaRetailCpg.challenge5Title')}
               </h3>
               <p class="challenge-description">
-                Inventarios, precios, campañas y logística necesitan información real, no reportes mensuales. Habilitamos arquitecturas de datos y analítica predictiva para hiper-localizar surtidos, dinamizar precios y anticipar la demanda.
+                {t('industriaRetailCpg.challenge5Desc')}
               </p>
             </div>
 
@@ -164,14 +171,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Facilitar decisiones"
+                  alt={t('industriaRetailCpg.challenge6Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Controlar costos y liberar presupuesto para crecimiento.
+                {t('industriaRetailCpg.challenge6Title')}
               </h3>
               <p class="challenge-description">
-                Sin FinOps, la nube se comporta como gasto desbordado. Aplicamos prácticas FinOps para que cada dólar invertido impulse directamente el crecimiento, liberando presupuesto para la innovación
+                {t('industriaRetailCpg.challenge6Desc')}
               </p>
             </div>
           </div>
@@ -193,29 +200,29 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <!-- Title -->
           <div class="methodology-header">
-            <h2 class="methodology-title">Te acompañamos en cada paso.</h2>
+            <h2 class="methodology-title">{t('industriaRetailCpg.methodologyTitle')}</h2>
             <p class="methodology-subtitle">
-              En el sector Retail, la transformación digital implica cambios comerciales, operativos y logísticos. En Escala 24x7 no solo optimizamos tu operación, sino que la gestionamos contigo, garantizando continuidad y estabilidad en cada canal.
+              {t('industriaRetailCpg.methodologySubtitle')}
             </p>
           </div>
 
           <!-- ¿Cómo lo hacemos? -->
           <div class="how-we-do-it">
-            <h3 class="how-title">¿Cómo lo hacemos?</h3>
+            <h3 class="how-title">{t('industriaRetailCpg.howTitle')}</h3>
 
             <div class="how-grid">
               <div class="how-card">
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-1.png"
-                    alt="Asesoría experta"
+                    alt={t('industriaRetailCpg.how1Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Arquitecturas de interoperabilidad omnicanal
+                  {t('industriaRetailCpg.how1Title')}
                 </h4>
                 <p class="how-card-description">
-                  Diseñamos entornos que conectan SAP/ERP, plataformas de eCommerce, sistemas POS y nodos logísticos sin fricción y en tiempo real.
+                  {t('industriaRetailCpg.how1Desc')}
                 </p>
               </div>
 
@@ -223,14 +230,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-2.png"
-                    alt="Desarrollo de Pruebas"
+                    alt={t('industriaRetailCpg.how2Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Validación Técnica de Alto Impacto
+                  {t('industriaRetailCpg.how2Title')}
                 </h4>
                 <p class="how-card-description">
-                  Ejecutamos pruebas de concepto orientadas a resultados rápidos para reducir riesgos y acelerar la aprobación de proyectos estratégicos.
+                  {t('industriaRetailCpg.how2Desc')}
                 </p>
               </div>
 
@@ -238,14 +245,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-3.png"
-                    alt="Apoyo técnico"
+                    alt={t('industriaRetailCpg.how3Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Ingeniería financiera para caso de negocio
+                  {t('industriaRetailCpg.how3Title')}
                 </h4>
                 <p class="how-card-description">
-                  Construímos argumentos técnicos y financieros sólidos, proyectando un ROI tangible que facilita la toma de decisiones a nivel ejecutivo.
+                  {t('industriaRetailCpg.how3Desc')}
                 </p>
               </div>
 
@@ -253,14 +260,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-4.png"
-                    alt="Implementación Cloud"
+                    alt={t('industriaRetailCpg.how4Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Modernización controlada
+                  {t('industriaRetailCpg.how4Title')}
                 </h4>
                 <p class="how-card-description">
-                  Actualizamos plataformas para mayor rapidez y eficiencia, permitiendo el lanzamiento de nuevas promociones o funcionalidades en horas, sin detener el ritmo de ventas.
+                  {t('industriaRetailCpg.how4Desc')}
                 </p>
               </div>
 
@@ -268,14 +275,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-5.png"
-                    alt="Evaluación técnica"
+                    alt={t('industriaRetailCpg.how5Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Continuidad operativa con automatización
+                  {t('industriaRetailCpg.how5Title')}
                 </h4>
                 <p class="how-card-description">
-                  Garantizamos el despliegue de nuevas funcionalidades, evitando que afecten la disponibilidad de canales críticos.
+                  {t('industriaRetailCpg.how5Desc')}
                 </p>
               </div>
 
@@ -283,14 +290,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-6.png"
-                    alt="Acceso al centro"
+                    alt={t('industriaRetailCpg.how6Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Seguridad y cumplimiento continuo
+                  {t('industriaRetailCpg.how6Title')}
                 </h4>
                 <p class="how-card-description">
-                  Ofrecemos protección transaccional y gobierno de acceso para equipos distribuidos, tiendas y proveedores.
+                  {t('industriaRetailCpg.how6Desc')}
                 </p>
               </div>
             </div>
@@ -300,13 +307,13 @@ const currentPath = Astro.url.pathname;
           <div class="cloud-emx-section">
             <div class="cloud-emx-header">
               <h3 class="cloud-emx-title">
-                Cloud EMx: Operación sin fricción para retailers y eCommerce
+                {t('industriaRetailCpg.emxTitle')}
               </h3>
               <p class="cloud-emx-subtitle">
-                El habilitador que diferencia a Escala 24x7
+                {t('industriaRetailCpg.emxSubtitle')}
               </p>
               <p class="cloud-emx-description">
-                Migrar es solo el inicio. En retail, lo que protege tus ingresos es operar sin interrupciones. Con EMx operamos tu arquitectura con:
+                {t('industriaRetailCpg.emxDescription')}
               </p>
             </div>
 
@@ -315,11 +322,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-1.png"
-                    alt="Objetividad proactiva"
+                    alt={t('industriaRetailCpg.emx1Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Monitoreo proactivo 24x7 y respuesta a incidentes sin afectación al cliente
+                  {t('industriaRetailCpg.emx1Title')}
                 </h4>
               </div>
 
@@ -327,11 +334,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-2.png"
-                    alt="Gestión de incidentes"
+                    alt={t('industriaRetailCpg.emx2Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Observabilidad completa de aplicaciones y canales
+                  {t('industriaRetailCpg.emx2Title')}
                 </h4>
               </div>
 
@@ -339,21 +346,21 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-3.png"
-                    alt="Gobierno robusto"
+                    alt={t('industriaRetailCpg.emx3Alt')}
                   />
                 </div>
-                <h4 class="emx-card-title">Gestión de cambios y gobierno operacional</h4>
+                <h4 class="emx-card-title">{t('industriaRetailCpg.emx3Title')}</h4>
               </div>
 
               <div class="emx-card">
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-4.png"
-                    alt="Disponibilidad 24x7"
+                    alt={t('industriaRetailCpg.emx4Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Disponibilidad operacional en temporadas altas
+                  {t('industriaRetailCpg.emx4Title')}
                 </h4>
               </div>
 
@@ -361,11 +368,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-5.png"
-                    alt="Innovación resiliente"
+                    alt={t('industriaRetailCpg.emx5Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Integración con SAP, ERPs y plataformas digitales
+                  {t('industriaRetailCpg.emx5Title')}
                 </h4>
               </div>
 
@@ -373,18 +380,17 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-6.png"
-                    alt="Marcos de operación"
+                    alt={t('industriaRetailCpg.emx6Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Optimización y rightsizing continuo con prácticas FinOps
+                  {t('industriaRetailCpg.emx6Title')}
                 </h4>
               </div>
             </div>
 
             <p class="emx-footer-text">
-              Cloud EMx no es un servicio administrado tradicional. 
-Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa picos de demanda y maximiza márgenes en cada canal.
+              {t('industriaRetailCpg.emxFooterText')}
             </p>
           </div>
         </div>
@@ -396,51 +402,51 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
           <div class="cdr-grid">
             <!-- Large Card -->
             <div class="cdr-card cdr-card-large">
-              <h3 class="cdr-card-title">Cloud Done Right®</h3>
-              <h4 class="cdr-card-subtitle">La diferencia entre estar en la nube y operar retail en la nube.</h4>
-              <p class="cdr-card-text">En comercio, la nube no es moda tecnológica: es la plataforma que sostiene tus ingresos.</p>
-              <p class="cdr-card-text">Cloud Done Right® impulsa tus ingresos con soluciones que analizan datos en tiempo real, automatizan la infraestructura y optimizan tu operación.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdrTitle')}</h3>
+              <h4 class="cdr-card-subtitle">{t('industriaRetailCpg.cdrSubtitle')}</h4>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdrText1')}</p>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdrText2')}</p>
             </div>
 
             <!-- Small Cards - Row 1 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Estrategia Cloud alineada al negocio</h3>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr1Title')}</h3>
               <p class="cdr-card-text">
-                Diseño de modelos que soportan expansión, nuevos canales y crecimiento regional.
+                {t('industriaRetailCpg.cdr1Text')}
               </p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Arquitectura elásticas y omnicanal</h3>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr2Title')}</h3>
               <p class="cdr-card-text">
-                Serverless, contenedores y microservicios preparados para picos masivos.
+                {t('industriaRetailCpg.cdr2Text')}
               </p>
             </div>
 
             <!-- Small Cards - Row 2 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Costos bajo control con cultura FinOps</h3>
-              <p class="cdr-card-text">Pago por uso, monitoreo y optimización constante para liberar capital comercial.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr3Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr3Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Seguridad desde el diseño</h3>
-              <p class="cdr-card-text">Protección transaccional, gobierno del acceso y cumplimiento con mejores prácticas AWS.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr4Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr4Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Automatización y escalabilidad</h3>
-              <p class="cdr-card-text">Infraestructura que crece sola mientras las tiendas venden.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr5Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr5Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Talento que opera con criterio de negocio</h3>
-              <p class="cdr-card-text">Acompañamiento en la toma de decisiones operativas y financieras en la nube, para asegurar  ventas sostenidas y rentabilidad.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr6Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr6Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Analítica e IA para decisiones estratégicas</h3>
-              <p class="cdr-card-text">Segmentación, predicción de demanda, prevención de quiebres y optimización logística.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr7Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr7Text')}</p>
             </div>
           </div>
         </div>
@@ -451,18 +457,18 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
         <div class="container">
           <div class="seven-r-header">
             <div class="seven-r-header-left">
-              <h2 class="seven-r-title">Las 7R<br/>de la modernización<br/>en la nube.</h2>
+              <h2 class="seven-r-title" set:html={t('industriaRetailCpg.sevenRTitle')} />
             </div>
             <div class="seven-r-header-right">
-              <p class="seven-r-description">Definimos con precisión el camino de transformación ideal para cada organización, maximizando resultados sin comprometer estabilidad ni control.</p>
+              <p class="seven-r-description">{t('industriaRetailCpg.sevenRDescription')}</p>
             </div>
           </div>
 
           <div class="seven-r-carousel">
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retire</h3>
-                <p class="seven-r-card-subtitle">Elimina lo que ya no aporta valor.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR1Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR1Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">1</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-1.jpg');"></div>
@@ -470,8 +476,8 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retain</h3>
-                <p class="seven-r-card-subtitle">Conserva lo que funciona.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR2Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR2Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">2</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-2.jpg');"></div>
@@ -479,8 +485,8 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Rehost</h3>
-                <p class="seven-r-card-subtitle">Mueve sistemas a la nube tal como están, rápido y seguro.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR3Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR3Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">3</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-3.jpg');"></div>
@@ -488,8 +494,8 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Relocate</h3>
-                <p class="seven-r-card-subtitle">Traslada cargas de trabajo estratégicamente a nuevos entornos.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR4Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR4Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">4</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-4.jpg');"></div>
@@ -497,8 +503,8 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Replatform</h3>
-                <p class="seven-r-card-subtitle">Ajusta aplicaciones para aprovechar capacidades nativas de la nube.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR5Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR5Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">5</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-5.jpg');"></div>
@@ -506,8 +512,8 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Repurchase</h3>
-                <p class="seven-r-card-subtitle">Reemplaza sistemas con soluciones más modernas y eficientes.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR6Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR6Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">6</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-6.jpg');"></div>
@@ -515,8 +521,8 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Refactor</h3>
-                <p class="seven-r-card-subtitle">Reinventa aplicaciones para escalar y generar valor con agilidad.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR7Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR7Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">7</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-7.jpg');"></div>
@@ -531,26 +537,26 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
           <!-- Cases Section -->
           <div class="cases-section-wrapper">
             <div class="cases-header">
-              <p class="cases-pretitle">Casos de éxito</p>
-              <h2 class="cases-title">Crecimiento que Escala</h2>
+              <p class="cases-pretitle">{t('industriaRetailCpg.casesPretitle')}</p>
+              <h2 class="cases-title">{t('industriaRetailCpg.casesTitle')}</h2>
             </div>
 
             <div class="cases-video-grid">
               <button 
                 class="case-video-card"
                 data-video-id="s85zq6H8jQ8"
-                data-video-title="Mirgor"
+                data-video-title={t('industriaRetailCpg.case1Alt')}
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/s85zq6H8jQ8/hqdefault.jpg');" role="img" aria-label="Allianz"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/s85zq6H8jQ8/hqdefault.jpg');" role="img" aria-label={t('industriaRetailCpg.case1Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-mirgor.png" alt="Allianz" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-mirgor.png" alt={t('industriaRetailCpg.case1Alt')} class="company-logo" />
                   <p class="video-description">
-                    Optimizó y unificó la gestión de su infraestructura y datos en AWS, integrando sus sistemas, adoptando infraestructura como código y habilitando analítica casi en tiempo real para sus distintas unidades de negocio. Esta estrategia permitió reducir hasta un 42% los costos de infraestructura, acelerar despliegues de horas a minutos y mejorar la eficiencia operativa y la escalabilidad del negocio.
+                    {t('industriaRetailCpg.case1Description')}
                   </p>
                 </div>
               </button>
@@ -560,18 +566,18 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
                 href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/643ed5dc29db86fe443e8d45_SPORTLINE.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Ver caso Sportline (PDF)"
+                aria-label={t('industriaRetailCpg.case2PdfAriaLabel')}
               >
-                <div class="video-thumbnail" style="background-image: url('/logos/industrias/casos-imagenes/sportline-caso.jpg');" role="img" aria-label="Sportline"></div>
+                <div class="video-thumbnail" style="background-image: url('/logos/industrias/casos-imagenes/sportline-caso.jpg');" role="img" aria-label={t('industriaRetailCpg.case2Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="description" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-sportline.png" alt="Sportline" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-sportline.png" alt={t('industriaRetailCpg.case2Alt')} class="company-logo" />
                   <p class="video-description">
-                    Implementó un Data Lake en la nube de AWS para centralizar, procesar y analizar grandes volúmenes de datos del negocio. La solución permitió habilitar analítica casi en tiempo real, automatizar la gestión de la infraestructura y reducir costos operativos, fortaleciendo la toma de decisiones estratégicas y la agilidad del negocio retail.
+                    {t('industriaRetailCpg.case2Description')}
                   </p>
                 </div>
               </a>
@@ -581,18 +587,18 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
                 href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f12dbd5add65e360ef1bd_MAGNA%20MOTORS.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Ver caso Magna Motors (PDF)"
+                aria-label={t('industriaRetailCpg.case3PdfAriaLabel')}
               >
-                <div class="video-thumbnail" style="background-image: url('/logos/industrias/casos-imagenes/magna-caso.jpg');" role="img" aria-label="Magna Motors"></div>
+                <div class="video-thumbnail" style="background-image: url('/logos/industrias/casos-imagenes/magna-caso.jpg');" role="img" aria-label={t('industriaRetailCpg.case3Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="description" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-magna.png" alt="Magna Motors" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-magna.png" alt={t('industriaRetailCpg.case3Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migró su SAP y su datacenter a la nube de AWS reemplazando una infraestructura rígida y costosa por un entorno administrado, escalable y bajo demanda. Esta transformación les permitió reducir drásticamente los tiempos de implementación, asegurar la continuidad operativa y habilitar una expansión del negocio de hasta un 300% en un tiempo 10 veces menor, consolidando su crecimiento regional con mayor agilidad y control de costos.
+                    {t('industriaRetailCpg.case3Description')}
                   </p>
                 </div>
               </a>
@@ -604,14 +610,14 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
             <div class="cta-card-content">
               <div class="cta-card-text">
                 <h2 class="cta-card-title">
-                  Vende sin pausas, incluso en horas pico.
+                  {t('industriaRetailCpg.ctaTitle')}
                 </h2>
                 <p class="cta-card-description">
-                  Escala sin fallas, controla costos y protege tu margen de ingresos con Escala 24x7.
+                  {t('industriaRetailCpg.ctaDescription')}
                 </p>
               </div>
-              <a href="/contacto" class="btn btn-primary">
-                Contacta a un experto
+              <a href={`${basePath}/contacto`} class="btn btn-primary">
+                {t('industriaRetailCpg.ctaButton')}
                 <span class="material-symbols-outlined">north_east</span>
               </a>
             </div>
@@ -638,7 +644,7 @@ Es el modelo operativo que mantiene tu negocio vendiendo sin fricción, anticipa
 
           <!-- Footer Embedded -->
           <!-- Footer Component -->
-          <Footer />
+          <Footer lang={lang} />
         </div>
       </section>
     </main>

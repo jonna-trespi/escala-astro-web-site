@@ -3,18 +3,26 @@ import Header from "../../../components/Header.astro";
 import GoogleAnalytics from "../../../components/GoogleAnalytics.astro";
 import Footer from "../../../components/Footer.astro";
 import Icon from "../../../components/Icon.astro";
+import { getT, localePrefix } from '../../../i18n';
+import type { Locale } from '../../../i18n';
+import en from '../../../i18n/en.json';
 import "../../../styles/global.css";
-const lang = 'en';
+
+const lang: Locale = 'en';
 const currentPath = Astro.url.pathname;
+const dict = en;
+const t = getT(dict);
+const basePath = localePrefix(lang);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Retail - Escala 24x7</title>
+    <title>{t('industriaRetailCpg.title')}</title>
+    <meta name="description" content={t('industriaRetailCpg.metaDescription')} />
     <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,21 +44,21 @@ const currentPath = Astro.url.pathname;
           <div class="hero-banner">
             <div class="hero-container">
               <h1 class="hero-title">
-                Keep your <span class="hero-title-bold"
-                  >business running</span
-                >, even during peak hours
+                {t('industriaRetailCpg.heroTitle')}<span class="hero-title-bold"
+                  >{t('industriaRetailCpg.heroTitleBold')}</span
+                >{t('industriaRetailCpg.heroTitleSuffix')}
               </h1>
               <div class="hero-content">
                 <div class="hero-left">
                   <a href="#challenges" class="hero-button">
-                    Modernize your operations
+                    {t('industriaRetailCpg.heroButton')}
                     <span class="material-symbols-outlined">north_east</span>
                   </a>
                 </div>
                 <div class="hero-right">
                   <div class="hero-stat-box">
                     <p class="hero-stat-text">
-                      In a market where customers prioritize speed and value, your infrastructure must be a sales driver. With Escala 24x7, protect your revenue margin and ensure loyalty at every touchpoint with our AWS solutions for retail.
+                      {t('industriaRetailCpg.heroStatText')}
                     </p>
                   </div>
                 </div>
@@ -66,19 +74,19 @@ const currentPath = Astro.url.pathname;
           <div class="challenges-intro">
             <div class="challenges-intro-content">
               <h2 class="challenges-intro-title">
-                Does your retail operation need to <span
+                {t('industriaRetailCpg.challengesTitle')}<span
                   class="challenges-intro-highlight"
-                  >scale without failure, control costs</span
-                > and move faster?
+                  >{t('industriaRetailCpg.challengesTitleHighlight')}</span
+                >{t('industriaRetailCpg.challengesTitleSuffix')}
               </h2>
               <p class="challenges-intro-text">
-                Modern commerce does not forgive outages or delays. Learn about the most common challenges in the sector and how Escala 24x7 helps you address them.
+                {t('industriaRetailCpg.challengesIntroText')}
               </p>
             </div>
             <div class="challenges-intro-image">
               <img
                 src="/images/industrias/industrias-escala-imagen-5.jpg"
-                alt="Retail Innovation"
+                alt={t('industriaRetailCpg.challengesImageAlt')}
               />
             </div>
           </div>
@@ -88,14 +96,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Scale sales and traffic"
+                  alt={t('industriaRetailCpg.challenge1Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Scale sales and traffic without interruption.
+                {t('industriaRetailCpg.challenge1Title')}
               </h3>
               <p class="challenge-description">
-                Users demand faster, more secure, 24x7 products and services. We help you build environments that scale without friction and accelerate time-to-market without compromising stability.
+                {t('industriaRetailCpg.challenge1Desc')}
               </p>
             </div>
 
@@ -103,14 +111,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Unified omnichannel"
+                  alt={t('industriaRetailCpg.challenge2Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Unified omnichannel.
+                {t('industriaRetailCpg.challenge2Title')}
               </h3>
               <p class="challenge-description">
-                Customers do not tolerate delays, outages or complex processes. We modernize digital platforms, reduce response times and enable smooth, consistent experiences across web and app.
+                {t('industriaRetailCpg.challenge2Desc')}
               </p>
             </div>
 
@@ -118,14 +126,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Seamless experiences"
+                  alt={t('industriaRetailCpg.challenge3Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Enable seamless customer experiences.
+                {t('industriaRetailCpg.challenge3Title')}
               </h3>
               <p class="challenge-description">
-                Every minute of downtime impacts revenue, trust and reputation. We enable proactive operations, disaster recovery, continuous monitoring and incident response to keep your services always available.
+                {t('industriaRetailCpg.challenge3Desc')}
               </p>
             </div>
 
@@ -133,14 +141,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Elevar seguridad"
+                  alt={t('industriaRetailCpg.challenge4Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Strengthen security and protect transactions.
+                {t('industriaRetailCpg.challenge4Title')}
               </h3>
               <p class="challenge-description">
-                Every minute of downtime impacts revenue, trust and reputation. We enable proactive operations, disaster recovery, continuous monitoring and incident response to keep your services always available.
+                {t('industriaRetailCpg.challenge4Desc')}
               </p>
             </div>
 
@@ -148,14 +156,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Fast decisions with data"
+                  alt={t('industriaRetailCpg.challenge5Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Make fast decisions with reliable data.
+                {t('industriaRetailCpg.challenge5Title')}
               </h3>
               <p class="challenge-description">
-                We execute the evolution of legacy systems through gradual integration strategies, eliminating operational risk during the transition to modern architectures.
+                {t('industriaRetailCpg.challenge5Desc')}
               </p>
             </div>
 
@@ -163,14 +171,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Control costs"
+                  alt={t('industriaRetailCpg.challenge6Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Control costs and free up budget for growth.
+                {t('industriaRetailCpg.challenge6Title')}
               </h3>
               <p class="challenge-description">
-                Competitive advantage depends on accurate, timely information. We enable analytics platforms and data governance models to turn information into fast, traceable, secure decisions.
+                {t('industriaRetailCpg.challenge6Desc')}
               </p>
             </div>
           </div>
@@ -192,30 +200,29 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <!-- Title -->
           <div class="methodology-header">
-            <h2 class="methodology-title">We support you at every step.</h2>
+            <h2 class="methodology-title">{t('industriaRetailCpg.methodologyTitle')}</h2>
             <p class="methodology-subtitle">
-              The challenge for the financial sector is to adopt the cloud in a
-              secure, approved, regulated and operable way over time.
+              {t('industriaRetailCpg.methodologySubtitle')}
             </p>
           </div>
 
-          <!-- How do we do it? -->
+          <!-- ¿Cómo lo hacemos? -->
           <div class="how-we-do-it">
-            <h3 class="how-title">How do we do it?</h3>
+            <h3 class="how-title">{t('industriaRetailCpg.howTitle')}</h3>
 
             <div class="how-grid">
               <div class="how-card">
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-1.png"
-                    alt="Expert advisory"
+                    alt={t('industriaRetailCpg.how1Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Expert advisory on solution design.
+                  {t('industriaRetailCpg.how1Title')}
                 </h4>
                 <p class="how-card-description">
-                  We build secure, scalable architectures aligned with your country's regulatory requirements.
+                  {t('industriaRetailCpg.how1Desc')}
                 </p>
               </div>
 
@@ -223,14 +230,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-2.png"
-                    alt="Proof of Concept development"
+                    alt={t('industriaRetailCpg.how2Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Proof of Concept (PoC) development.
+                  {t('industriaRetailCpg.how2Title')}
                 </h4>
                 <p class="how-card-description">
-                  We validate technical feasibility and accelerate internal approval of your cloud projects.
+                  {t('industriaRetailCpg.how2Desc')}
                 </p>
               </div>
 
@@ -238,14 +245,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-3.png"
-                    alt="Technical support"
+                    alt={t('industriaRetailCpg.how3Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Technical support to demonstrate ROI.
+                  {t('industriaRetailCpg.how3Title')}
                 </h4>
                 <p class="how-card-description">
-                  We help you build solid business cases and technical arguments that support executive decisions.
+                  {t('industriaRetailCpg.how3Desc')}
                 </p>
               </div>
 
@@ -253,14 +260,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-4.png"
-                    alt="Cloud implementation"
+                    alt={t('industriaRetailCpg.how4Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Implementation of Cloud processes and tools.
+                  {t('industriaRetailCpg.how4Title')}
                 </h4>
                 <p class="how-card-description">
-                  We support the adoption of modern practices: automation, observability, security and continuous operations.
+                  {t('industriaRetailCpg.how4Desc')}
                 </p>
               </div>
 
@@ -268,14 +275,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-5.png"
-                    alt="Technical assessment"
+                    alt={t('industriaRetailCpg.how5Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Technical assessment of the regulatory framework.
+                  {t('industriaRetailCpg.how5Title')}
                 </h4>
                 <p class="how-card-description">
-                  We ensure regulatory compliance in every component of the solution.
+                  {t('industriaRetailCpg.how5Desc')}
                 </p>
               </div>
 
@@ -283,14 +290,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-6.png"
-                    alt="Access to compliance center"
+                    alt={t('industriaRetailCpg.how6Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Access to the AWS compliance center.
+                  {t('industriaRetailCpg.how6Title')}
                 </h4>
                 <p class="how-card-description">
-                  Address regulatory objections with official documentation and certified experts.
+                  {t('industriaRetailCpg.how6Desc')}
                 </p>
               </div>
             </div>
@@ -300,17 +307,13 @@ const currentPath = Astro.url.pathname;
           <div class="cloud-emx-section">
             <div class="cloud-emx-header">
               <h3 class="cloud-emx-title">
-                Cloud EMx: Continuous operations for regulated platforms.
+                {t('industriaRetailCpg.emxTitle')}
               </h3>
               <p class="cloud-emx-subtitle">
-                The difference that sustains your cloud operation.
+                {t('industriaRetailCpg.emxSubtitle')}
               </p>
               <p class="cloud-emx-description">
-                Migrating to the cloud does not guarantee stability. What keeps your business running is how you govern and operate the cloud every day.
-              </p>
-              <p class="cloud-emx-description">
-                With Cloud EMx, you ensure the operation of critical financial
-                platforms with:
+                {t('industriaRetailCpg.emxDescription')}
               </p>
             </div>
 
@@ -319,11 +322,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-1.png"
-                    alt="Proactive observability"
+                    alt={t('industriaRetailCpg.emx1Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Proactive observability to anticipate failures before they affect your customers
+                  {t('industriaRetailCpg.emx1Title')}
                 </h4>
               </div>
 
@@ -331,11 +334,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-2.png"
-                    alt="Incident management"
+                    alt={t('industriaRetailCpg.emx2Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Agile incident management and operational correlation
+                  {t('industriaRetailCpg.emx2Title')}
                 </h4>
               </div>
 
@@ -343,21 +346,21 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-3.png"
-                    alt="Robust governance"
+                    alt={t('industriaRetailCpg.emx3Alt')}
                   />
                 </div>
-                <h4 class="emx-card-title">Robust governance and traceability</h4>
+                <h4 class="emx-card-title">{t('industriaRetailCpg.emx3Title')}</h4>
               </div>
 
               <div class="emx-card">
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-4.png"
-                    alt="24x7 availability"
+                    alt={t('industriaRetailCpg.emx4Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  24x7 availability and stability
+                  {t('industriaRetailCpg.emx4Title')}
                 </h4>
               </div>
 
@@ -365,11 +368,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-5.png"
-                    alt="Regulated investment"
+                    alt={t('industriaRetailCpg.emx5Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Regulated investment with full visibility, avoiding budget leakage
+                  {t('industriaRetailCpg.emx5Title')}
                 </h4>
               </div>
 
@@ -377,17 +380,17 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-6.png"
-                    alt="Operations frameworks"
+                    alt={t('industriaRetailCpg.emx6Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Compliance-native operations frameworks
+                  {t('industriaRetailCpg.emx6Title')}
                 </h4>
               </div>
             </div>
 
             <p class="emx-footer-text">
-              Cloud EMx is not a traditional managed service. It is the model that lets you operate, scale and comply in highly regulated financial environments with confidence and continuous control.
+              {t('industriaRetailCpg.emxFooterText')}
             </p>
           </div>
         </div>
@@ -399,51 +402,51 @@ const currentPath = Astro.url.pathname;
           <div class="cdr-grid">
             <!-- Large Card -->
             <div class="cdr-card cdr-card-large">
-              <h3 class="cdr-card-title">Cloud Done Right®</h3>
-              <h4 class="cdr-card-subtitle">Strategic transformation of financial platforms.</h4>
-              <p class="cdr-card-text">In banking and financial services, the cloud is not a technology decision: it is a business, risk, compliance and continuity decision.</p>
-              <p class="cdr-card-text">Cloud Done Right® is the model we use to support financial institutions in operating in the cloud with control, visibility and confidence.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdrTitle')}</h3>
+              <h4 class="cdr-card-subtitle">{t('industriaRetailCpg.cdrSubtitle')}</h4>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdrText1')}</p>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdrText2')}</p>
             </div>
 
             <!-- Small Cards - Row 1 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Clear strategy</h3>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr1Title')}</h3>
               <p class="cdr-card-text">
-                We connect cloud adoption with business objectives: accelerated growth, spending efficiency, agile product innovation and risk mitigation. Technology is the enabler; sustainable operation is the outcome.
+                {t('industriaRetailCpg.cdr1Text')}
               </p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Optimized architecture</h3>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr2Title')}</h3>
               <p class="cdr-card-text">
-                We design resilient ecosystems on AWS that integrate banking core, legacy systems and digital platforms, enabling hybrid schemes that optimize transition, connectivity and regulatory compliance based on data criticality.
+                {t('industriaRetailCpg.cdr2Text')}
               </p>
             </div>
 
             <!-- Small Cards - Row 2 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Automation and scalability</h3>
-              <p class="cdr-card-text">We enable pipelines, monitoring and orchestration so your platforms scale without affecting transactions, users or critical processes, with higher speed and lower operational risk.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr3Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr3Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Controlled cost</h3>
-              <p class="cdr-card-text">Cloud spend should behave like a regulated investment, not budget leakage. We implement FinOps practices to ensure visibility, control and savings without sacrificing performance or security.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr4Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr4Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Security and compliance</h3>
-              <p class="cdr-card-text">We protect sensitive data, manage identities and define controls from the start to ensure local compliance, smooth audits and no surprises in reporting.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr5Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr5Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Talent and culture</h3>
-              <p class="cdr-card-text">We work with your teams to strengthen capabilities and adopt practices that sustain innovation and continuous operation of agile financial services. We prepare your organization to lead the market and face the challenges of modern finance.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr6Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr6Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Continuous innovation</h3>
-              <p class="cdr-card-text">We deploy AI and advanced analytics capabilities for early fraud detection, hyper-personalization of services and data-driven decision making that is traceable and secure.</p>
+              <h3 class="cdr-card-title">{t('industriaRetailCpg.cdr7Title')}</h3>
+              <p class="cdr-card-text">{t('industriaRetailCpg.cdr7Text')}</p>
             </div>
           </div>
         </div>
@@ -454,18 +457,18 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <div class="seven-r-header">
             <div class="seven-r-header-left">
-              <h2 class="seven-r-title">The 7Rs<br/>of cloud<br/>modernization.</h2>
+              <h2 class="seven-r-title" set:html={t('industriaRetailCpg.sevenRTitle')} />
             </div>
             <div class="seven-r-header-right">
-              <p class="seven-r-description">We precisely define the ideal transformation path for each organization, maximizing results without compromising stability or control.</p>
+              <p class="seven-r-description">{t('industriaRetailCpg.sevenRDescription')}</p>
             </div>
           </div>
 
           <div class="seven-r-carousel">
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retire</h3>
-                <p class="seven-r-card-subtitle">Remove what no longer adds value.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR1Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR1Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">1</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-1.jpg');"></div>
@@ -473,8 +476,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retain</h3>
-                <p class="seven-r-card-subtitle">Keep what works.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR2Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR2Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">2</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-2.jpg');"></div>
@@ -482,8 +485,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Rehost</h3>
-                <p class="seven-r-card-subtitle">Move systems to the cloud as-is, fast and secure.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR3Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR3Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">3</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-3.jpg');"></div>
@@ -491,8 +494,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Relocate</h3>
-                <p class="seven-r-card-subtitle">Strategically move workloads to new environments.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR4Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR4Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">4</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-4.jpg');"></div>
@@ -500,8 +503,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Replatform</h3>
-                <p class="seven-r-card-subtitle">Adjust applications to leverage native cloud capabilities.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR5Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR5Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">5</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-5.jpg');"></div>
@@ -509,8 +512,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Repurchase</h3>
-                <p class="seven-r-card-subtitle">Replace systems with more modern and efficient solutions.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR6Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR6Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">6</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-6.jpg');"></div>
@@ -518,8 +521,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Refactor</h3>
-                <p class="seven-r-card-subtitle">Reinvent applications to scale and deliver value with agility.</p>
+                <h3 class="seven-r-card-title">{t('industriaRetailCpg.sevenR7Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaRetailCpg.sevenR7Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">7</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-7.jpg');"></div>
@@ -534,26 +537,26 @@ const currentPath = Astro.url.pathname;
           <!-- Cases Section -->
           <div class="cases-section-wrapper">
             <div class="cases-header">
-              <p class="cases-pretitle">Success stories</p>
-              <h2 class="cases-title">Growth that Scales</h2>
+              <p class="cases-pretitle">{t('industriaRetailCpg.casesPretitle')}</p>
+              <h2 class="cases-title">{t('industriaRetailCpg.casesTitle')}</h2>
             </div>
 
             <div class="cases-video-grid">
               <button 
                 class="case-video-card"
-                data-video-id="KexqTC5scdg"
-                data-video-title="Allianz"
+                data-video-id="s85zq6H8jQ8"
+                data-video-title={t('industriaRetailCpg.case1Alt')}
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/KexqTC5scdg/hqdefault.jpg');" role="img" aria-label="Allianz"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/s85zq6H8jQ8/hqdefault.jpg');" role="img" aria-label={t('industriaRetailCpg.case1Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-mirgor.png" alt="Allianz" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-mirgor.png" alt={t('industriaRetailCpg.case1Alt')} class="company-logo" />
                   <p class="video-description">
-                    Optimized and unified its infrastructure and data management on AWS, integrating its systems, adopting infrastructure as code and enabling near real-time analytics for its different business units. This strategy reduced infrastructure costs by up to 42%, accelerated deployments from hours to minutes and improved operational efficiency and business scalability.
+                    {t('industriaRetailCpg.case1Description')}
                   </p>
                 </div>
               </button>
@@ -563,18 +566,18 @@ const currentPath = Astro.url.pathname;
                 href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/643ed5dc29db86fe443e8d45_SPORTLINE.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="View Sportline case study (PDF)"
+                aria-label={t('industriaRetailCpg.case2PdfAriaLabel')}
               >
-                <div class="video-thumbnail" style="background-image: url('/logos/industrias/casos-imagenes/sportline-caso.jpg');" role="img" aria-label="Sportline"></div>
+                <div class="video-thumbnail" style="background-image: url('/logos/industrias/casos-imagenes/sportline-caso.jpg');" role="img" aria-label={t('industriaRetailCpg.case2Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="description" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-sportline.png" alt="Sportline" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-sportline.png" alt={t('industriaRetailCpg.case2Alt')} class="company-logo" />
                   <p class="video-description">
-                    Implemented a Data Lake on AWS cloud to centralize, process and analyze large volumes of business data. The solution enabled near real-time analytics, automated infrastructure management and reduced operational costs, strengthening strategic decision making and retail business agility.
+                    {t('industriaRetailCpg.case2Description')}
                   </p>
                 </div>
               </a>
@@ -584,18 +587,18 @@ const currentPath = Astro.url.pathname;
                 href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/624f12dbd5add65e360ef1bd_MAGNA%20MOTORS.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="View Magna Motors case study (PDF)"
+                aria-label={t('industriaRetailCpg.case3PdfAriaLabel')}
               >
-                <div class="video-thumbnail" style="background-image: url('/logos/industrias/casos-imagenes/magna-caso.jpg');" role="img" aria-label="Magna Motors"></div>
+                <div class="video-thumbnail" style="background-image: url('/logos/industrias/casos-imagenes/magna-caso.jpg');" role="img" aria-label={t('industriaRetailCpg.case3Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="description" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-magna.png" alt="Magna Motors" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-magna.png" alt={t('industriaRetailCpg.case3Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migrated its SAP and datacenter to the AWS cloud, replacing rigid and costly infrastructure with a managed, scalable, on-demand environment. This transformation drastically reduced implementation times, ensured operational continuity and enabled business expansion of up to 300% in 10x less time, consolidating regional growth with greater agility and cost control.
+                    {t('industriaRetailCpg.case3Description')}
                   </p>
                 </div>
               </a>
@@ -607,14 +610,14 @@ const currentPath = Astro.url.pathname;
             <div class="cta-card-content">
               <div class="cta-card-text">
                 <h2 class="cta-card-title">
-                  Sell without pause, even during peak hours.
+                  {t('industriaRetailCpg.ctaTitle')}
                 </h2>
                 <p class="cta-card-description">
-                  Scale without failure, control costs and protect your revenue margin with Escala 24x7.
+                  {t('industriaRetailCpg.ctaDescription')}
                 </p>
               </div>
-              <a href="/en/contacto" class="btn btn-primary">
-                Contact an expert
+              <a href={`${basePath}/contacto`} class="btn btn-primary">
+                {t('industriaRetailCpg.ctaButton')}
                 <span class="material-symbols-outlined">north_east</span>
               </a>
             </div>
@@ -700,7 +703,7 @@ const currentPath = Astro.url.pathname;
         }, true);
       });
 
-      // Video Modal functionality for Finanzas section
+      // Video Modal functionality (solo tarjetas con data-video-id; las de PDF son enlaces)
       const videoButtonsFinanzas = document.querySelectorAll('.case-video-card[data-video-id]');
       const videoModalFinanzas = document.getElementById('videoModalFinanzas');
       const modalCloseFinanzas = document.getElementById('modalCloseFinanzas');
@@ -794,13 +797,13 @@ const currentPath = Astro.url.pathname;
     color: var(--neutral-100);
     font-size: 70px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 1.1;
     margin-bottom: 64px;
     max-width: 70%;
   }
 
   .hero-title-bold {
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .hero-content {

@@ -2,18 +2,27 @@
 import Header from "../../../components/Header.astro";
 import GoogleAnalytics from "../../../components/GoogleAnalytics.astro";
 import Footer from "../../../components/Footer.astro";
+import Icon from "../../../components/Icon.astro";
+import { getT, localePrefix } from '../../../i18n';
+import type { Locale } from '../../../i18n';
+import pt from '../../../i18n/pt.json';
 import "../../../styles/global.css";
-const lang = 'pt';
+
+const lang: Locale = 'pt';
 const currentPath = Astro.url.pathname;
+const dict = pt;
+const t = getT(dict);
+const basePath = localePrefix(lang);
 ---
 
 <!doctype html>
-<html lang="pt">
+<html lang={lang}>
   <head>
     <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Serviços Financeiros - Escala 24x7</title>
+    <title>{t('industriaFinanzas.title')}</title>
+    <meta name="description" content={t('industriaFinanzas.metaDescription')} />
     <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,23 +44,21 @@ const currentPath = Astro.url.pathname;
           <div class="hero-banner">
             <div class="hero-container">
               <h1 class="hero-title">
-                Opere suas <span class="hero-title-bold"
-                  >plataformas financeiras</span
-                > críticas com confiança
+                {t('industriaFinanzas.heroTitle')}<span class="hero-title-bold"
+                  >{t('industriaFinanzas.heroTitleBold')}</span
+                >{t('industriaFinanzas.heroTitleSuffix')}
               </h1>
               <div class="hero-content">
                 <div class="hero-left">
                   <a href="#challenges" class="hero-button">
-                    Transforme sua nuvem com AWS
+                    {t('industriaFinanzas.heroButton')}
                     <span class="material-symbols-outlined">north_east</span>
                   </a>
                 </div>
                 <div class="hero-right">
                   <div class="hero-stat-box">
                     <p class="hero-stat-text">
-                      A Escala 24x7 ajuda você a habilitar ambientes regulados do
-                      setor financeiro com segurança, estabilidade e controle
-                      contínuo, por meio de serviços gerenciados na AWS.
+                      {t('industriaFinanzas.heroStatText')}
                     </p>
                   </div>
                 </div>
@@ -67,21 +74,19 @@ const currentPath = Astro.url.pathname;
           <div class="challenges-intro">
             <div class="challenges-intro-content">
               <h2 class="challenges-intro-title">
-                Sua instituição precisa inovar rápido, proteger dados e <span
+                {t('industriaFinanzas.challengesTitle')}<span
                   class="challenges-intro-highlight"
-                  >operar sem interrupções</span
-                >?
+                  >{t('industriaFinanzas.challengesTitleHighlight')}</span
+                >{t('industriaFinanzas.challengesTitleSuffix')}
               </h2>
               <p class="challenges-intro-text">
-                O setor financeiro deve avançar em velocidade digital, sem
-                margem para erro. Conheça os desafios mais frequentes e como
-                resolvê-los.
+                {t('industriaFinanzas.challengesIntroText')}
               </p>
             </div>
             <div class="challenges-intro-image">
               <img
                 src="/images/industrias/industrias-escala-imagen-1.jpg"
-                alt="Inovação Financeira"
+                alt={t('industriaFinanzas.challengesImageAlt')}
               />
             </div>
           </div>
@@ -91,17 +96,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Acelerar transações"
+                  alt={t('industriaFinanzas.challenge1Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Acelerar transações e o time-to-market.
+                {t('industriaFinanzas.challenge1Title')}
               </h3>
               <p class="challenge-description">
-                Os usuários exigem produtos e serviços mais rápidos, seguros e
-                disponíveis 24x7. Ajudamos a criar ambientes que escalam sem
-                fricção e aceleram a entrada no mercado sem comprometer
-                estabilidade.
+                {t('industriaFinanzas.challenge1Desc')}
               </p>
             </div>
 
@@ -109,17 +111,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Transformar experiência"
+                  alt={t('industriaFinanzas.challenge2Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Transformar a experiência do usuário.
+                {t('industriaFinanzas.challenge2Title')}
               </h3>
               <p class="challenge-description">
-                Os clientes não toleram atrasos, quedas ou processos complexos.
-                Modernizamos plataformas digitais, reduzimos tempos de
-                resposta e habilitamos experiências fluidas e consistentes em
-                web, app e banco digital.
+                {t('industriaFinanzas.challenge2Desc')}
               </p>
             </div>
 
@@ -127,17 +126,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Facilitar continuidade"
+                  alt={t('industriaFinanzas.challenge3Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Facilitar processos de continuidade de negócios.
+                {t('industriaFinanzas.challenge3Title')}
               </h3>
               <p class="challenge-description">
-                Cada minuto de indisponibilidade impacta receita, confiança e
-                reputação. Habilitamos modelos de operação proativos,
-                recuperação ante desastres, monitoramento contínuo e resposta a
-                incidentes para manter seus serviços sempre disponíveis.
+                {t('industriaFinanzas.challenge3Desc')}
               </p>
             </div>
 
@@ -145,18 +141,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Elevar seguridad"
+                  alt={t('industriaFinanzas.challenge4Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Elevar a postura de segurança com serviços em nuvem para
-                banking.
+                {t('industriaFinanzas.challenge4Title')}
               </h3>
               <p class="challenge-description">
-                Cada minuto de downtime impacta ingresos, confianza y
-                reputación. Habilitamos modelos de operación proactivos,
-                recuperación ante desastres, monitoreo continuo y respuesta ante
-                incidentes para mantener tus servicios siempre disponibles.
+                {t('industriaFinanzas.challenge4Desc')}
               </p>
             </div>
 
@@ -164,16 +156,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Atualizar Core"
+                  alt={t('industriaFinanzas.challenge5Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Atualizar/Transformar o Core sem interromper o negócio.
+                {t('industriaFinanzas.challenge5Title')}
               </h3>
               <p class="challenge-description">
-                Executamos a evolução de sistemas legados por meio de
-                estratégias de integração gradual, eliminando o risco
-                operacional durante a transição para arquiteturas modernas.
+                {t('industriaFinanzas.challenge5Desc')}
               </p>
             </div>
 
@@ -181,17 +171,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Facilitar decisões"
+                  alt={t('industriaFinanzas.challenge6Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Facilitar a tomada de decisões baseada em dados.
+                {t('industriaFinanzas.challenge6Title')}
               </h3>
               <p class="challenge-description">
-                Em finanças, a vantagem competitiva depende de informação
-                precisa e oportuna. Habilitamos plataformas analíticas e modelos
-                de governança de dados para transformar informação em decisões
-                rápidas, rastreáveis e seguras.
+                {t('industriaFinanzas.challenge6Desc')}
               </p>
             </div>
           </div>
@@ -215,30 +202,29 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <!-- Title -->
           <div class="methodology-header">
-            <h2 class="methodology-title">Acompanhamos você em cada passo.</h2>
+            <h2 class="methodology-title">{t('industriaFinanzas.methodologyTitle')}</h2>
             <p class="methodology-subtitle">
-              O desafio do setor financeiro é adotar a nuvem de forma
-              segura, aprovada, regulada e operável ao longo do tempo.
+              {t('industriaFinanzas.methodologySubtitle')}
             </p>
           </div>
 
-          <!-- Como fazemos? -->
+          <!-- ¿Cómo lo hacemos? -->
           <div class="how-we-do-it">
-            <h3 class="how-title">Como fazemos?</h3>
+            <h3 class="how-title">{t('industriaFinanzas.howTitle')}</h3>
 
             <div class="how-grid">
               <div class="how-card">
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-1.png"
-                    alt="Consultoria especializada"
+                    alt={t('industriaFinanzas.how1Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Consultoria especializada no desenho da solução.
+                  {t('industriaFinanzas.how1Title')}
                 </h4>
                 <p class="how-card-description">
-                  Criamos arquiteturas seguras, escaláveis e alinhadas aos requisitos regulatórios do seu país.
+                  {t('industriaFinanzas.how1Desc')}
                 </p>
               </div>
 
@@ -246,14 +232,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-2.png"
-                    alt="Desenvolvimento de PoC"
+                    alt={t('industriaFinanzas.how2Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Desenvolvimento de Prova de Conceito (PoC).
+                  {t('industriaFinanzas.how2Title')}
                 </h4>
                 <p class="how-card-description">
-                  Validamos viabilidade técnica e aceleramos a aprovação interna dos seus projetos de nuvem.
+                  {t('industriaFinanzas.how2Desc')}
                 </p>
               </div>
 
@@ -261,14 +247,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-3.png"
-                    alt="Suporte técnico"
+                    alt={t('industriaFinanzas.how3Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Suporte técnico para demonstrar ROI.
+                  {t('industriaFinanzas.how3Title')}
                 </h4>
                 <p class="how-card-description">
-                  Ajudamos a construir casos de negócio sólidos e argumentos técnicos que facilitam decisões executivas.
+                  {t('industriaFinanzas.how3Desc')}
                 </p>
               </div>
 
@@ -276,14 +262,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-4.png"
-                    alt="Implementação em nuvem"
+                    alt={t('industriaFinanzas.how4Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Implementação de processos e ferramentas em nuvem.
+                  {t('industriaFinanzas.how4Title')}
                 </h4>
                 <p class="how-card-description">
-                  Acompanhamos a adoção de práticas modernas: automação, observabilidade, segurança e operação contínua.
+                  {t('industriaFinanzas.how4Desc')}
                 </p>
               </div>
 
@@ -291,14 +277,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-5.png"
-                    alt="Avaliação técnica"
+                    alt={t('industriaFinanzas.how5Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Avaliação técnica do marco regulatório.
+                  {t('industriaFinanzas.how5Title')}
                 </h4>
                 <p class="how-card-description">
-                  Garantimos conformidade normativa em cada componente da solução.
+                  {t('industriaFinanzas.how5Desc')}
                 </p>
               </div>
 
@@ -306,14 +292,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-6.png"
-                    alt="Acesso ao centro de conformidade"
+                    alt={t('industriaFinanzas.how6Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Acesso ao centro de conformidade da AWS.
+                  {t('industriaFinanzas.how6Title')}
                 </h4>
                 <p class="how-card-description">
-                  Resolva objeções regulatórias com documentação oficial e especialistas certificados.
+                  {t('industriaFinanzas.how6Desc')}
                 </p>
               </div>
             </div>
@@ -323,18 +309,16 @@ const currentPath = Astro.url.pathname;
           <div class="cloud-emx-section">
             <div class="cloud-emx-header">
               <h3 class="cloud-emx-title">
-                Cloud EMx: Operação contínua para plataformas reguladas.
+                {t('industriaFinanzas.emxTitle')}
               </h3>
               <p class="cloud-emx-subtitle">
-                A diferença que sustenta sua operação na nuvem.
+                {t('industriaFinanzas.emxSubtitle')}
               </p>
               <p class="cloud-emx-description">
-                Migrar para a nuvem não é suficiente: seu negócio financeiro deve
-                estar em operação mais do que nunca, e operar a nuvem todos os dias.
+                {t('industriaFinanzas.emxDescription')}
               </p>
               <p class="cloud-emx-description">
-                Com Cloud EMx, você garante a operação de plataformas financeiras
-                críticas com:
+                {t('industriaFinanzas.emxDescription2')}
               </p>
             </div>
 
@@ -343,11 +327,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-1.png"
-                    alt="Observabilidade proativa"
+                    alt={t('industriaFinanzas.emx1Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Observabilidade proativa para antecipar falhas antes que afetem seus clientes
+                  {t('industriaFinanzas.emx1Title')}
                 </h4>
               </div>
 
@@ -355,11 +339,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-2.png"
-                    alt="Gestão de incidentes"
+                    alt={t('industriaFinanzas.emx2Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Gestão ágil de incidentes e correlação operacional
+                  {t('industriaFinanzas.emx2Title')}
                 </h4>
               </div>
 
@@ -367,21 +351,21 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-3.png"
-                    alt="Governança robusta"
+                    alt={t('industriaFinanzas.emx3Alt')}
                   />
                 </div>
-                <h4 class="emx-card-title">Governança robusta e rastreabilidade</h4>
+                <h4 class="emx-card-title">{t('industriaFinanzas.emx3Title')}</h4>
               </div>
 
               <div class="emx-card">
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-4.png"
-                    alt="Disponibilidade 24x7"
+                    alt={t('industriaFinanzas.emx4Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Disponibilidade e estabilidade 24x7
+                  {t('industriaFinanzas.emx4Title')}
                 </h4>
               </div>
 
@@ -389,11 +373,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-5.png"
-                    alt="Investimento regulado"
+                    alt={t('industriaFinanzas.emx5Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Investimento regulado com visibilidade total, evitando vazamento de orçamento
+                  {t('industriaFinanzas.emx5Title')}
                 </h4>
               </div>
 
@@ -401,17 +385,17 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-6.png"
-                    alt="Marcos de operação"
+                    alt={t('industriaFinanzas.emx6Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Marcos de operação nativos de conformidade
+                  {t('industriaFinanzas.emx6Title')}
                 </h4>
               </div>
             </div>
 
             <p class="emx-footer-text">
-              Cloud EMx não é um serviço gerenciado tradicional. É o modelo que permite operar, escalar e cumprir em ambientes financeiros altamente regulados, com confiança e controle contínuo.
+              {t('industriaFinanzas.emxFooterText')}
             </p>
           </div>
         </div>
@@ -423,51 +407,51 @@ const currentPath = Astro.url.pathname;
           <div class="cdr-grid">
             <!-- Large Card -->
             <div class="cdr-card cdr-card-large">
-              <h3 class="cdr-card-title">Cloud Done Right®</h3>
-              <h4 class="cdr-card-subtitle">A transformação estratégica de plataformas financeiras.</h4>
-              <p class="cdr-card-text">Em banca e serviços financeiros, a nuvem não é uma decisão tecnológica: é uma decisão de negócio, risco, conformidade e continuidade.</p>
-              <p class="cdr-card-text">Cloud Done Right® é o modelo com o qual acompanhamos instituições financeiras a operar na nuvem com controle, visibilidade e confiança.</p>
+              <h3 class="cdr-card-title">{t('industriaFinanzas.cdrTitle')}</h3>
+              <h4 class="cdr-card-subtitle">{t('industriaFinanzas.cdrSubtitle')}</h4>
+              <p class="cdr-card-text">{t('industriaFinanzas.cdrText1')}</p>
+              <p class="cdr-card-text">{t('industriaFinanzas.cdrText2')}</p>
             </div>
 
             <!-- Small Cards - Row 1 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Estratégia clara</h3>
+              <h3 class="cdr-card-title">{t('industriaFinanzas.cdr1Title')}</h3>
               <p class="cdr-card-text">
-                Conectamos a adoção de nuvem com os objetivos do negócio: crescimento acelerado, eficiência de gastos, inovação ágil de produtos e mitigação de riscos. A tecnologia é o habilitador; a operação sustentável é o resultado.
+                {t('industriaFinanzas.cdr1Text')}
               </p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Arquitetura otimizada</h3>
+              <h3 class="cdr-card-title">{t('industriaFinanzas.cdr2Title')}</h3>
               <p class="cdr-card-text">
-                Projetamos ecossistemas resilientes na AWS que integram core bancário, sistemas legados e plataformas digitais, facilitando esquemas híbridos que otimizam a transição, a conectividade e a conformidade normativa conforme a criticidade dos dados.
+                {t('industriaFinanzas.cdr2Text')}
               </p>
             </div>
 
             <!-- Small Cards - Row 2 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Automação e escalabilidade</h3>
-              <p class="cdr-card-text">Habilitamos pipelines, monitoramento e orquestração para que suas plataformas escalem sem afetar transações, usuários ou processos críticos, com mais velocidade e menor risco operacional.</p>
+              <h3 class="cdr-card-title">{t('industriaFinanzas.cdr3Title')}</h3>
+              <p class="cdr-card-text">{t('industriaFinanzas.cdr3Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Custo controlado</h3>
-              <p class="cdr-card-text">O gasto em nuvem deve se comportar como investimento regulado, não como vazamento de orçamento. Implementamos práticas FinOps para garantir visibilidade, controle e economia, sem sacrificar desempenho ou segurança.</p>
+              <h3 class="cdr-card-title">{t('industriaFinanzas.cdr4Title')}</h3>
+              <p class="cdr-card-text">{t('industriaFinanzas.cdr4Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Segurança e conformidade</h3>
-              <p class="cdr-card-text">Protegemos dados sensíveis, gerenciamos identidades e definimos controles desde o início para garantir conformidade local, auditorias fluidas e zero surpresas nos relatórios.</p>
+              <h3 class="cdr-card-title">{t('industriaFinanzas.cdr5Title')}</h3>
+              <p class="cdr-card-text">{t('industriaFinanzas.cdr5Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Talento e cultura</h3>
-              <p class="cdr-card-text">Trabalhamos com suas equipes para fortalecer capacidades e adotar práticas que sustentem a inovação e a operação contínua de serviços financeiros ágeis. Preparamos sua organização para liderar o mercado e enfrentar os desafios das finanças modernas.</p>
+              <h3 class="cdr-card-title">{t('industriaFinanzas.cdr6Title')}</h3>
+              <p class="cdr-card-text">{t('industriaFinanzas.cdr6Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Inovação contínua</h3>
-              <p class="cdr-card-text">Implantamos capacidades de IA e análise avançada para detecção precoce de fraude, hiperpersonalização de serviços e tomada de decisões baseada em dados rastreáveis e seguros.</p>
+              <h3 class="cdr-card-title">{t('industriaFinanzas.cdr7Title')}</h3>
+              <p class="cdr-card-text">{t('industriaFinanzas.cdr7Text')}</p>
             </div>
           </div>
         </div>
@@ -478,18 +462,18 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <div class="seven-r-header">
             <div class="seven-r-header-left">
-              <h2 class="seven-r-title">As 7Rs<br/>da modernização<br/>em nuvem.</h2>
+              <h2 class="seven-r-title" set:html={t('industriaFinanzas.sevenRTitle')}></h2>
             </div>
             <div class="seven-r-header-right">
-              <p class="seven-r-description">Definimos com precisão o caminho de transformação ideal para cada organização, maximizando resultados sem comprometer estabilidade ou controle.</p>
+              <p class="seven-r-description">{t('industriaFinanzas.sevenRDescription')}</p>
             </div>
           </div>
 
           <div class="seven-r-carousel">
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retire</h3>
-                <p class="seven-r-card-subtitle">Remova o que não agrega mais valor.</p>
+                <h3 class="seven-r-card-title">{t('industriaFinanzas.sevenR1Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaFinanzas.sevenR1Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">1</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-1.jpg');"></div>
@@ -497,8 +481,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retain</h3>
-                <p class="seven-r-card-subtitle">Mantenha o que funciona.</p>
+                <h3 class="seven-r-card-title">{t('industriaFinanzas.sevenR2Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaFinanzas.sevenR2Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">2</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-2.jpg');"></div>
@@ -506,8 +490,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Rehost</h3>
-                <p class="seven-r-card-subtitle">Mova sistemas para a nuvem como estão, rápido e seguro.</p>
+                <h3 class="seven-r-card-title">{t('industriaFinanzas.sevenR3Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaFinanzas.sevenR3Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">3</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-3.jpg');"></div>
@@ -515,8 +499,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Relocate</h3>
-                <p class="seven-r-card-subtitle">Transfira cargas de trabalho estrategicamente para novos ambientes.</p>
+                <h3 class="seven-r-card-title">{t('industriaFinanzas.sevenR4Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaFinanzas.sevenR4Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">4</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-4.jpg');"></div>
@@ -524,8 +508,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Replatform</h3>
-                <p class="seven-r-card-subtitle">Ajuste aplicações para aproveitar capacidades nativas da nuvem.</p>
+                <h3 class="seven-r-card-title">{t('industriaFinanzas.sevenR5Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaFinanzas.sevenR5Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">5</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-5.jpg');"></div>
@@ -533,8 +517,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Repurchase</h3>
-                <p class="seven-r-card-subtitle">Substitua sistemas por soluções mais modernas e eficientes.</p>
+                <h3 class="seven-r-card-title">{t('industriaFinanzas.sevenR6Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaFinanzas.sevenR6Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">6</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-6.jpg');"></div>
@@ -542,8 +526,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Refactor</h3>
-                <p class="seven-r-card-subtitle">Reinvente aplicações para escalar e gerar valor com agilidade.</p>
+                <h3 class="seven-r-card-title">{t('industriaFinanzas.sevenR7Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaFinanzas.sevenR7Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">7</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-7.jpg');"></div>
@@ -558,8 +542,8 @@ const currentPath = Astro.url.pathname;
           <!-- Cases Section -->
           <div class="cases-section-wrapper">
             <div class="cases-header">
-              <p class="cases-pretitle">Casos de sucesso</p>
-              <h2 class="cases-title">Crescimento que Escala</h2>
+              <p class="cases-pretitle">{t('industriaFinanzas.casesPretitle')}</p>
+              <h2 class="cases-title">{t('industriaFinanzas.casesTitle')}</h2>
             </div>
 
             <div class="cases-video-grid">
@@ -568,16 +552,16 @@ const currentPath = Astro.url.pathname;
                 data-video-id="Ag5PBRJAv1Q"
                 data-video-title="Allianz"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/Ag5PBRJAv1Q/hqdefault.jpg');" role="img" aria-label="Allianz"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/Ag5PBRJAv1Q/hqdefault.jpg');" role="img" aria-label={t('industriaFinanzas.case1Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
-                    <span class="material-symbols-outlined">play_arrow</span>
+                    <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-allianz.png" alt="Allianz" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-allianz.png" alt={t('industriaFinanzas.case1Alt')} class="company-logo" />
                   <p class="video-description">
-                    Modernizou sua infraestrutura tecnológica, reduzindo 85% dos incidentes e aumentando a estabilidade, escalabilidade e capacidade de inovação com IA conversacional.
+                    {t('industriaFinanzas.case1Description')}
                   </p>
                 </div>
               </button>
@@ -587,16 +571,16 @@ const currentPath = Astro.url.pathname;
                 data-video-id="X2Bvtr_RBLU"
                 data-video-title="Mercantil Andina"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/X2Bvtr_RBLU/hqdefault.jpg');" role="img" aria-label="Mercantil Andina"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/X2Bvtr_RBLU/hqdefault.jpg');" role="img" aria-label={t('industriaFinanzas.case2Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
-                    <span class="material-symbols-outlined">play_arrow</span>
+                    <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-mercantil.png" alt="Mercantil Andina" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-mercantil.png" alt={t('industriaFinanzas.case2Alt')} class="company-logo" />
                   <p class="video-description">
-                    Fortaleceu a segurança, disponibilidade e agilidade de suas operações. Após uma migração sem interrupções, realizou assessment e remediação de segurança na nuvem, reduzindo significativamente os riscos operacionais e garantindo visibilidade em tempo real, permitindo oferecer serviços mais seguros, contínuos e alinhados à imediatez que o negócio de seguros exige.
+                    {t('industriaFinanzas.case2Description')}
                   </p>
                 </div>
               </button>
@@ -606,16 +590,16 @@ const currentPath = Astro.url.pathname;
                 data-video-id="9Z2i7pvt-UU"
                 data-video-title="Grupo San Cristóbal"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/9Z2i7pvt-UU/hqdefault.jpg');" role="img" aria-label="Grupo San Cristóbal"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/9Z2i7pvt-UU/hqdefault.jpg');" role="img" aria-label={t('industriaFinanzas.case3Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
-                    <span class="material-symbols-outlined">play_arrow</span>
+                    <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-gsc.png" alt="Grupo San Cristóbal" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-gsc.png" alt={t('industriaFinanzas.case3Alt')} class="company-logo" />
                   <p class="video-description">
-                    Modernizou suas operações tecnológicas migrando sua infraestrutura e implementação de SAP S/4HANA para a nuvem AWS. Essa adoção permitiu habilitar automação, digitalização e iniciativas de IoT em suas obras em nível nacional, melhorando a operação diária dos projetos, a gestão da informação e a escalabilidade do negócio.
+                    {t('industriaFinanzas.case3Description')}
                   </p>
                 </div>
               </button>
@@ -627,14 +611,14 @@ const currentPath = Astro.url.pathname;
             <div class="cta-card-content">
               <div class="cta-card-text">
                 <h2 class="cta-card-title">
-                  Maximize sua operação em finanças
+                  {t('industriaFinanzas.ctaTitle')}
                 </h2>
                 <p class="cta-card-description">
-                  O crescimento financeiro não pode parar. Sua operação também não.
+                  {t('industriaFinanzas.ctaDescription')}
                 </p>
               </div>
-              <a href="/pt/contacto" class="btn btn-primary">
-                Fale com um especialista
+              <a href={`${basePath}/contacto`} class="btn btn-primary">
+                {t('industriaFinanzas.ctaButton')}
                 <span class="material-symbols-outlined">north_east</span>
               </a>
             </div>
@@ -812,15 +796,15 @@ const currentPath = Astro.url.pathname;
 
   .hero-title {
     color: var(--neutral-100);
-    font-size: 64px;
+    font-size: 70px;
     font-weight: 500;
-    line-height: 1.1;
+    line-height: 1;
     margin-bottom: 64px;
     max-width: 70%;
   }
 
   .hero-title-bold {
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .hero-content {
@@ -1055,13 +1039,13 @@ const currentPath = Astro.url.pathname;
     transform: translateY(0);
   }
 
-  /* Logos clientes */
+  /* Logos clientes - una sola fila en desktop */
   .clients-logos {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding-top: 2rem;
   }
 
@@ -1591,8 +1575,8 @@ const currentPath = Astro.url.pathname;
   }
 
   .play-button-circle {
-    width: 70px;
-    height: 70px;
+    width: 48px;
+    height: 48px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     display: flex;
@@ -2357,6 +2341,7 @@ const currentPath = Astro.url.pathname;
     .clients-logos {
       gap: 2rem;
       padding-top: 2rem;
+      flex-wrap: wrap;
     }
 
     .clients-logos img {
@@ -2685,7 +2670,7 @@ const currentPath = Astro.url.pathname;
     }
 
     .hero-wrapper {
-      min-height: 100vh;
+      min-height: 90vh;
       padding: 16px;
     }
 
@@ -2968,8 +2953,8 @@ const currentPath = Astro.url.pathname;
     }
 
     .play-button-circle {
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
     }
 
     .play-button-circle .material-symbols-outlined {

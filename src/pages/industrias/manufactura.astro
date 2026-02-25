@@ -3,19 +3,26 @@ import Header from "../../components/Header.astro";
 import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
+import { getT, localePrefix } from '../../i18n';
+import type { Locale } from '../../i18n';
+import es from '../../i18n/es.json';
 import "../../styles/global.css";
-const lang = 'es';
+
+const lang: Locale = 'es';
 const currentPath = Astro.url.pathname;
+const dict = es;
+const t = getT(dict);
+const basePath = localePrefix(lang);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Servicios cloud para Manufactura</title>
-    <meta name="description" content="Minimiza fallas, protege tu producción y escala con confianza. Servicios cloud gestionados en AWS para plataformas industriales 24x7." />
+    <title>{t('industriaManufactura.title')}</title>
+    <meta name="description" content={t('industriaManufactura.metaDescription')} />
     <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,21 +44,21 @@ const currentPath = Astro.url.pathname;
           <div class="hero-banner">
             <div class="hero-container">
               <h1 class="hero-title">
-                Asegura la confiabilidad de tus <span class="hero-title-bold"
-                  >plataformas productivas</span
-                > y de planta
+                {t('industriaManufactura.heroTitle')}<span class="hero-title-bold"
+                  >{t('industriaManufactura.heroTitleBold')}</span
+                >{t('industriaManufactura.heroTitleSuffix')}
               </h1>
               <div class="hero-content">
                 <div class="hero-left">
                   <a href="#challenges" class="hero-button">
-                    Moderniza tu operación
+                    {t('industriaManufactura.heroButton')}
                     <span class="material-symbols-outlined">north_east</span>
                   </a>
                 </div>
                 <div class="hero-right">
                   <div class="hero-stat-box">
                     <p class="hero-stat-text">
-                      Escala 24x7 moderniza plataformas industriales con estabilidad y soporte continuo, ofreciendo servicios cloud para manufactura. Integra planta y nube, y minimiza el downtime permitiendo innovación sin interrupciones.
+                      {t('industriaManufactura.heroStatText')}
                     </p>
                   </div>
                 </div>
@@ -67,19 +74,19 @@ const currentPath = Astro.url.pathname;
           <div class="challenges-intro">
             <div class="challenges-intro-content">
               <h2 class="challenges-intro-title">
-                ¿Tu operación manufacturera debe <span
+                {t('industriaManufactura.challengesTitle')}<span
                   class="challenges-intro-highlight"
-                  >avanzar sin interrumpir la producción?</span
-                >
+                  >{t('industriaManufactura.challengesTitleHighlight')}</span
+                >{t('industriaManufactura.challengesTitleSuffix')}
               </h2>
               <p class="challenges-intro-text">
-                En manufactura, cada minuto perdido afecta la producción, la calidad y el margen. Conoce los retos más frecuentes y cómo Escala 24x7 te ayuda a superarlos.
+                {t('industriaManufactura.challengesIntroText')}
               </p>
             </div>
             <div class="challenges-intro-image">
               <img
                 src="/images/industrias/industrias-escala-imagen-2.jpg"
-                alt="Innovación Financiera"
+                alt={t('industriaManufactura.challengesImageAlt')}
               />
             </div>
           </div>
@@ -89,14 +96,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Agilizar transacciones"
+                  alt={t('industriaManufactura.challenge1Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Garantizar continuidad operativa en planta.
+                {t('industriaManufactura.challenge1Title')}
               </h3>
               <p class="challenge-description">
-                Línea, logística y supply chain deben seguir funcionando, incluso durante cambios tecnológicos. Habilitamos resiliencia, monitoreo proactivo y respuesta inmediata para que la línea de producción funcione sin interrupciones.
+                {t('industriaManufactura.challenge1Desc')}
               </p>
             </div>
 
@@ -104,14 +111,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Transformar experiencia"
+                  alt={t('industriaManufactura.challenge2Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Modernizar sistemas heredados sin detener la fábrica.
+                {t('industriaManufactura.challenge2Title')}
               </h3>
               <p class="challenge-description">
-                Sistemas críticos como MES, ERP y SCADA son el corazón de la planta y no admiten desconexiones. Ejecutamos una modernización gradual donde los sistemas actuales conviven con la nube, permitiendo innovar sin poner en riesgo la operación diaria.
+                {t('industriaManufactura.challenge2Desc')}
               </p>
             </div>
 
@@ -119,14 +126,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Facilitar continuidad"
+                  alt={t('industriaManufactura.challenge3Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Unificar ciberseguridad  (OT + IT).
+                {t('industriaManufactura.challenge3Title')}
               </h3>
               <p class="challenge-description">
-                Una fábrica hiperconectada es vulnerable a ataques que pueden detener la producción física. Blindamos los activos industriales y propiedad intelectual mediante la seguridad avanzada y la segmentación de redes, protegiendo la integridad de los datos y maquinaria.
+                {t('industriaManufactura.challenge3Desc')}
               </p>
             </div>
 
@@ -134,14 +141,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Elevar seguridad"
+                  alt={t('industriaManufactura.challenge4Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Alinear planta y tecnología sin fricción.
+                {t('industriaManufactura.challenge4Title')}
               </h3>
               <p class="challenge-description">
-                Los silos de información entre el área operativa y la de TI ralentizan la toma de decisiones. Desplegamos arquitecturas, integración y gobernanza que conectan máquinas, sistemas y nube de forma trazable.
+                {t('industriaManufactura.challenge4Desc')}
               </p>
             </div>
 
@@ -149,14 +156,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Actualizar Core"
+                  alt={t('industriaManufactura.challenge5Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Mitigar riesgo de downtime.
+                {t('industriaManufactura.challenge5Title')}
               </h3>
               <p class="challenge-description">
-                Cada interrupción afecta calidad, producción, inventario y distribución. Habilitamos operación continua, planes de respuesta y monitoreo centralizado para evitar paros no planificados.
+                {t('industriaManufactura.challenge5Desc')}
               </p>
             </div>
 
@@ -164,14 +171,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Facilitar decisiones"
+                  alt={t('industriaManufactura.challenge6Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Operar con datos reales.
+                {t('industriaManufactura.challenge6Title')}
               </h3>
               <p class="challenge-description">
-                Producción, mantenimiento y calidad dependen de información confiable en tiempo real. Implementamos plataformas analíticas y gobierno de datos para anticipar problemas y optimizar rendimiento.
+                {t('industriaManufactura.challenge6Desc')}
               </p>
             </div>
           </div>
@@ -194,30 +201,29 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <!-- Title -->
           <div class="methodology-header">
-            <h2 class="methodology-title">Te acompañamos en cada paso.</h2>
+            <h2 class="methodology-title">{t('industriaManufactura.methodologyTitle')}</h2>
             <p class="methodology-subtitle">
-              El desafío para el sector financiero es adoptar la nube de forma
-              segura, aprobada, regulada y operable en el tiempo.
+              {t('industriaManufactura.methodologySubtitle')}
             </p>
           </div>
 
           <!-- ¿Cómo lo hacemos? -->
           <div class="how-we-do-it">
-            <h3 class="how-title">¿Cómo lo hacemos?</h3>
+            <h3 class="how-title">{t('industriaManufactura.howTitle')}</h3>
 
             <div class="how-grid">
               <div class="how-card">
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-1.png"
-                    alt="Asesoría experta"
+                    alt={t('industriaManufactura.how1Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Arquitecturas diseñadas para ambientes industriales
+                  {t('industriaManufactura.how1Title')}
                 </h4>
                 <p class="how-card-description">
-                  Creamos arquitecturas seguras, escalables y resilientes que conviven con tus sistemas legacy y el piso de planta, sin generar fricciones operativas.
+                  {t('industriaManufactura.how1Desc')}
                 </p>
               </div>
 
@@ -225,14 +231,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-2.png"
-                    alt="Desarrollo de Pruebas"
+                    alt={t('industriaManufactura.how2Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Pruebas de Concepto (PoC) orientadas a producción
+                  {t('industriaManufactura.how2Title')}
                 </h4>
                 <p class="how-card-description">
-                  Validamos cambios sin afectar tus líneas de producción, turnos de trabajo o logística.
+                  {t('industriaManufactura.how2Desc')}
                 </p>
               </div>
 
@@ -240,14 +246,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-3.png"
-                    alt="Apoyo técnico"
+                    alt={t('industriaManufactura.how3Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Demostración clara de ROI industrial
+                  {t('industriaManufactura.how3Title')}
                 </h4>
                 <p class="how-card-description">
-                  Te ayudamos a justificar inversiones usando métricas de negocio: eficiencia, rendimiento y calidad.
+                  {t('industriaManufactura.how3Desc')}
                 </p>
               </div>
 
@@ -255,14 +261,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-4.png"
-                    alt="Implementación Cloud"
+                    alt={t('industriaManufactura.how4Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Implementación de prácticas y herramientas
+                  {t('industriaManufactura.how4Title')}
                 </h4>
                 <p class="how-card-description">
-                  Acompañamos la adopción de prácticas de automatización, observabilidad, seguridad y modelos de operación continua.
+                  {t('industriaManufactura.how4Desc')}
                 </p>
               </div>
 
@@ -270,14 +276,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-5.png"
-                    alt="Evaluación técnica"
+                    alt={t('industriaManufactura.how5Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Gobierno y cumplimiento operativo
+                  {t('industriaManufactura.how5Title')}
                 </h4>
                 <p class="how-card-description">
-                  Garantizamos trazabilidad, auditoría, estándares de calidad y controles alineados a la industria.
+                  {t('industriaManufactura.how5Desc')}
                 </p>
               </div>
 
@@ -285,14 +291,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-6.png"
-                    alt="Acceso al centro"
+                    alt={t('industriaManufactura.how6Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Acceso al ecosistema AWS para industria 4.0
+                  {t('industriaManufactura.how6Title')}
                 </h4>
                 <p class="how-card-description">
-                  Transformamos datos de planta en decisiones estratégicas mediante análisis predictivo y aprendizaje automático, optimizando el rendimiento.
+                  {t('industriaManufactura.how6Desc')}
                 </p>
               </div>
             </div>
@@ -302,13 +308,13 @@ const currentPath = Astro.url.pathname;
           <div class="cloud-emx-section">
             <div class="cloud-emx-header">
               <h3 class="cloud-emx-title">
-                Cloud EMx: Operación continua diseñada para manufactura
+                {t('industriaManufactura.emxTitle')}
               </h3>
               <p class="cloud-emx-subtitle">
-                El habilitador que diferencia a Escala 24x7
+                {t('industriaManufactura.emxSubtitle')}
               </p>
               <p class="cloud-emx-description">
-                En manufactura, lo crítico no es migrar sistemas: es mantener la fábrica en marcha mientras la tecnología evoluciona.
+                {t('industriaManufactura.emxDescription')}
               </p>
             </div>
 
@@ -317,11 +323,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-1.png"
-                    alt="Objetividad proactiva"
+                    alt={t('industriaManufactura.emx1Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Monitoreo proactivo y visibilidad en toda la cadena
+                  {t('industriaManufactura.emx1Title')}
                 </h4>
               </div>
 
@@ -329,11 +335,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-2.png"
-                    alt="Gestión de incidentes"
+                    alt={t('industriaManufactura.emx2Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Respuesta ante incidentes y corrección temprana
+                  {t('industriaManufactura.emx2Title')}
                 </h4>
               </div>
 
@@ -341,21 +347,21 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-3.png"
-                    alt="Gobierno robusto"
+                    alt={t('industriaManufactura.emx3Alt')}
                   />
                 </div>
-                <h4 class="emx-card-title">Gobierno y control de cambios sin frenar la línea</h4>
+                <h4 class="emx-card-title">{t('industriaManufactura.emx3Title')}</h4>
               </div>
 
               <div class="emx-card">
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-4.png"
-                    alt="Disponibilidad 24x7"
+                    alt={t('industriaManufactura.emx4Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Disponibilidad y continuidad operativa 24x7
+                  {t('industriaManufactura.emx4Title')}
                 </h4>
               </div>
 
@@ -363,11 +369,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-5.png"
-                    alt="Innovación resiliente"
+                    alt={t('industriaManufactura.emx5Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Soporte preparado para entornos OT + IT
+                  {t('industriaManufactura.emx5Title')}
                 </h4>
               </div>
 
@@ -375,17 +381,17 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-6.png"
-                    alt="Marcos de operación"
+                    alt={t('industriaManufactura.emx6Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Cultura FinOps para alinear inversión a producción real
+                  {t('industriaManufactura.emx6Title')}
                 </h4>
               </div>
             </div>
 
             <p class="emx-footer-text">
-              Cloud EMx no es un servicio administrado tradicional. Es el modelo que sostiene líneas de producción, integra OT+IT y evita que la innovación se detenga en la planta.
+              {t('industriaManufactura.emxFooterText')}
             </p>
           </div>
         </div>
@@ -397,51 +403,51 @@ const currentPath = Astro.url.pathname;
           <div class="cdr-grid">
             <!-- Large Card -->
             <div class="cdr-card cdr-card-large">
-              <h3 class="cdr-card-title">Cloud Done Right®</h3>
-              <h4 class="cdr-card-subtitle">La diferencia entre migrar y transformar tu planta productiva.</h4>
-              <p class="cdr-card-text"> En manufactura, la nube de AWS es una herramienta para producir más, con menos riesgo y más inteligencia operativa.</p>
-              <p class="cdr-card-text">Cloud Done Right® habilita modernización gradual, integraciones industriales seguras y operación sin fricción.</p>
+              <h3 class="cdr-card-title">{t('industriaManufactura.cdrTitle')}</h3>
+              <h4 class="cdr-card-subtitle">{t('industriaManufactura.cdrSubtitle')}</h4>
+              <p class="cdr-card-text">{t('industriaManufactura.cdrText1')}</p>
+              <p class="cdr-card-text">{t('industriaManufactura.cdrText2')}</p>
             </div>
 
             <!-- Small Cards - Row 1 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Estrategia continua y eficiente</h3>
+              <h3 class="cdr-card-title">{t('industriaManufactura.cdr1Title')}</h3>
               <p class="cdr-card-text">
-                Cada avance digital se alinea a menor downtime, mayor calidad y más agilidad operativa.
+                {t('industriaManufactura.cdr1Text')}
               </p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Arquitecturas híbridas para ecosistemas industriales</h3>
+              <h3 class="cdr-card-title">{t('industriaManufactura.cdr2Title')}</h3>
               <p class="cdr-card-text">
-                Con modelos que conectan nube, legacy, planta, edge y sistemas especializados, sin perder control.
+                {t('industriaManufactura.cdr2Text')}
               </p>
             </div>
 
             <!-- Small Cards - Row 2 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Cultura FinOps aplicada a producción</h3>
-              <p class="cdr-card-text">Visibilidad, control y optimización de costos con foco en rendimiento real: lo que alimenta producción permanece; lo que no aporta, se ajusta.</p>
+              <h3 class="cdr-card-title">{t('industriaManufactura.cdr3Title')}</h3>
+              <p class="cdr-card-text">{t('industriaManufactura.cdr3Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Seguridad como requisito operativo</h3>
-              <p class="cdr-card-text">Gestión de identidades, segmentación, monitoreo industrial y protección de la propiedad intelectual desde el diseño.</p>
+              <h3 class="cdr-card-title">{t('industriaManufactura.cdr4Title')}</h3>
+              <p class="cdr-card-text">{t('industriaManufactura.cdr4Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Automatización con poca intervención humana</h3>
-              <p class="cdr-card-text">Mayor eficiencia operativa, mantenimiento predictivo y flujos orquestados que reducen errores y aceleran la entrega.</p>
+              <h3 class="cdr-card-title">{t('industriaManufactura.cdr5Title')}</h3>
+              <p class="cdr-card-text">{t('industriaManufactura.cdr5Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Equipos habilitados para operar</h3>
-              <p class="cdr-card-text">Adopción tecnológica sostenible, impulsada por capacitación, prácticas DevOps y coordinación OT/IT.</p>
+              <h3 class="cdr-card-title">{t('industriaManufactura.cdr6Title')}</h3>
+              <p class="cdr-card-text">{t('industriaManufactura.cdr6Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Inteligencia que impulsa productividad</h3>
-              <p class="cdr-card-text">Uso de IA y analítica para detectar patrones, anticipar fallas, optimizar insumos y mejorar tiempos de ciclo</p>
+              <h3 class="cdr-card-title">{t('industriaManufactura.cdr7Title')}</h3>
+              <p class="cdr-card-text">{t('industriaManufactura.cdr7Text')}</p>
             </div>
           </div>
         </div>
@@ -452,18 +458,18 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <div class="seven-r-header">
             <div class="seven-r-header-left">
-              <h2 class="seven-r-title">Las 7R<br/>de la modernización<br/>en la nube.</h2>
+              <h2 class="seven-r-title" set:html={t('industriaManufactura.sevenRTitle')}></h2>
             </div>
             <div class="seven-r-header-right">
-              <p class="seven-r-description">Definimos con precisión el camino de transformación ideal para cada organización, maximizando resultados sin comprometer estabilidad ni control.</p>
+              <p class="seven-r-description">{t('industriaManufactura.sevenRDescription')}</p>
             </div>
           </div>
 
           <div class="seven-r-carousel">
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retire</h3>
-                <p class="seven-r-card-subtitle">Elimina lo que ya no aporta valor.</p>
+                <h3 class="seven-r-card-title">{t('industriaManufactura.sevenR1Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaManufactura.sevenR1Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">1</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-1.jpg');"></div>
@@ -471,8 +477,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retain</h3>
-                <p class="seven-r-card-subtitle">Conserva lo que funciona.</p>
+                <h3 class="seven-r-card-title">{t('industriaManufactura.sevenR2Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaManufactura.sevenR2Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">2</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-2.jpg');"></div>
@@ -480,8 +486,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Rehost</h3>
-                <p class="seven-r-card-subtitle">Mueve sistemas a la nube tal como están, rápido y seguro.</p>
+                <h3 class="seven-r-card-title">{t('industriaManufactura.sevenR3Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaManufactura.sevenR3Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">3</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-3.jpg');"></div>
@@ -489,8 +495,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Relocate</h3>
-                <p class="seven-r-card-subtitle">Traslada cargas de trabajo estratégicamente a nuevos entornos.</p>
+                <h3 class="seven-r-card-title">{t('industriaManufactura.sevenR4Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaManufactura.sevenR4Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">4</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-4.jpg');"></div>
@@ -498,8 +504,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Replatform</h3>
-                <p class="seven-r-card-subtitle">Ajusta aplicaciones para aprovechar capacidades nativas de la nube.</p>
+                <h3 class="seven-r-card-title">{t('industriaManufactura.sevenR5Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaManufactura.sevenR5Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">5</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-5.jpg');"></div>
@@ -507,8 +513,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Repurchase</h3>
-                <p class="seven-r-card-subtitle">Reemplaza sistemas con soluciones más modernas y eficientes.</p>
+                <h3 class="seven-r-card-title">{t('industriaManufactura.sevenR6Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaManufactura.sevenR6Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">6</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-6.jpg');"></div>
@@ -516,8 +522,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Refactor</h3>
-                <p class="seven-r-card-subtitle">Reinventa aplicaciones para escalar y generar valor con agilidad.</p>
+                <h3 class="seven-r-card-title">{t('industriaManufactura.sevenR7Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaManufactura.sevenR7Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">7</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-7.jpg');"></div>
@@ -532,8 +538,8 @@ const currentPath = Astro.url.pathname;
           <!-- Cases Section -->
           <div class="cases-section-wrapper">
             <div class="cases-header">
-              <p class="cases-pretitle">Casos de éxito</p>
-              <h2 class="cases-title">Crecimiento que Escala</h2>
+              <p class="cases-pretitle">{t('industriaManufactura.casesPretitle')}</p>
+              <h2 class="cases-title">{t('industriaManufactura.casesTitle')}</h2>
             </div>
 
             <div class="cases-video-grid">
@@ -542,16 +548,16 @@ const currentPath = Astro.url.pathname;
                 data-video-id="s85zq6H8jQ8"
                 data-video-title="Mirgor"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/s85zq6H8jQ8/hqdefault.jpg');" role="img" aria-label="Mirgor"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/s85zq6H8jQ8/hqdefault.jpg');" role="img" aria-label={t('industriaManufactura.case1Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-mirgor.png" alt="Allianz" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-mirgor.png" alt={t('industriaManufactura.case1Alt')} class="company-logo" />
                   <p class="video-description">
-                    Optimizó y unificó la gestión de su infraestructura y datos en AWS, integrando sus sistemas, adoptando infraestructura como código y habilitando analítica casi en tiempo real para sus distintas unidades de negocio. Esta estrategia permitió reducir hasta un 42% los costos de infraestructura, acelerar despliegues de horas a minutos y mejorar la eficiencia operativa y la escalabilidad del negocio.
+                    {t('industriaManufactura.case1Description')}
                   </p>
                 </div>
               </button>
@@ -561,16 +567,16 @@ const currentPath = Astro.url.pathname;
                 data-video-id="iXPcymyatOM"
                 data-video-title="EL"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/iXPcymyatOM/hqdefault.jpg');" role="img" aria-label="EL"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/iXPcymyatOM/hqdefault.jpg');" role="img" aria-label={t('industriaManufactura.case2Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-es.png" alt="Mercantil Andina" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-es.png" alt={t('industriaManufactura.case2Alt')} class="company-logo" />
                   <p class="video-description">
-                    Implementó una estrategia FinOps para optimizar la virtualización de aplicaciones, ajustando el autoescalamiento según patrones reales de uso, lo que permitió reducir en un 65% los costos operativos anuales y asegurar la sostenibilidad financiera de su infraestructura.
+                    {t('industriaManufactura.case2Description')}
                   </p>
                 </div>
               </button>
@@ -580,16 +586,16 @@ const currentPath = Astro.url.pathname;
                 data-video-id="mt4HAcfH2Fc"
                 data-video-title="Dinant"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/mt4HAcfH2Fc/hqdefault.jpg');" role="img" aria-label="Grupo San Cristóbal"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/mt4HAcfH2Fc/hqdefault.jpg');" role="img" aria-label={t('industriaManufactura.case3Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-dinant.png" alt="Grupo San Cristóbal" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-dinant.png" alt={t('industriaManufactura.case3Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migró su SAP on-premise a SAP HANA en la nube para ganar escalabilidad, alta disponibilidad y resiliencia, logrando reducir hasta USD 80,000 anuales en costos, habilitar planes de recuperación ante desastres y estabilizar la operación regional sin interrupciones.
+                    {t('industriaManufactura.case3Description')}
                   </p>
                 </div>
               </button>
@@ -601,14 +607,14 @@ const currentPath = Astro.url.pathname;
             <div class="cta-card-content">
               <div class="cta-card-text">
                 <h2 class="cta-card-title">
-                  Tecnología que acompaña el ritmo de tu planta.
+                  {t('industriaManufactura.ctaTitle')}
                 </h2>
                 <p class="cta-card-description">
-                  Estabilidad, seguridad y soporte continuo con Escala 24x7.
+                  {t('industriaManufactura.ctaDescription')}
                 </p>
               </div>
-              <a href="/contacto" class="btn btn-primary">
-                Contacta a un experto
+              <a href={`${basePath}/contacto`} class="btn btn-primary">
+                {t('industriaManufactura.ctaButton')}
                 <span class="material-symbols-outlined">north_east</span>
               </a>
             </div>
@@ -635,7 +641,7 @@ const currentPath = Astro.url.pathname;
 
           <!-- Footer Embedded -->
           <!-- Footer Component -->
-          <Footer />
+          <Footer lang={lang} />
         </div>
       </section>
     </main>

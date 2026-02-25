@@ -3,18 +3,26 @@ import Header from "../../../components/Header.astro";
 import GoogleAnalytics from "../../../components/GoogleAnalytics.astro";
 import Footer from "../../../components/Footer.astro";
 import Icon from "../../../components/Icon.astro";
+import { getT, localePrefix } from '../../../i18n';
+import type { Locale } from '../../../i18n';
+import en from '../../../i18n/en.json';
 import "../../../styles/global.css";
-const lang = 'en';
+
+const lang: Locale = 'en';
 const currentPath = Astro.url.pathname;
+const dict = en;
+const t = getT(dict);
+const basePath = localePrefix(lang);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Energy - Escala 24x7</title>
+    <title>{t('industriaEnergia.title')}</title>
+    <meta name="description" content={t('industriaEnergia.metaDescription')} />
     <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,21 +44,21 @@ const currentPath = Astro.url.pathname;
           <div class="hero-banner">
             <div class="hero-container">
               <h1 class="hero-title">
-                Smart infrastructure to power your <span class="hero-title-bold"
-                  >industrial decisions</span
+                {t('industriaEnergia.heroTitle')}<span class="hero-title-bold"
+                  >{t('industriaEnergia.heroTitleBold')}</span
                 >
               </h1>
               <div class="hero-content">
                 <div class="hero-left">
                   <a href="#challenges" class="hero-button">
-                    Modernize your operations
+                    {t('industriaEnergia.heroButton')}
                     <span class="material-symbols-outlined">north_east</span>
                   </a>
                 </div>
                 <div class="hero-right">
                   <div class="hero-stat-box">
                     <p class="hero-stat-text">
-                      Escala 24x7 operates and modernizes critical energy sector platforms, ensuring security and full control. It guarantees continuous availability and stability, even in demanding environments.
+                      {t('industriaEnergia.heroStatText')}
                     </p>
                   </div>
                 </div>
@@ -66,19 +74,19 @@ const currentPath = Astro.url.pathname;
           <div class="challenges-intro">
             <div class="challenges-intro-content">
               <h2 class="challenges-intro-title">
-                Do you need a <span
+                {t('industriaEnergia.challengesTitle')}<span
                   class="challenges-intro-highlight"
-                  >managed cloud</span
-                > for your energy operations?
+                  >{t('industriaEnergia.challengesTitleHighlight')}</span
+                >{t('industriaEnergia.challengesTitleSuffix')}
               </h2>
               <p class="challenges-intro-text">
-                In energy, continuity is non-negotiable. Learn about the sector's key challenges and how Escala 24x7 helps you address them.
+                {t('industriaEnergia.challengesIntroText')}
               </p>
             </div>
             <div class="challenges-intro-image">
               <img
                 src="/images/industrias/industrias-escala-imagen-3.jpg"
-                alt="Energy Innovation"
+                alt={t('industriaEnergia.challengesImageAlt')}
               />
             </div>
           </div>
@@ -88,14 +96,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Ensure visibility and control"
+                  alt={t('industriaEnergia.challenge1Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Ensure visibility and control.
+                {t('industriaEnergia.challenge1Title')}
               </h3>
               <p class="challenge-description">
-                Power grids, SCADA, GIS and ERP require constant monitoring. We enable unified observability to anticipate failures before they affect production and service.
+                {t('industriaEnergia.challenge1Desc')}
               </p>
             </div>
 
@@ -103,14 +111,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Protect critical infrastructure"
+                  alt={t('industriaEnergia.challenge2Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Protect critical infrastructure from operational threats.
+                {t('industriaEnergia.challenge2Title')}
               </h3>
               <p class="challenge-description">
-                The energy sector is an increasing target for attacks and vulnerabilities. We design security controls and continuous governance to protect data, identities and connectivity.
+                {t('industriaEnergia.challenge2Desc')}
               </p>
             </div>
 
@@ -118,14 +126,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Modernize legacy systems"
+                  alt={t('industriaEnergia.challenge3Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Modernize legacy systems without disruption.
+                {t('industriaEnergia.challenge3Title')}
               </h3>
               <p class="challenge-description">
-                The operational core, legacy applications and industrial modules must evolve without affecting production. We implement secure, progressive migrations with OT/IT coexistence.
+                {t('industriaEnergia.challenge3Desc')}
               </p>
             </div>
 
@@ -133,14 +141,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Integrate OT and IT"
+                  alt={t('industriaEnergia.challenge4Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Integrate OT + IT securely and with governance.
+                {t('industriaEnergia.challenge4Title')}
               </h3>
               <p class="challenge-description">
-                Technology convergence brings efficiency but also risk. We enable controlled integration between factory, field and cloud while maintaining segmentation and traceability.
+                {t('industriaEnergia.challenge4Desc')}
               </p>
             </div>
 
@@ -148,14 +156,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Ensure 24/7 continuity"
+                  alt={t('industriaEnergia.challenge5Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Ensure 24/7 operational continuity.
+                {t('industriaEnergia.challenge5Title')}
               </h3>
               <p class="challenge-description">
-                Outages can impact users, territories and regulatory contracts. We implement resilience, active DR, proactive operations and immediate incident response.
+                {t('industriaEnergia.challenge5Desc')}
               </p>
             </div>
 
@@ -163,14 +171,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Turn data into decisions"
+                  alt={t('industriaEnergia.challenge6Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Turn energy data into smart decisions.
+                {t('industriaEnergia.challenge6Title')}
               </h3>
               <p class="challenge-description">
-                From predictive maintenance to efficiency and optimization. We enable analytics platforms and data governance for timely, reliable decisions.
+                {t('industriaEnergia.challenge6Desc')}
               </p>
             </div>
           </div>
@@ -193,30 +201,29 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <!-- Title -->
           <div class="methodology-header">
-            <h2 class="methodology-title">We support you at every step.</h2>
+            <h2 class="methodology-title">{t('industriaEnergia.methodologyTitle')}</h2>
             <p class="methodology-subtitle">
-              The challenge for the financial sector is to adopt the cloud in a
-              secure, approved, regulated and operable way over time.
+              {t('industriaEnergia.methodologySubtitle')}
             </p>
           </div>
 
-          <!-- How do we do it? -->
+          <!-- ¿Cómo lo hacemos? -->
           <div class="how-we-do-it">
-            <h3 class="how-title">How do we do it?</h3>
+            <h3 class="how-title">{t('industriaEnergia.howTitle')}</h3>
 
             <div class="how-grid">
               <div class="how-card">
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-1.png"
-                    alt="Expert advisory"
+                    alt={t('industriaEnergia.how1Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Expert advisory on solution design.
+                  {t('industriaEnergia.how1Title')}
                 </h4>
                 <p class="how-card-description">
-                  We build secure, scalable architectures aligned with your country's regulatory requirements.
+                  {t('industriaEnergia.how1Desc')}
                 </p>
               </div>
 
@@ -224,14 +231,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-2.png"
-                    alt="Proof of Concept development"
+                    alt={t('industriaEnergia.how2Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Proof of Concept (PoC) development.
+                  {t('industriaEnergia.how2Title')}
                 </h4>
                 <p class="how-card-description">
-                  We validate technical feasibility and accelerate internal approval of your cloud projects.
+                  {t('industriaEnergia.how2Desc')}
                 </p>
               </div>
 
@@ -239,14 +246,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-3.png"
-                    alt="Technical support"
+                    alt={t('industriaEnergia.how3Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Technical support to demonstrate ROI.
+                  {t('industriaEnergia.how3Title')}
                 </h4>
                 <p class="how-card-description">
-                  We help you build solid business cases and technical arguments that support executive decisions.
+                  {t('industriaEnergia.how3Desc')}
                 </p>
               </div>
 
@@ -254,14 +261,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-4.png"
-                    alt="Cloud implementation"
+                    alt={t('industriaEnergia.how4Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Implementation of Cloud processes and tools.
+                  {t('industriaEnergia.how4Title')}
                 </h4>
                 <p class="how-card-description">
-                  We support the adoption of modern practices: automation, observability, security and continuous operations.
+                  {t('industriaEnergia.how4Desc')}
                 </p>
               </div>
 
@@ -269,14 +276,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-5.png"
-                    alt="Technical assessment"
+                    alt={t('industriaEnergia.how5Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Technical assessment of the regulatory framework.
+                  {t('industriaEnergia.how5Title')}
                 </h4>
                 <p class="how-card-description">
-                  We ensure regulatory compliance in every component of the solution.
+                  {t('industriaEnergia.how5Desc')}
                 </p>
               </div>
 
@@ -284,14 +291,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-6.png"
-                    alt="Access to compliance center"
+                    alt={t('industriaEnergia.how6Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Access to the AWS compliance center.
+                  {t('industriaEnergia.how6Title')}
                 </h4>
                 <p class="how-card-description">
-                  Address regulatory objections with official documentation and certified experts.
+                  {t('industriaEnergia.how6Desc')}
                 </p>
               </div>
             </div>
@@ -301,17 +308,13 @@ const currentPath = Astro.url.pathname;
           <div class="cloud-emx-section">
             <div class="cloud-emx-header">
               <h3 class="cloud-emx-title">
-                Cloud EMx: Continuous operations for regulated platforms.
+                {t('industriaEnergia.emxTitle')}
               </h3>
               <p class="cloud-emx-subtitle">
-                The difference that sustains your cloud operation.
+                {t('industriaEnergia.emxSubtitle')}
               </p>
               <p class="cloud-emx-description">
-                Migrating to the cloud does not guarantee stability. What keeps your business running is how you govern and operate the cloud every day.
-              </p>
-              <p class="cloud-emx-description">
-                With Cloud EMx, you ensure the operation of critical financial
-                platforms with:
+                {t('industriaEnergia.emxDescription')}
               </p>
             </div>
 
@@ -320,11 +323,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-1.png"
-                    alt="Proactive observability"
+                    alt={t('industriaEnergia.emx1Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Proactive observability to anticipate failures before they affect your customers
+                  {t('industriaEnergia.emx1Title')}
                 </h4>
               </div>
 
@@ -332,11 +335,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-2.png"
-                    alt="Incident management"
+                    alt={t('industriaEnergia.emx2Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Agile incident management and operational correlation
+                  {t('industriaEnergia.emx2Title')}
                 </h4>
               </div>
 
@@ -344,21 +347,21 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-3.png"
-                    alt="Robust governance"
+                    alt={t('industriaEnergia.emx3Alt')}
                   />
                 </div>
-                <h4 class="emx-card-title">Robust governance and traceability</h4>
+                <h4 class="emx-card-title">{t('industriaEnergia.emx3Title')}</h4>
               </div>
 
               <div class="emx-card">
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-4.png"
-                    alt="24x7 availability"
+                    alt={t('industriaEnergia.emx4Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  24x7 availability and stability
+                  {t('industriaEnergia.emx4Title')}
                 </h4>
               </div>
 
@@ -366,11 +369,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-5.png"
-                    alt="Regulated investment"
+                    alt={t('industriaEnergia.emx5Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Regulated investment with full visibility, avoiding budget leakage
+                  {t('industriaEnergia.emx5Title')}
                 </h4>
               </div>
 
@@ -378,17 +381,17 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-6.png"
-                    alt="Operations frameworks"
+                    alt={t('industriaEnergia.emx6Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Compliance-native operations frameworks
+                  {t('industriaEnergia.emx6Title')}
                 </h4>
               </div>
             </div>
 
             <p class="emx-footer-text">
-              Cloud EMx is not a traditional managed service. It is the model that lets you operate, scale and comply in highly regulated financial environments with confidence and continuous control.
+              {t('industriaEnergia.emxFooterText')}
             </p>
           </div>
         </div>
@@ -400,51 +403,51 @@ const currentPath = Astro.url.pathname;
           <div class="cdr-grid">
             <!-- Large Card -->
             <div class="cdr-card cdr-card-large">
-              <h3 class="cdr-card-title">Cloud Done Right®</h3>
-              <h4 class="cdr-card-subtitle">Strategic transformation of financial platforms.</h4>
-              <p class="cdr-card-text">In banking and financial services, the cloud is not a technology decision: it is a business, risk, compliance and continuity decision.</p>
-              <p class="cdr-card-text">Cloud Done Right® is the model we use to support financial institutions in operating in the cloud with control, visibility and confidence.</p>
+              <h3 class="cdr-card-title">{t('industriaEnergia.cdrTitle')}</h3>
+              <h4 class="cdr-card-subtitle">{t('industriaEnergia.cdrSubtitle')}</h4>
+              <p class="cdr-card-text">{t('industriaEnergia.cdrText1')}</p>
+              <p class="cdr-card-text">{t('industriaEnergia.cdrText2')}</p>
             </div>
 
             <!-- Small Cards - Row 1 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Clear strategy</h3>
+              <h3 class="cdr-card-title">{t('industriaEnergia.cdr1Title')}</h3>
               <p class="cdr-card-text">
-                We connect cloud adoption with business objectives: accelerated growth, spending efficiency, agile product innovation and risk mitigation. Technology is the enabler; sustainable operation is the outcome.
+                {t('industriaEnergia.cdr1Text')}
               </p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Optimized architecture</h3>
+              <h3 class="cdr-card-title">{t('industriaEnergia.cdr2Title')}</h3>
               <p class="cdr-card-text">
-                We design resilient ecosystems on AWS that integrate banking core, legacy systems and digital platforms, enabling hybrid schemes that optimize transition, connectivity and regulatory compliance based on data criticality.
+                {t('industriaEnergia.cdr2Text')}
               </p>
             </div>
 
             <!-- Small Cards - Row 2 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Automation and scalability</h3>
-              <p class="cdr-card-text">We enable pipelines, monitoring and orchestration so your platforms scale without affecting transactions, users or critical processes, with higher speed and lower operational risk.</p>
+              <h3 class="cdr-card-title">{t('industriaEnergia.cdr3Title')}</h3>
+              <p class="cdr-card-text">{t('industriaEnergia.cdr3Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Controlled cost</h3>
-              <p class="cdr-card-text">Cloud spend should behave like a regulated investment, not budget leakage. We implement FinOps practices to ensure visibility, control and savings without sacrificing performance or security.</p>
+              <h3 class="cdr-card-title">{t('industriaEnergia.cdr4Title')}</h3>
+              <p class="cdr-card-text">{t('industriaEnergia.cdr4Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Security and compliance</h3>
-              <p class="cdr-card-text">We protect sensitive data, manage identities and define controls from the start to ensure local compliance, smooth audits and no surprises in reporting.</p>
+              <h3 class="cdr-card-title">{t('industriaEnergia.cdr5Title')}</h3>
+              <p class="cdr-card-text">{t('industriaEnergia.cdr5Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Talent and culture</h3>
-              <p class="cdr-card-text">We work with your teams to strengthen capabilities and adopt practices that sustain innovation and continuous operation of agile financial services. We prepare your organization to lead the market and face the challenges of modern finance.</p>
+              <h3 class="cdr-card-title">{t('industriaEnergia.cdr6Title')}</h3>
+              <p class="cdr-card-text">{t('industriaEnergia.cdr6Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Continuous innovation</h3>
-              <p class="cdr-card-text">We deploy AI and advanced analytics capabilities for early fraud detection, hyper-personalization of services and data-driven decision making that is traceable and secure.</p>
+              <h3 class="cdr-card-title">{t('industriaEnergia.cdr7Title')}</h3>
+              <p class="cdr-card-text">{t('industriaEnergia.cdr7Text')}</p>
             </div>
           </div>
         </div>
@@ -455,18 +458,18 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <div class="seven-r-header">
             <div class="seven-r-header-left">
-              <h2 class="seven-r-title">The 7Rs<br/>of cloud<br/>modernization.</h2>
+              <h2 class="seven-r-title" set:html={t('industriaEnergia.sevenRTitle')}></h2>
             </div>
             <div class="seven-r-header-right">
-              <p class="seven-r-description">We precisely define the ideal transformation path for each organization, maximizing results without compromising stability or control.</p>
+              <p class="seven-r-description">{t('industriaEnergia.sevenRDescription')}</p>
             </div>
           </div>
 
           <div class="seven-r-carousel">
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retire</h3>
-                <p class="seven-r-card-subtitle">Remove what no longer adds value.</p>
+                <h3 class="seven-r-card-title">{t('industriaEnergia.sevenR1Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaEnergia.sevenR1Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">1</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-1.jpg');"></div>
@@ -474,8 +477,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retain</h3>
-                <p class="seven-r-card-subtitle">Keep what works.</p>
+                <h3 class="seven-r-card-title">{t('industriaEnergia.sevenR2Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaEnergia.sevenR2Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">2</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-2.jpg');"></div>
@@ -483,8 +486,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Rehost</h3>
-                <p class="seven-r-card-subtitle">Move systems to the cloud as-is, fast and secure.</p>
+                <h3 class="seven-r-card-title">{t('industriaEnergia.sevenR3Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaEnergia.sevenR3Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">3</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-3.jpg');"></div>
@@ -492,8 +495,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Relocate</h3>
-                <p class="seven-r-card-subtitle">Strategically move workloads to new environments.</p>
+                <h3 class="seven-r-card-title">{t('industriaEnergia.sevenR4Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaEnergia.sevenR4Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">4</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-4.jpg');"></div>
@@ -501,8 +504,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Replatform</h3>
-                <p class="seven-r-card-subtitle">Adjust applications to leverage native cloud capabilities.</p>
+                <h3 class="seven-r-card-title">{t('industriaEnergia.sevenR5Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaEnergia.sevenR5Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">5</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-5.jpg');"></div>
@@ -510,8 +513,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Repurchase</h3>
-                <p class="seven-r-card-subtitle">Replace systems with more modern and efficient solutions.</p>
+                <h3 class="seven-r-card-title">{t('industriaEnergia.sevenR6Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaEnergia.sevenR6Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">6</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-6.jpg');"></div>
@@ -519,8 +522,8 @@ const currentPath = Astro.url.pathname;
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Refactor</h3>
-                <p class="seven-r-card-subtitle">Reinvent applications to scale and deliver value with agility.</p>
+                <h3 class="seven-r-card-title">{t('industriaEnergia.sevenR7Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaEnergia.sevenR7Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">7</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-7.jpg');"></div>
@@ -535,64 +538,64 @@ const currentPath = Astro.url.pathname;
           <!-- Cases Section -->
           <div class="cases-section-wrapper">
             <div class="cases-header">
-              <p class="cases-pretitle">Success stories</p>
-              <h2 class="cases-title">Growth that Scales</h2>
+              <p class="cases-pretitle">{t('industriaEnergia.casesPretitle')}</p>
+              <h2 class="cases-title">{t('industriaEnergia.casesTitle')}</h2>
             </div>
 
             <div class="cases-video-grid">
               <button 
                 class="case-video-card"
-                data-video-id="KexqTC5scdg"
-                data-video-title="Allianz"
+                data-video-id="DpLxIoWtZw4"
+                data-video-title="Sacde"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/KexqTC5scdg/hqdefault.jpg');" role="img" aria-label="Allianz"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/DpLxIoWtZw4/hqdefault.jpg');" role="img" aria-label={t('industriaEnergia.case1Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-sacde.png" alt="Allianz" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-sacde.png" alt={t('industriaEnergia.case1Alt')} class="company-logo" />
                   <p class="video-description">
-                    Modernized its operations with SAP S/4HANA, enabling automation, digitalization and IoT initiatives that improved operational efficiency and control of distributed projects.
+                    {t('industriaEnergia.case1Description')}
                   </p>
                 </div>
               </button>
 
               <button 
                 class="case-video-card"
-                data-video-id="gfaygu41g10"
-                data-video-title="Mercantil Andina"
+                data-video-id="h5GD7giFTqY"
+                data-video-title="Magdalena"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/gfaygu41g10/hqdefault.jpg');" role="img" aria-label="Mercantil Andina"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/h5GD7giFTqY/hqdefault.jpg');" role="img" aria-label={t('industriaEnergia.case2Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-magdalena.png" alt="Mercantil Andina" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-magdalena.png" alt={t('industriaEnergia.case2Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migrated its SAP S/4HANA ERP and critical operations to the public cloud to gain elasticity and support demand peaks, achieving over 50% cost reduction, high availability during the transition and enabling innovation projects such as IoT, analytics and disaster recovery plans.
+                    {t('industriaEnergia.case2Description')}
                   </p>
                 </div>
               </button>
 
               <button 
                 class="case-video-card"
-                data-video-id="sGs-cSgdD9g"
-                data-video-title="Grupo San Cristóbal"
+                data-video-id="QuIoIGWhr7M"
+                data-video-title="Pampa"
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/sGs-cSgdD9g/hqdefault.jpg');" role="img" aria-label="Grupo San Cristóbal"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/QuIoIGWhr7M/hqdefault.jpg');" role="img" aria-label={t('industriaEnergia.case3Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-pampa.png" alt="Grupo San Cristóbal" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-pampa.png" alt={t('industriaEnergia.case3Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migrated its SAP platform to SAP HANA on AWS to unify infrastructures after the acquisition of Petrobras Argentina. Thanks to cloud elasticity, it provisioned large capacities in record time, reduced implementation times by up to 50% and operated at 3x lower cost than physical infrastructure, also enabling new projects in weeks instead of months.
+                    {t('industriaEnergia.case3Description')}
                   </p>
                 </div>
               </button>
@@ -604,14 +607,14 @@ const currentPath = Astro.url.pathname;
             <div class="cta-card-content">
               <div class="cta-card-text">
                 <h2 class="cta-card-title">
-                  Infrastructure that supports what moves the world.
+                  {t('industriaEnergia.ctaTitle')}
                 </h2>
                 <p class="cta-card-description">
-                  Operate and modernize critical energy sector platforms with Escala 24x7.
+                  {t('industriaEnergia.ctaDescription')}
                 </p>
               </div>
-              <a href="/en/contacto" class="btn btn-primary">
-                Contact an expert
+              <a href={`${basePath}/contacto`} class="btn btn-primary">
+                {t('industriaEnergia.ctaButton')}
                 <span class="material-symbols-outlined">north_east</span>
               </a>
             </div>
@@ -638,7 +641,7 @@ const currentPath = Astro.url.pathname;
 
           <!-- Footer Embedded -->
           <!-- Footer Component -->
-          <Footer />
+          <Footer lang={lang} />
         </div>
       </section>
     </main>
@@ -789,9 +792,9 @@ const currentPath = Astro.url.pathname;
 
   .hero-title {
     color: var(--neutral-100);
-    font-size: 70px;
-    font-weight: 500;
-    line-height: 1;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 72px;
     margin-bottom: 64px;
     max-width: 70%;
   }

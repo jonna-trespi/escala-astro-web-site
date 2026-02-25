@@ -3,19 +3,26 @@ import Header from "../../components/Header.astro";
 import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
+import { getT, localePrefix } from '../../i18n';
+import type { Locale } from '../../i18n';
+import es from '../../i18n/es.json';
 import "../../styles/global.css";
-const lang = 'es';
+
+const lang: Locale = 'es';
 const currentPath = Astro.url.pathname;
+const dict = es;
+const t = getT(dict);
+const basePath = localePrefix(lang);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Servicios cloud para viajes y hostelería</title>
-    <meta name="description" content="Garantiza disponibilidad, escalabilidad y rendimiento en aerolíneas, hoteles y agencias. Infraestructura crítica siempre activa 24x7." />
+    <title>{t('industriaViajesHosteleria.title')}</title>
+    <meta name="description" content={t('industriaViajesHosteleria.metaDescription')} />
     <link rel="icon" type="image/png" href="/logos/escala-webclip.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,21 +44,21 @@ const currentPath = Astro.url.pathname;
           <div class="hero-banner">
             <div class="hero-container">
               <h1 class="hero-title">
-                Crea <span class="hero-title-bold"
-                  >experiencias memorables de viajes</span
-                > desde el primer clic
+                {t('industriaViajesHosteleria.heroTitle')}<span class="hero-title-bold"
+                  >{t('industriaViajesHosteleria.heroTitleBold')}</span
+                >{t('industriaViajesHosteleria.heroTitleSuffix')}
               </h1>
               <div class="hero-content">
                 <div class="hero-left">
                   <a href="#challenges" class="hero-button">
-                    Moderniza tu operación
+                    {t('industriaViajesHosteleria.heroButton')}
                     <span class="material-symbols-outlined">north_east</span>
                   </a>
                 </div>
                 <div class="hero-right">
                   <div class="hero-stat-box">
                     <p class="hero-stat-text">
-                      Escala 24x7 y AWS gestionan plataformas clave para aerolíneas y el sector turístico, asegurando estabilidad y soporte continuo. Te facilitamos transacciones, reservas y servicios digitales, incluso en momentos de alta demanda.
+                      {t('industriaViajesHosteleria.heroStatText')}
                     </p>
                   </div>
                 </div>
@@ -67,19 +74,19 @@ const currentPath = Astro.url.pathname;
           <div class="challenges-intro">
             <div class="challenges-intro-content">
               <h2 class="challenges-intro-title">
-                ¿Tu operación necesita <span
+                {t('industriaViajesHosteleria.challengesTitle')}<span
                   class="challenges-intro-highlight"
-                  >responder al ritmo</span
-                > del viajero?
+                  >{t('industriaViajesHosteleria.challengesTitleHighlight')}</span
+                >{t('industriaViajesHosteleria.challengesTitleSuffix')}
               </h2>
               <p class="challenges-intro-text">
-                En viajes, cada clic es un ingreso y cada caída es una pérdida. Conoce los retos más frecuentes de la industria de hostelería y viajes y la manera en que Escala 24x7 te ayuda a resolverlos.
+                {t('industriaViajesHosteleria.challengesIntroText')}
               </p>
             </div>
             <div class="challenges-intro-image">
               <img
                 src="/images/industrias/industrias-escala-imagen-4.jpg"
-                alt="Innovación Financiera"
+                alt={t('industriaViajesHosteleria.challengesImageAlt')}
               />
             </div>
           </div>
@@ -89,14 +96,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Agilizar transacciones"
+                  alt={t('industriaViajesHosteleria.challenge1Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Mantener disponibilidad en plataformas de reserva y venta.
+                {t('industriaViajesHosteleria.challenge1Title')}
               </h3>
               <p class="challenge-description">
-                Motores de ticketing, check-in digital, pasarelas de pago y OTAs no pueden fallar. Desarrollamos arquitecturas resilientes, incluyendo modelos 100% serverless, que aseguran continuidad en los procesos comerciales más sensibles.
+                {t('industriaViajesHosteleria.challenge1Desc')}
               </p>
             </div>
 
@@ -104,14 +111,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Transformar experiencia"
+                  alt={t('industriaViajesHosteleria.challenge2Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Escalar automáticamente sin comprometer la experiencia.
+                {t('industriaViajesHosteleria.challenge2Title')}
               </h3>
               <p class="challenge-description">
-                Eventos, feriados, temporadas altas o promociones pueden multiplicar tu tráfico en minutos. Habilitamos elasticidad real capaz de absorber picos de visitas diarias, sin degradación en tiempos de respuesta o pérdida de ventas.
+                {t('industriaViajesHosteleria.challenge2Desc')}
               </p>
             </div>
 
@@ -119,14 +126,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Facilitar continuidad"
+                  alt={t('industriaViajesHosteleria.challenge3Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Elevar la seguridad en ecosistemas globales expuestos.
+                {t('industriaViajesHosteleria.challenge3Title')}
               </h3>
               <p class="challenge-description">
-                Aerolíneas y hostelería son objetivos constantes de fraude y amenazas. Diseñamos defensas modernas, control de identidades y protección de transacciones al nivel que exige la industria.
+                {t('industriaViajesHosteleria.challenge3Desc')}
               </p>
             </div>
 
@@ -134,14 +141,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Elevar seguridad"
+                  alt={t('industriaViajesHosteleria.challenge4Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Operar plataformas multicanal y distribuidas.
+                {t('industriaViajesHosteleria.challenge4Title')}
               </h3>
               <p class="challenge-description">
-                Sitios web, apps, kioscos, agencias, integradoras y terceros deben sincronizarse sin fricción. Integramos sistemas dispares con trazabilidad y visibilidad completa end to end.
+                {t('industriaViajesHosteleria.challenge4Desc')}
               </p>
             </div>
 
@@ -149,14 +156,14 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Actualizar Core"
+                  alt={t('industriaViajesHosteleria.challenge5Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Eliminar riesgo de downtime en momentos críticos.
+                {t('industriaViajesHosteleria.challenge5Title')}
               </h3>
               <p class="challenge-description">
-                Una caída impacta reputación, itinerarios y revenue en múltiples países. Garantizamos continuidad operativa, DR activo y monitoreo en tiempo real para sostener tu operación 24/7.
+                {t('industriaViajesHosteleria.challenge5Desc')}
               </p>
             </div>
 
@@ -164,22 +171,22 @@ const currentPath = Astro.url.pathname;
               <div class="challenge-icon">
                 <img
                   src="/icons/industrias/industrias-icon1.png"
-                  alt="Facilitar decisiones"
+                  alt={t('industriaViajesHosteleria.challenge6Alt')}
                 />
               </div>
               <h3 class="challenge-title">
-                Usar datos en tiempo real para decisiones comerciales.
+                {t('industriaViajesHosteleria.challenge6Title')}
               </h3>
               <p class="challenge-description">
-                Cada viajero deja señales de demanda y oportunidad. Entregamos analítica para optimizar ocupación, precios dinámicos y personalización, además de respuesta inmediata a cambios del mercado.
+                {t('industriaViajesHosteleria.challenge6Desc')}
               </p>
             </div>
           </div>
 
           <!-- Logos clientes -->
           <div class="clients-logos">
-            <img src="/logos/industrias/logo-flybondi.png" alt="Western Union" />
-            <img src="/logos/industrias/logo-exito.png" alt="Allianz" />
+            <img src="/logos/industrias/logo-flybondi.png" alt={t('industriaViajesHosteleria.clientLogo1Alt')} />
+            <img src="/logos/industrias/logo-exito.png" alt={t('industriaViajesHosteleria.clientLogo2Alt')} />
           </div>
         </div>
       </section>
@@ -188,29 +195,29 @@ const currentPath = Astro.url.pathname;
         <div class="container">
           <!-- Title -->
           <div class="methodology-header">
-            <h2 class="methodology-title">Te acompañamos en cada paso.</h2>
+            <h2 class="methodology-title">{t('industriaViajesHosteleria.methodologyTitle')}</h2>
             <p class="methodology-subtitle">
-              No solo ofrecemos tecnología: ayudamos a aerolíneas y operadores turísticos a sostener experiencias, ingresos y servicio al cliente en todo su journey digital.
+              {t('industriaViajesHosteleria.methodologySubtitle')}
             </p>
           </div>
 
           <!-- ¿Cómo lo hacemos? -->
           <div class="how-we-do-it">
-            <h3 class="how-title">¿Cómo lo hacemos?</h3>
+            <h3 class="how-title">{t('industriaViajesHosteleria.howTitle')}</h3>
 
             <div class="how-grid">
               <div class="how-card">
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-1.png"
-                    alt="Asesoría experta"
+                    alt={t('industriaViajesHosteleria.how1Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Arquitecturas de nube diseñadas para viaje y hospitalidad
+                  {t('industriaViajesHosteleria.how1Title')}
                 </h4>
                 <p class="how-card-description">
-                  Desde plataformas de venta 100% serverless, hasta modelos híbridos y distribuidos.
+                  {t('industriaViajesHosteleria.how1Desc')}
                 </p>
               </div>
 
@@ -218,14 +225,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-2.png"
-                    alt="Desarrollo de Pruebas"
+                    alt={t('industriaViajesHosteleria.how2Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Pruebas de concepto orientadas al negocio
+                  {t('industriaViajesHosteleria.how2Title')}
                 </h4>
                 <p class="how-card-description">
-                  Validamos mejoras sin interrumpir reservas, procesamiento ni itinerarios.
+                  {t('industriaViajesHosteleria.how2Desc')}
                 </p>
               </div>
 
@@ -233,14 +240,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-3.png"
-                    alt="Apoyo técnico"
+                    alt={t('industriaViajesHosteleria.how3Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Demostración clara de impacto comercial
+                  {t('industriaViajesHosteleria.how3Title')}
                 </h4>
                 <p class="how-card-description">
-                  Te ayudamos a incrementar la capacidad, reducir la fricción, ofrecer ventas protegidas y garantizar la satisfacción del viajero.
+                  {t('industriaViajesHosteleria.how3Desc')}
                 </p>
               </div>
 
@@ -248,14 +255,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-4.png"
-                    alt="Implementación Cloud"
+                    alt={t('industriaViajesHosteleria.how4Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Implementación de procesos y herramientas
+                  {t('industriaViajesHosteleria.how4Title')}
                 </h4>
                 <p class="how-card-description">
-                  Habilitamos automatización, observabilidad y seguridad para sostener disponibilidad global.
+                  {t('industriaViajesHosteleria.how4Desc')}
                 </p>
               </div>
 
@@ -263,14 +270,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-5.png"
-                    alt="Evaluación técnica"
+                    alt={t('industriaViajesHosteleria.how5Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Gobierno e interoperabilidad multicanal
+                  {t('industriaViajesHosteleria.how5Title')}
                 </h4>
                 <p class="how-card-description">
-                  Aseguramos trazabilidad completa, control de cambios y operación alineada con partners y proveedores.
+                  {t('industriaViajesHosteleria.how5Desc')}
                 </p>
               </div>
 
@@ -278,14 +285,14 @@ const currentPath = Astro.url.pathname;
                 <div class="how-icon">
                   <img
                     src="/icons/industrias/industrias-como-lo-hacemos-icon-6.png"
-                    alt="Acceso al centro"
+                    alt={t('industriaViajesHosteleria.how6Alt')}
                   />
                 </div>
                 <h4 class="how-card-title">
-                  Acceso al ecosistema AWS travel-tech
+                  {t('industriaViajesHosteleria.how6Title')}
                 </h4>
                 <p class="how-card-description">
-                  Ofrecemos servicios especializados para expansión internacional, venta directa y servicios al pasajero.
+                  {t('industriaViajesHosteleria.how6Desc')}
                 </p>
               </div>
             </div>
@@ -295,13 +302,13 @@ const currentPath = Astro.url.pathname;
           <div class="cloud-emx-section">
             <div class="cloud-emx-header">
               <h3 class="cloud-emx-title">
-                Cloud EMx: Operación continua para aerolíneas y viajes
+                {t('industriaViajesHosteleria.emxTitle')}
               </h3>
               <p class="cloud-emx-subtitle">
-                El habilitador que diferencia a Escala 24x7
+                {t('industriaViajesHosteleria.emxSubtitle')}
               </p>
               <p class="cloud-emx-description">
-                Migrar y modernizar no es suficiente. Lo que sostiene los ingresos en este sector es operar plataformas críticas sin fricción, todos los días.
+                {t('industriaViajesHosteleria.emxDescription')}
               </p>
             </div>
 
@@ -310,11 +317,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-1.png"
-                    alt="Objetividad proactiva"
+                    alt={t('industriaViajesHosteleria.emx1Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Monitoreo proactivo 24/7 en todo el stack
+                  {t('industriaViajesHosteleria.emx1Title')}
                 </h4>
               </div>
 
@@ -322,11 +329,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-2.png"
-                    alt="Gestión de incidentes"
+                    alt={t('industriaViajesHosteleria.emx2Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Respuesta inmediata ante incidentes en sistemas de reserva y venta
+                  {t('industriaViajesHosteleria.emx2Title')}
                 </h4>
               </div>
 
@@ -334,21 +341,21 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-3.png"
-                    alt="Gobierno robusto"
+                    alt={t('industriaViajesHosteleria.emx3Alt')}
                   />
                 </div>
-                <h4 class="emx-card-title">Gobierno y trazabilidad para integraciones y partners</h4>
+                <h4 class="emx-card-title">{t('industriaViajesHosteleria.emx3Title')}</h4>
               </div>
 
               <div class="emx-card">
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-4.png"
-                    alt="Disponibilidad 24x7"
+                    alt={t('industriaViajesHosteleria.emx4Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Continuidad activa durante picos de tráfico global
+                  {t('industriaViajesHosteleria.emx4Title')}
                 </h4>
               </div>
 
@@ -356,11 +363,11 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-5.png"
-                    alt="Innovación resiliente"
+                    alt={t('industriaViajesHosteleria.emx5Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Equipos liberados para enfocarse en producto, rutas y experiencia del usuario
+                  {t('industriaViajesHosteleria.emx5Title')}
                 </h4>
               </div>
 
@@ -368,18 +375,17 @@ const currentPath = Astro.url.pathname;
                 <div class="emx-icon">
                   <img
                     src="/icons/industrias/industrias-emx-icon-6.png"
-                    alt="Marcos de operación"
+                    alt={t('industriaViajesHosteleria.emx6Alt')}
                   />
                 </div>
                 <h4 class="emx-card-title">
-                  Cultura FinOps para optimizar costos en función de demanda real
+                  {t('industriaViajesHosteleria.emx6Title')}
                 </h4>
               </div>
             </div>
 
             <p class="emx-footer-text">
-              Cloud EMx no es un servicio administrado tradicional. 
-Es el modelo que garantiza la continuidad en temporadas críticas, protege la experiencia del viajero y responde en tiempo real sin frenar la operación.
+              {t('industriaViajesHosteleria.emxFooterText')}
             </p>
           </div>
         </div>
@@ -391,51 +397,51 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
           <div class="cdr-grid">
             <!-- Large Card -->
             <div class="cdr-card cdr-card-large">
-              <h3 class="cdr-card-title">Cloud Done Right®</h3>
-              <h4 class="cdr-card-subtitle">La transformación estratégica de plataformas financieras.</h4>
-              <p class="cdr-card-text">En banca y servicios financieros, la nube no es una decisión tecnológica: es una decisión de negocio, riesgo, cumplimiento y continuidad.</p>
-              <p class="cdr-card-text">Cloud Done Right® es el modelo con el que acompañamos a instituciones financieras a operar en la nube con control, visibilidad y confianza.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdrTitle')}</h3>
+              <h4 class="cdr-card-subtitle">{t('industriaViajesHosteleria.cdrSubtitle')}</h4>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdrText1')}</p>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdrText2')}</p>
             </div>
 
             <!-- Small Cards - Row 1 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Estrategia clara</h3>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr1Title')}</h3>
               <p class="cdr-card-text">
-                Conectamos la adopción de nube con los objetivos del negocio: crecimiento acelerado, eficiencia en el gasto, innovación ágil de productos y mitigación de riesgos. La tecnología es el habilitador; la operación sostenible es el resultado.
+                {t('industriaViajesHosteleria.cdr1Text')}
               </p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Arquitectura optimizada</h3>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr2Title')}</h3>
               <p class="cdr-card-text">
-                Diseñamos ecosistemas resilientes en AWS que integran core bancario, sistemas legados y plataformas digitales, facilitando esquemas híbridos que optimizan la transición, la conectividad y el cumplimiento normativo según la criticidad del dato.
+                {t('industriaViajesHosteleria.cdr2Text')}
               </p>
             </div>
 
             <!-- Small Cards - Row 2 -->
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Automatización y escalabilidad</h3>
-              <p class="cdr-card-text">Habilitamos pipelines, monitoreo y orquestación para que tus plataformas escalen sin afectar transacciones, usuarios ni procesos críticos con más velocidad y menor riesgo operativo.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr3Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr3Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Costo controlado</h3>
-              <p class="cdr-card-text">El gasto en nube debe comportarse como una inversión regulada, no como una fuga de presupuesto. Implementamos prácticas FinOps para asegurar visibilidad, control y ahorro, sin sacrificar desempeño o seguridad.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr4Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr4Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Seguridad y cumplimiento</h3>
-              <p class="cdr-card-text">Protegemos datos sensibles, gestionamos identidades y definimos controles desde el inicio para garantizar cumplimiento local, auditorías fluidas y cero sobresaltos en los reportes.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr5Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr5Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Talento y cultura</h3>
-              <p class="cdr-card-text">Trabajamos con tus equipos para fortalecer capacidades y adoptar prácticas que sostengan la innovación y la operación continua de servicios financieros ágiles. Preparamos a tu organización para liderar el mercado y enfrentar los retos de las finanzas modernas.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr6Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr6Text')}</p>
             </div>
 
             <div class="cdr-card cdr-card-small">
-              <h3 class="cdr-card-title">Innovación continua</h3>
-              <p class="cdr-card-text">Desplegamos capacidades de IA y analítica avanzada para la detección temprana de fraude, hiper-personalización de servicios y toma de decisiones basadas en datos trazables y seguros.</p>
+              <h3 class="cdr-card-title">{t('industriaViajesHosteleria.cdr7Title')}</h3>
+              <p class="cdr-card-text">{t('industriaViajesHosteleria.cdr7Text')}</p>
             </div>
           </div>
         </div>
@@ -446,18 +452,18 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
         <div class="container">
           <div class="seven-r-header">
             <div class="seven-r-header-left">
-              <h2 class="seven-r-title">Las 7R<br/>de la modernización<br/>en la nube.</h2>
+              <h2 class="seven-r-title" set:html={t('industriaViajesHosteleria.sevenRTitle')} />
             </div>
             <div class="seven-r-header-right">
-              <p class="seven-r-description">Definimos con precisión el camino de transformación ideal para cada organización, maximizando resultados sin comprometer estabilidad ni control.</p>
+              <p class="seven-r-description">{t('industriaViajesHosteleria.sevenRDescription')}</p>
             </div>
           </div>
 
           <div class="seven-r-carousel">
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retire</h3>
-                <p class="seven-r-card-subtitle">Elimina lo que ya no aporta valor.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR1Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR1Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">1</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-1.jpg');"></div>
@@ -465,8 +471,8 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Retain</h3>
-                <p class="seven-r-card-subtitle">Conserva lo que funciona.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR2Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR2Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">2</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-2.jpg');"></div>
@@ -474,8 +480,8 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Rehost</h3>
-                <p class="seven-r-card-subtitle">Mueve sistemas a la nube tal como están, rápido y seguro.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR3Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR3Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">3</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-3.jpg');"></div>
@@ -483,8 +489,8 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Relocate</h3>
-                <p class="seven-r-card-subtitle">Traslada cargas de trabajo estratégicamente a nuevos entornos.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR4Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR4Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">4</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-4.jpg');"></div>
@@ -492,8 +498,8 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Replatform</h3>
-                <p class="seven-r-card-subtitle">Ajusta aplicaciones para aprovechar capacidades nativas de la nube.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR5Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR5Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">5</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-5.jpg');"></div>
@@ -501,8 +507,8 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Repurchase</h3>
-                <p class="seven-r-card-subtitle">Reemplaza sistemas con soluciones más modernas y eficientes.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR6Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR6Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">6</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-6.jpg');"></div>
@@ -510,8 +516,8 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
 
             <div class="seven-r-card">
               <div class="seven-r-card-content">
-                <h3 class="seven-r-card-title">Refactor</h3>
-                <p class="seven-r-card-subtitle">Reinventa aplicaciones para escalar y generar valor con agilidad.</p>
+                <h3 class="seven-r-card-title">{t('industriaViajesHosteleria.sevenR7Title')}</h3>
+                <p class="seven-r-card-subtitle">{t('industriaViajesHosteleria.sevenR7Subtitle')}</p>
               </div>
               <div class="seven-r-card-number">7</div>
               <div class="seven-r-card-bg" style="background-image: url('/images/industrias/industrias-escala-7r-7.jpg');"></div>
@@ -526,26 +532,26 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
           <!-- Cases Section -->
           <div class="cases-section-wrapper">
             <div class="cases-header">
-              <p class="cases-pretitle">Casos de éxito</p>
-              <h2 class="cases-title">Crecimiento que Escala</h2>
+              <p class="cases-pretitle">{t('industriaViajesHosteleria.casesPretitle')}</p>
+              <h2 class="cases-title">{t('industriaViajesHosteleria.casesTitle')}</h2>
             </div>
 
             <div class="cases-video-grid cases-video-grid-two">
               <button 
                 class="case-video-card"
                 data-video-id="_gOITHU4jNI"
-                data-video-title="Flybondi"
+                data-video-title={t('industriaViajesHosteleria.case1Alt')}
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/_gOITHU4jNI/hqdefault.jpg');" role="img" aria-label="Allianz"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/_gOITHU4jNI/hqdefault.jpg');" role="img" aria-label={t('industriaViajesHosteleria.case1Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-flybondi.png" alt="Allianz" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-flybondi.png" alt={t('industriaViajesHosteleria.case1Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migró su plataforma de ventas a una arquitectura 100% serverless en AWS para soportar altos picos de tráfico y reducir costos operativos. El nuevo modelo le permite escalar automáticamente, atender hasta 800 mil visitas diarias, mejorar la seguridad y liberar al equipo para enfocarse en desarrollo, innovación y analítica en tiempo real para la toma de decisiones.
+                    {t('industriaViajesHosteleria.case1Description')}
                   </p>
                 </div>
               </button>
@@ -553,18 +559,18 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
               <button 
                 class="case-video-card"
                 data-video-id="b_zvjzRRbqQ"
-                data-video-title="Viajes Exito"
+                data-video-title={t('industriaViajesHosteleria.case2Alt')}
               >
-                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/b_zvjzRRbqQ/hqdefault.jpg');" role="img" aria-label="Mercantil Andina"></div>
+                <div class="video-thumbnail" style="background-image: url('https://img.youtube.com/vi/b_zvjzRRbqQ/hqdefault.jpg');" role="img" aria-label={t('industriaViajesHosteleria.case2Alt')}></div>
                 <div class="video-overlay">
                   <div class="play-button-circle">
                     <Icon name="play_arrow" size={24} />
                   </div>
                 </div>
                 <div class="video-info">
-                  <img src="/logos/industrias/casos/logo-exito.png" alt="Mercantil Andina" class="company-logo" />
+                  <img src="/logos/industrias/casos/logo-exito.png" alt={t('industriaViajesHosteleria.case2Alt')} class="company-logo" />
                   <p class="video-description">
-                    Migró su infraestructura a la nube para soportar el crecimiento acelerado de su operación multicanal, logrando mayor estabilidad, alta disponibilidad y elasticidad para responder a picos de demanda, optimizando costos y mejorando el monitoreo en tiempo real de ventas y operación.
+                    {t('industriaViajesHosteleria.case2Description')}
                   </p>
                 </div>
               </button>
@@ -576,14 +582,14 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
             <div class="cta-card-content">
               <div class="cta-card-text">
                 <h2 class="cta-card-title">
-                  La experiencia del viaje empieza en la nube.
+                  {t('industriaViajesHosteleria.ctaTitle')}
                 </h2>
                 <p class="cta-card-description">
-                  Estabilidad, escalabilidad y soporte para aerolíneas, agencias, hoteles y ecosistemas turísticos con Escala 24x7.
+                  {t('industriaViajesHosteleria.ctaDescription')}
                 </p>
               </div>
-              <a href="/contacto" class="btn btn-primary">
-                Contacta a un experto
+              <a href={`${basePath}/contacto`} class="btn btn-primary">
+                {t('industriaViajesHosteleria.ctaButton')}
                 <span class="material-symbols-outlined">north_east</span>
               </a>
             </div>
@@ -610,7 +616,7 @@ Es el modelo que garantiza la continuidad en temporadas críticas, protege la ex
 
           <!-- Footer Embedded -->
           <!-- Footer Component -->
-          <Footer />
+          <Footer lang={lang} />
         </div>
       </section>
     </main>
