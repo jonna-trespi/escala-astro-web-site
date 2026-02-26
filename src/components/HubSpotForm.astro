@@ -252,6 +252,45 @@ const portalId = '48294971';
     background: rgba(0, 193, 159, 0.05);
   }
 
+  /* Buscador del dropdown de país (teléfono): contraste texto y borde (sobrescribe estilos HubSpot) */
+  .hubspot-form-wrapper :global(.hsfc-PhoneInput .hsfc-DropdownOptions__Search input),
+  .hubspot-form-wrapper :global(.hsfc-DropdownOptions__Search .hsfc-TextInput),
+  .hubspot-form-wrapper :global(.hsfc-DropdownOptions__Search input[type="text"]) {
+    color: #1a1a1a !important;
+    border: 1px solid #1a1a1a !important;
+    background-color: #ffffff !important;
+  }
+  .hubspot-form-wrapper :global(.hsfc-PhoneInput .hsfc-DropdownOptions__Search input:focus),
+  .hubspot-form-wrapper :global(.hsfc-DropdownOptions__Search .hsfc-TextInput:focus),
+  .hubspot-form-wrapper :global(.hsfc-DropdownOptions__Search input[type="text"]:focus) {
+    border-color: #1a1a1a !important;
+    outline: none !important;
+    background-color: #ffffff !important;
+  }
+  .hubspot-form-wrapper :global(.hsfc-DropdownOptions__Search input::placeholder),
+  .hubspot-form-wrapper :global(.hsfc-DropdownOptions__Search .hsfc-TextInput::placeholder) {
+    color: #1a1a1a !important;
+    opacity: 0.8 !important;
+  }
+
+  /* Mismo estilo si el dropdown se renderiza fuera del wrapper (portal HubSpot) */
+  :global(.hsfc-PhoneInput .hsfc-DropdownOptions__Search input),
+  :global(.hsfc-DropdownOptions__Search input[type="text"][role="searchbox"]) {
+    color: #1a1a1a !important;
+    border: 1px solid #1a1a1a !important;
+    background-color: #ffffff !important;
+  }
+  :global(.hsfc-PhoneInput .hsfc-DropdownOptions__Search input:focus),
+  :global(.hsfc-DropdownOptions__Search input[type="text"][role="searchbox"]:focus) {
+    border-color: #1a1a1a !important;
+    outline: none !important;
+    background-color: #ffffff !important;
+  }
+  :global(.hsfc-DropdownOptions__Search input[type="text"][role="searchbox"]::placeholder) {
+    color: #1a1a1a !important;
+    opacity: 0.8 !important;
+  }
+
   /* Espaciado entre campos */
   .hubspot-form-wrapper :global(.hs-form-html .hs-form-field) {
     margin-bottom: 1rem;
