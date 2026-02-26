@@ -113,7 +113,7 @@ const basePath = localePrefix(lang);
     <div class="footer-legal">
       <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/67695a35eb83a9a271c7f341_Legal-92424-POLI%CC%81TICA%20DE%20PRIVACIDAD%20-%20ESCALA%2024X7%20-%20ES.pdf" target="_blank">{t('footer.privacyPolicy')}</a>
       <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/6500d9a975d1a33a539ef90a_Terminos%20y%20condiciones.pdf" target="_blank">{t('footer.terms')}</a>
-      <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/690a514360dc94bb94282b93_Poli%CC%81tica%20de%20Seguridad%20de%20la%20Informacio%CC%81n%20-%20Versio%CC%81n%208%20ES.pdf" target="_blank">{t('footer.securityPolicy')}</a>
+      <a href={lang === 'en' ? 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69a046eec33ddafb671c2f96_poli%CC%81tica-de-seguridad-de-la-informacio%CC%81n-en.pdf' : 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69a046ee1cfe7303a795a43a_poli%CC%81tica-de-seguridad-de-la-informacio%CC%81n-es.pdf'} target="_blank" rel="noopener noreferrer">{t('footer.securityPolicy')}</a>
       <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/6500d9e1dd49e73f0e714f4b_Politica%20de%20cookies.pdf" target="_blank">{t('footer.cookiePolicy')}</a>
       <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/6500da5bdd49e73f0e71dbc7_GDPR.pdf" target="_blank">{t('footer.gdpr')}</a>
       <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/68b0772b8e75c8380284d8cc_Poli%CC%81tica%20Corporativa%20de%20E%CC%81tica%20y%20Derechos%20Laborales%20(ES).pdf" target="_blank">{t('footer.ethicsPolicy')}</a>
