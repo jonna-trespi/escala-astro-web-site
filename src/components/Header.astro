@@ -84,6 +84,8 @@ const langLabel = lang === 'es' ? 'ES' : lang === 'en' ? 'EN' : 'PT';
 const langNames = { es: t('language.es'), en: t('language.en'), pt: t('language.pt') };
 const pathEs = pathForLocale(currentPath, 'es');
 const pathEn = pathForLocale(currentPath, 'en');
+const pathPt = pathForLocale(currentPath, 'pt');
+
 ---
 
 <header class="header">
@@ -167,6 +169,14 @@ const pathEn = pathForLocale(currentPath, 'en');
                 <span class="submenu-title">{langNames.en}</span>
               </div>
             </a>
+            <a href={pathPt} class="submenu-item">
+              <div class="submenu-icon-wrap">
+                <img src="/icons/menu/menu-item-icon-1.png" alt="" class="submenu-icon-img" />
+              </div>
+              <div class="submenu-text">
+                <span class="submenu-title">{langNames.pt}</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -230,6 +240,9 @@ const pathEn = pathForLocale(currentPath, 'en');
             </a>
             <a href={pathEn} class="mobile-submenu-item mobile-language-option">
               <span class="mobile-submenu-title">{langNames.en}</span>
+            </a>
+            <a href={pathPt} class="mobile-submenu-item mobile-language-option">
+              <span class="mobile-submenu-title">{langNames.pt}</span>
             </a>
           </div>
         </div>
