@@ -341,10 +341,15 @@ const portalId = '48294971';
 
   /* Temas de interés: grid en varias columnas + estilo botón multiselect */
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.5rem;
+  }
+  /* Anular margin-bottom que HubSpot aplica a los hijos (evita apilado vertical) */
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > *) {
+    margin-bottom: 0 !important;
   }
 
   /* Cualquier hijo que contenga el checkbox (label o div) como botón */
@@ -538,7 +543,6 @@ const portalId = '48294971';
       padding: 0.875rem 1rem;
     }
 
-    .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options),
     .hubspot-form-wrapper :global(.hs-form-html ul.inputs-list.multi-container),
     .hubspot-form-wrapper :global(.hs-form-html .multi-container) {
       grid-template-columns: 1fr;
@@ -546,7 +550,6 @@ const portalId = '48294971';
   }
 
   @media (min-width: 769px) {
-    .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options),
     .hubspot-form-wrapper :global(.hs-form-html ul.inputs-list.multi-container),
     .hubspot-form-wrapper :global(.hs-form-html .multi-container) {
       grid-template-columns: repeat(3, 1fr);
