@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "alianzas",
+    "name": "Alianzas"
+  },
+  {
+    "slug": "bigdata",
+    "name": "BigData"
+  },
+  {
+    "slug": "casos-de-exito",
+    "name": "Casos de Exito"
+  },
+  {
+    "slug": "cc",
+    "name": "Contact Center"
+  },
+  {
+    "slug": "cloud",
+    "name": "Cloud"
+  },
+  {
+    "slug": "competencias",
+    "name": "Competencias"
+  },
+  {
+    "slug": "eventos",
+    "name": "Eventos"
+  },
+  {
+    "slug": "finops",
+    "name": "FinOps"
+  },
+  {
+    "slug": "ingles",
+    "name": "Inglés"
+  },
+  {
+    "slug": "inteligencia-artificial",
+    "name": "Inteligencia Artificial"
+  },
+  {
+    "slug": "machine-learning",
+    "name": "Machine Learning"
+  },
+  {
+    "slug": "resiliencia",
+    "name": "Resiliencia"
+  },
+  {
+    "slug": "security",
+    "name": "Seguridad"
+  },
+  {
+    "slug": "successstories",
+    "name": "Casos de Éxito"
+  },
+  {
+    "slug": "trends",
+    "name": "Tendencias"
+  }
+]

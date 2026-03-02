@@ -1,0 +1,355 @@
+---
+import Header from "../../../components/Header.astro";
+import GoogleAnalytics from "../../../components/GoogleAnalytics.astro";
+import Footer from "../../../components/Footer.astro";
+
+const lang = 'en';
+const blogBackUrl = '/en/blog';
+const currentPath = Astro.url.pathname;
+import "../../../styles/global.css";
+
+export async function getStaticPaths() {
+  const posts = (await import("../../../data/blog-posts.json")).default;
+  const featuredSlug = 'nueva-imagen-escala24x7';
+  return posts
+    .filter((post: { slug: string }) => post.slug !== featuredSlug)
+    .map((post: { slug: string }) => ({
+      params: { slug: post.slug },
+    }));
+}
+
+const { slug } = Astro.params;
+const posts = (await import("../../../data/blog-posts.json")).default;
+const post = posts.find((p: { slug: string }) => p.slug === slug);
+
+if (!post) {
+  return Astro.redirect(blogBackUrl);
+}
+
+const { title, excerpt, publishedOnFormatted, categoryName, previewImage, thumbnail, content } = post;
+const imageUrl = previewImage || thumbnail;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <GoogleAnalytics />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} - Blog Escala 24x7</title>
+    <meta name="description" content={excerpt || title} />
+    <link rel="icon" type="image/png" href="/icons/escala-favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header lang={lang} currentPath={currentPath} />
+    <main>
+      <section class="blog-article-section">
+        <div class="container">
+          <a href={blogBackUrl} class="article-back">← Volver al blog</a>
+          <div class="article-wrapper">
+            <div class="article-header">
+              {categoryName && (
+                <span class="article-category">{categoryName}</span>
+              )}
+              {publishedOnFormatted && (
+                <time class="article-date" datetime={post.publishedOn || undefined}>
+                  {publishedOnFormatted}
+                </time>
+              )}
+              <h1 class="article-title">{title}</h1>
+            </div>
+
+            <div class="article-content">
+              {excerpt && <p class="article-lead">{excerpt}</p>}
+              {imageUrl && (
+                <div class="article-image">
+                  <img src={imageUrl} alt="" loading="eager" />
+                </div>
+              )}
+              {content ? (
+                <div class="article-body" set:html={content} />
+              ) : (
+                <p class="article-text">Contenido no disponible.</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>
+
+<style>
+  .article-back {
+    display: inline-block;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 24px;
+  }
+
+  .article-back:hover {
+    color: #041E42;
+    text-decoration: underline;
+  }
+
+  .blog-article-section {
+    background-image: url("/images/blog/blog-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 140px 0 100px 0;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 100px;
+  }
+
+  .article-header {
+    padding: 60px 60px 40px 60px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .article-category {
+    display: inline-block;
+    background: #00C19F;
+    color: #041E42;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .article-date {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+  }
+
+  .article-title {
+    font-family: 'Nexa', sans-serif;
+    color: #041E42;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .article-content {
+    padding: 50px 60px 60px 60px;
+  }
+
+  .article-lead {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #2a2a2a;
+    margin-bottom: 40px;
+  }
+
+  .article-image {
+    width: 100%;
+    margin: 40px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .article-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Contenido inyectado (HTML de Webflow) */
+  .article-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a4a4a;
+  }
+
+  .article-body :global(p) {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 24px;
+  }
+
+  .article-body :global(h2) {
+    font-family: 'Nexa', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #041E42;
+    line-height: 1.3;
+    margin: 48px 0 24px 0;
+  }
+
+  .article-body :global(h3),
+  .article-body :global(h4) {
+    font-family: 'Nexa', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin: 32px 0 20px 0;
+  }
+
+  .article-body :global(h5) {
+    font-family: 'Nexa', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 24px 0 16px 0;
+  }
+
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    margin: 24px 0;
+    padding-left: 24px;
+  }
+
+  .article-body :global(li) {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 16px;
+  }
+
+  .article-body :global(li strong) {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  .article-body :global(a) {
+    color: #00725D;
+    text-decoration: underline;
+  }
+
+  .article-body :global(a:hover) {
+    color: #041E42;
+  }
+
+  .article-body :global(blockquote) {
+    margin: 24px 0;
+    padding: 16px 20px;
+    border-left: 4px solid #e5e5e5;
+    background: #f9f9f9;
+    font-style: italic;
+    color: #4a4a4a;
+  }
+
+  .article-body :global(figure) {
+    width: 100%;
+    margin: 40px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .article-body :global(figure img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .article-body :global(figcaption) {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+    padding: 0 4px;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-article-section {
+      padding: 120px 0 80px 0;
+    }
+
+    .container {
+      padding: 0 60px;
+    }
+
+    .article-header {
+      padding: 50px 40px 30px 40px;
+    }
+
+    .article-title {
+      font-size: 36px;
+    }
+
+    .article-content {
+      padding: 40px;
+    }
+
+    .article-lead {
+      font-size: 17px;
+    }
+
+    .article-body :global(h2) {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-article-section {
+      padding: 100px 0 60px 0;
+    }
+
+    .container {
+      padding: 0 20px;
+    }
+
+    .article-wrapper {
+      border-radius: 12px;
+    }
+
+    .article-header {
+      padding: 40px 24px 24px 24px;
+    }
+
+    .article-title {
+      font-size: 28px;
+    }
+
+    .article-content {
+      padding: 32px 24px 40px 24px;
+    }
+
+    .article-lead {
+      font-size: 16px;
+    }
+
+    .article-body :global(h2) {
+      font-size: 22px;
+      margin: 32px 0 20px 0;
+    }
+
+    .article-body :global(h3),
+    .article-body :global(h4) {
+      font-size: 18px;
+    }
+
+    .article-body :global(p),
+    .article-body :global(li) {
+      font-size: 15px;
+    }
+
+    .article-image {
+      margin: 32px 0;
+    }
+  }
+</style>

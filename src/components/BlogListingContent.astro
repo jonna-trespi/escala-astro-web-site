@@ -1,0 +1,139 @@
+---
+import Icon from "./Icon.astro";
+
+const FEATURED_SLUG = 'nueva-imagen-escala24x7';
+
+interface Props {
+  blogBasePath: string;
+  posts: Array<{
+    slug: string;
+    title: string;
+    excerpt: string;
+    thumbnail: string | null;
+    previewImage: string | null;
+    publishedOnFormatted: string;
+    categoryName: string;
+    categorySlug: string | null;
+  }>;
+  categoriesList: Array<{ slug: string; name: string }>;
+}
+
+const { blogBasePath, posts, categoriesList } = Astro.props;
+const base = blogBasePath ? `${blogBasePath}/blog` : '/blog';
+---
+
+<main>
+  <section class="hero-section">
+    <div class="hero-wrapper">
+      <div class="hero-banner">
+        <div class="hero-container">
+          <div class="hero-content">
+            <h1 class="hero-title">Blog Escala 24x7</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-tools-section" aria-label="Buscar y filtrar">
+    <div class="blog-search-row">
+      <div class="blog-search-wrap">
+        <input
+          type="search"
+          id="blog-search"
+          class="blog-search-input"
+          placeholder="Buscar artículos..."
+          autocomplete="off"
+          aria-label="Buscar artículos"
+        />
+        <button type="button" class="blog-search-btn" id="blog-search-btn" aria-label="Buscar">
+          <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        </button>
+      </div>
+    </div>
+    <div class="blog-tools-container">
+      <div class="blog-tabs-wrap" role="tablist" aria-label="Filtrar por categoría">
+        <button type="button" class="blog-tab blog-tab--active" data-category="" aria-selected="true">
+          Todos
+        </button>
+        {categoriesList.map((cat) => (
+          <button
+            type="button"
+            class="blog-tab"
+            data-category={cat.slug}
+            aria-selected="false"
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-featured-section" id="blog-featured-section">
+    <div class="blog-featured-container">
+      <a href={`${base}/${FEATURED_SLUG}`} class="blog-featured-card" id="blog-featured-card">
+        <div class="blog-featured-image">
+          <img src="/images/blog/blog-image-1.jpg" alt="" />
+        </div>
+        <div class="blog-featured-body">
+          <span class="blog-featured-date">Enero 26, 2026</span>
+          <h2 class="blog-featured-title">
+            Escala 24x7 consolida su integración al Grupo Stefanini con la evolución de su identidad corporativa.
+          </h2>
+          <p class="blog-featured-excerpt">
+            Tras el hito que supuso su alianza con el Grupo Stefanini a principios de este año, Escala 24x7 da un paso firme en su estrategia de consolidación regional al presentar la evolución de su identidad corporativa.
+          </p>
+          <span class="blog-featured-cta btn btn-secondary">
+            Lee el artículo completo
+            <Icon name="north_east" size={20} />
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="blog-entries-section">
+    <div class="blog-entries-container" id="blog-entries-container">
+      {posts.map((post) => (
+        <a
+          href={`${base}/${post.slug}`}
+          class="blog-entry-card"
+          data-category-slug={post.categorySlug || ''}
+          data-title={post.title}
+        >
+          <div class="blog-entry-image">
+            {post.thumbnail || post.previewImage ? (
+              <img
+                src={post.thumbnail || post.previewImage || ''}
+                alt=""
+                loading="lazy"
+              />
+            ) : (
+              <img src="/images/blog/blog-image-1.jpg" alt="" />
+            )}
+          </div>
+          <div class="blog-entry-body">
+            <span class="blog-entry-date">{post.publishedOnFormatted}</span>
+            {post.categoryName && (
+              <span class="blog-entry-category">{post.categoryName}</span>
+            )}
+            <h2 class="blog-entry-title">{post.title}</h2>
+            <p class="blog-entry-excerpt">
+              {post.excerpt || post.title}
+            </p>
+            <div class="blog-entry-cta">
+              <span class="btn btn-secondary">
+                Lee el artículo completo
+                <Icon name="north_east" size={20} />
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    <p class="blog-no-results" id="blog-no-results" hidden>
+      No se encontraron artículos con los filtros seleccionados.
+    </p>
+  </section>
+</main>
