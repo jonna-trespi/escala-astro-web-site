@@ -126,7 +126,8 @@ const portalId = '48294971';
 
     function getCheckboxTranslation(text) {
       const key = text.trim();
-      const t = checkboxLabelTranslations[key];
+      const keyNormalized = key.replace(/\s*\*+\s*$/, '').trim();
+      const t = checkboxLabelTranslations[key] || checkboxLabelTranslations[keyNormalized];
       if (t && t[lang]) return t[lang];
       return key;
     }
@@ -135,7 +136,7 @@ const portalId = '48294971';
     function applyCheckboxAndRadioLabels() {
       const form = wrapper.querySelector('form');
       if (!form) return false;
-      const labels = form.querySelectorAll('label[id$="-label"], label.hsfc-FieldLabel, .hs-form-field label, .hsfc-CheckboxFieldGroup_Options label, .hsfc-CheckboxFieldGroup label, [data-hsfc-id="CheckboxFieldGroup"] label');
+      const labels = form.querySelectorAll('label[id$="-label"], label.hsfc-FieldLabel, .hs-form-field label, .hsfc-CheckboxFieldGroup__Options label, .hsfc-CheckboxFieldGroup_Options label, .hsfc-CheckboxFieldGroup label, [data-hsfc-id="CheckboxFieldGroup"] label');
       let applied = 0;
       labels.forEach(function (label) {
         const span = label.querySelector('span');
@@ -144,8 +145,13 @@ const portalId = '48294971';
         if (!text) return;
         const translated = getCheckboxTranslation(text);
         if (translated === text) return;
-        if (span) span.textContent = translated;
-        else label.textContent = translated;
+        const suffix = (text.match(/\s*\*+\s*$/) || [])[0] || '';
+        const finalText = translated + suffix;
+        if (span) {
+          span.textContent = finalText;
+        } else {
+          label.textContent = finalText;
+        }
         label.setAttribute('lang', langAttr);
         applied++;
       });
@@ -199,6 +205,7 @@ const portalId = '48294971';
       applySubmitButtonText();
     }, 2000);
     setTimeout(function () { applyCheckboxAndRadioLabels(); }, 3500);
+    setTimeout(function () { applyCheckboxAndRadioLabels(); }, 5500);
     var successCheck = setInterval(function () {
       if (applySubmittedMessage()) clearInterval(successCheck);
     }, 1500);
@@ -332,6 +339,16 @@ const portalId = '48294971';
     margin-right: 8px;
   }
 
+  /* Texto de todos los checkboxes y radios: temas de interés, consentimiento, etc. */
+  .hubspot-form-wrapper :global(.hs-form-html label:has(input[type="checkbox"])),
+  .hubspot-form-wrapper :global(.hs-form-html label:has(input[type="radio"])),
+  .hubspot-form-wrapper :global(.hs-form-html .hs-form-checkbox-display),
+  .hubspot-form-wrapper :global(.hs-form-html .hs-form-radio-display) {
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1.2;
+  }
+
   .hubspot-form-wrapper :global(.hs-form-html .hs-form-checkbox-display),
   .hubspot-form-wrapper :global(.hs-form-html .hs-form-radio-display) {
     display: flex;
@@ -339,55 +356,99 @@ const portalId = '48294971';
     margin-bottom: 0.5rem;
   }
 
-  /* Temas de interés: grid en varias columnas + estilo botón multiselect */
+  /* Temas de interés: un solo borde que envuelve todo el grupo, grilla de 3 columnas */
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options) {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem 1rem;
     margin-top: 0.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: transparent;
   }
-  /* Anular margin-bottom que HubSpot aplica a los hijos (evita apilado vertical) */
+
+  /* Cada opción (div sin clase que envuelve label): celda de la grilla, contenido no se sale */
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options > div),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > div) {
+    display: block;
+    margin-bottom: 0 !important;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* Anular margin-bottom que HubSpot aplica a otros hijos */
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options > *),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > *) {
     margin-bottom: 0 !important;
   }
 
-  /* Cualquier hijo que contenga el checkbox (label o div) como botón */
+  /* Label: sin borde propio; checkbox y texto juntos; texto puede envolver para no salirse */
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options > div label),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > div label),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options > *:has(input[type="checkbox"])),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > *:has(input[type="checkbox"])),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options label),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options label),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options [role="group"] > label),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options [role="group"] > label) {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    padding: 0.25rem 0;
     margin: 0;
-    font-size: 14px;
-    font-weight: 500;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1.2;
     color: rgba(255, 255, 255, 0.95);
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
+    border: none;
+    border-radius: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.2s ease, color 0.2s ease;
+    white-space: normal;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options > div label span),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > div label span) {
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options > div label:hover),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > div label:hover),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options label:hover),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options label:hover),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options [role="group"] > label:hover),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options [role="group"] > label:hover) {
-    border-color: rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.05);
+    background: transparent;
+    color: rgba(255, 255, 255, 1);
   }
 
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options > *:has(input:checked)),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options > *:has(input:checked)),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options label:has(input:checked)),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options label:has(input:checked)),
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options [role="group"] > label:has(input:checked)),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options [role="group"] > label:has(input:checked)) {
-    background: #00C19F;
-    color: #1A1A1A;
-    border-color: #00C19F;
+    background: transparent;
+    color: #00C19F;
+    border: none;
   }
 
+  .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options input[type="checkbox"]),
   .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options input[type="checkbox"]) {
     margin-right: 0;
     accent-color: #00C19F;
+    flex-shrink: 0;
   }
 
   /* Fallback: grupo de checkboxes con clase antigua (varias columnas) */
@@ -403,8 +464,9 @@ const portalId = '48294971';
     gap: 0.5rem;
     padding: 0.75rem 1rem;
     margin: 0;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1.2;
     color: rgba(255, 255, 255, 0.95);
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -445,8 +507,9 @@ const portalId = '48294971';
     gap: 0.5rem;
     padding: 0.75rem 1rem;
     margin: 0;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1.2;
     color: rgba(255, 255, 255, 0.95);
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -468,13 +531,15 @@ const portalId = '48294971';
 
   /* Fila del botón: centrada (formulario nuevo HubSpot hsfc-*) */
   .hubspot-form-wrapper :global(.hsfc-NavigationRow),
-  .hubspot-form-wrapper :global(.hsfc-NavigationRow_Buttons) {
+  .hubspot-form-wrapper :global(.hsfc-NavigationRow_Buttons),
+  .hubspot-form-wrapper :global(.hsfc-NavigationRow__Buttons) {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
     margin-top: 1rem;
   }
 
-  .hubspot-form-wrapper :global(.hsfc-NavigationRow_Buttons) {
+  .hubspot-form-wrapper :global(.hsfc-NavigationRow_Buttons),
+  .hubspot-form-wrapper :global(.hsfc-NavigationRow__Buttons) {
     width: 100%;
   }
 
@@ -495,6 +560,9 @@ const portalId = '48294971';
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
 
   .hubspot-form-wrapper :global(.hs-form-html input[type="submit"]:hover),
@@ -541,6 +609,11 @@ const portalId = '48294971';
     .hubspot-form-wrapper :global(.hs-form-html select),
     .hubspot-form-wrapper :global(.hs-form-html textarea) {
       padding: 0.875rem 1rem;
+    }
+
+    .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup__Options),
+    .hubspot-form-wrapper :global(.hsfc-CheckboxFieldGroup_Options) {
+      grid-template-columns: 1fr;
     }
 
     .hubspot-form-wrapper :global(.hs-form-html ul.inputs-list.multi-container),
