@@ -38,6 +38,7 @@ const imageUrl = previewImage || thumbnail;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} - Blog Escala 24x7</title>
     <meta name="description" content={excerpt || title} />
+    <link rel="canonical" href={`https://www.escala24x7.com${Astro.url.pathname}`} />
     <link rel="icon" type="image/png" href="/icons/escala-favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

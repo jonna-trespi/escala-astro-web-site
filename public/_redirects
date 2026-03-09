@@ -1,0 +1,5 @@
+# Legacy Webflow blog URL → Astro blog (Cloudflare Pages)
+/single-post/:slug    /blog/:slug    301
+
+# Trabaja con nosotros → careers externo (matriz SEO)
+/work.with.us         https://escala24x7.careers.hibob.com/    302
