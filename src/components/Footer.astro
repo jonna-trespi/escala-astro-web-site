@@ -111,13 +111,15 @@ const basePath = localePrefix(lang);
   </div>
   <div class="footer-bottom">
     <div class="footer-legal">
-      <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/67695a35eb83a9a271c7f341_Legal-92424-POLI%CC%81TICA%20DE%20PRIVACIDAD%20-%20ESCALA%2024X7%20-%20ES.pdf" target="_blank">{t('footer.privacyPolicy')}</a>
+      <a href={lang === 'en' ? 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd1c37234276b203d6b_1.%20Privacy%20policy.pdf' : 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd237f09770c45dd800_1.%20Politica%20de%20privacidad.pdf'} target="_blank" rel="noopener noreferrer">{t('footer.privacyPolicy')}</a>
+      <a href={lang === 'en' ? 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd2e187eafeae84fcbd_4.%20Legal-92424-PRIVACY%20NOTICE%20-%20ESCALA%2024X7%20-%20EN.pdf' : 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd2df217812bcbc1f66_6.%20Aviso%20de%20privacidad.pdf'} target="_blank" rel="noopener noreferrer">{t('footer.privacyNotice')}</a>
+      <a href={lang === 'en' ? 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd228bb460e9e0296ef_2.%20Legal-92424-California%20Consumer%20Privacy%20Act%20(CCPA)%20-%20ESCALA%2024X7%20-%20EN.pdf' : 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd211a624c5e1cdb5ee_2.%20Legal-92424-Ley%20de%20Privacidad%20del%20Consumidor%20de%20California%20(CCPA)%20-%20ESCALA%2024X7%20-%20ES.pdf'} target="_blank" rel="noopener noreferrer">CCPA</a>
       <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/6500d9a975d1a33a539ef90a_Terminos%20y%20condiciones.pdf" target="_blank">{t('footer.terms')}</a>
       <a href={lang === 'en' ? 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69a046eec33ddafb671c2f96_poli%CC%81tica-de-seguridad-de-la-informacio%CC%81n-en.pdf' : 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69a046ee1cfe7303a795a43a_poli%CC%81tica-de-seguridad-de-la-informacio%CC%81n-es.pdf'} target="_blank" rel="noopener noreferrer">{t('footer.securityPolicy')}</a>
       <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/6500d9e1dd49e73f0e714f4b_Politica%20de%20cookies.pdf" target="_blank">{t('footer.cookiePolicy')}</a>
       <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/6500da5bdd49e73f0e71dbc7_GDPR.pdf" target="_blank">{t('footer.gdpr')}</a>
-      <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/68b0757005f182b5947a55e7_Poli%CC%81tica%20de%20Medio%20Ambiente%20y%20Sostenibilidad%20para%20Escala%2024x7%20_%20Mayo%202025%20(4).pdf" target="_blank">{t('footer.environmentPolicy')}</a>
-      <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/68e42acee98ea329f1e58c2a_POLI%CC%81TICA%20DE%20PRIVACIDAD-%20ESCALA%20COLOMBIA%20(ES).pdf" target="_blank">{t('footer.propertyPolicy')}</a>
+      <a href={lang === 'en' ? 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd21f2a87f89ab24b11_5.%20Poli%CC%81tica%20de%20Medio%20Ambiente%20y%20Sostenibilidad%20para%20Escala%2024x7%20_%20Mayo%202025%20(EN).pdf' : 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd2e2f6e219f90dcc43_5.%20Poli%CC%81tica%20de%20Medio%20Ambiente%20y%20Sostenibilidad%20para%20Escala%2024x7%20_%20Mayo%202025%20(ES).pdf'} target="_blank" rel="noopener noreferrer">{t('footer.environmentPolicy')}</a>
+      <a href="https://cdn.prod.website-files.com/61b289a7b76288810959ed6a/68e42acee98ea329f1e58c2a_POLI%CC%81TICA%20DE%20PRIVACIDAD-%20ESCALA%20COLOMBIA%20(ES).pdf" target="_blank">{t('footer.propertyPolicy')}</a>   
     </div>
     <p class="footer-copyright">
       {t('footer.copyright')}
