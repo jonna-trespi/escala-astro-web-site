@@ -12,7 +12,8 @@
     "import-blog": "node scripts/import-blog-csv.mjs",
     "seo:download": "node scripts/generate-seo-downloads.js",
     "build:seo": "npm run build && npm run seo:download",
-    "optimize:public-images": "node scripts/convert-public-to-webp.mjs"
+    "optimize:public-images": "node scripts/convert-public-to-webp.mjs",
+    "prune:public-unused": "node scripts/find-unused-public-assets.mjs --delete"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
