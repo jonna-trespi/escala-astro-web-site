@@ -1,6 +1,5 @@
 ---
 import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
 import HeroSlider from '../../components/HeroSlider.astro';
 import StatsCarousel from '../../components/StatsCarousel.astro';
@@ -24,12 +23,11 @@ const currentPath = Astro.url.pathname;
     <title>Escala - Serviços em nuvem com a abordagem Cloud Done Right®</title>
     <meta name="description" content="Soluções em nuvem desenvolvidas para gerar valor, eficiência e continuidade desde o primeiro dia.">
     <link rel="icon" type="image/png" href="/icons/escala-favicon.png" />
-    
+    <link rel="preload" as="image" href="/images/hero_banner_1.webp" type="image/webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
 </head>
 <body>
     <Header lang={lang} currentPath={currentPath} />
