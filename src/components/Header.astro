@@ -94,7 +94,7 @@ const pathPt = pathForLocale(currentPath, 'pt');
       <!-- Logo -->
       <div class="logo">
         <a href={prefix === '' ? '/' : `${prefix}/`}>
-          <img src="/logos/logo-escala.png" alt="Escala" class="logo-img" />
+          <img src="/logos/logo-escala.webp" alt="Escala" class="logo-img" />
         </a>
       </div>
 
@@ -123,7 +123,7 @@ const pathPt = pathForLocale(currentPath, 'pt');
                             {subitem.separator && <hr class="submenu-separator" />}
                             <a href={subitem.link || '#'} class="submenu-item" target={subitem.link?.startsWith('http') ? '_blank' : undefined} rel={subitem.link?.startsWith('http') ? 'noopener noreferrer' : undefined}>
                               <div class="submenu-icon-wrap">
-                                <img src={subitem.icon ? `/icons/menu/${subitem.icon}` : '/icons/menu-item-icon.png'} alt="" class="submenu-icon-img" />
+                                <img src={subitem.icon ? `/icons/menu/${subitem.icon}` : '/icons/menu-item-icon.webp'} alt="" class="submenu-icon-img" />
                               </div>
                               <div class="submenu-text">
                                 <span class="submenu-title">{subitem.label}</span>
@@ -147,7 +147,7 @@ const pathPt = pathForLocale(currentPath, 'pt');
       <!-- Language selector -->
       <div class="language">
         <button class="language-btn">
-          <img src="/icons/menu/menu-item-icon-1.png" alt="" class="language-btn-icon" />
+          <img src="/icons/menu/menu-item-icon-1.webp" alt="" class="language-btn-icon" />
           <span class="language-text">{langLabel}</span>
           <Icon name="expand_more" size={16} />
         </button>
@@ -155,7 +155,7 @@ const pathPt = pathForLocale(currentPath, 'pt');
           <div class="submenu-content">
             <a href={pathEs} class="submenu-item">
               <div class="submenu-icon-wrap">
-                <img src="/icons/menu/menu-item-icon-1.png" alt="" class="submenu-icon-img" />
+                <img src="/icons/menu/menu-item-icon-1.webp" alt="" class="submenu-icon-img" />
               </div>
               <div class="submenu-text">
                 <span class="submenu-title">{langNames.es}</span>
@@ -163,7 +163,7 @@ const pathPt = pathForLocale(currentPath, 'pt');
             </a>
             <a href={pathEn} class="submenu-item">
               <div class="submenu-icon-wrap">
-                <img src="/icons/menu/menu-item-icon-1.png" alt="" class="submenu-icon-img" />
+                <img src="/icons/menu/menu-item-icon-1.webp" alt="" class="submenu-icon-img" />
               </div>
               <div class="submenu-text">
                 <span class="submenu-title">{langNames.en}</span>
@@ -171,7 +171,7 @@ const pathPt = pathForLocale(currentPath, 'pt');
             </a>
             <a href={pathPt} class="submenu-item">
               <div class="submenu-icon-wrap">
-                <img src="/icons/menu/menu-item-icon-1.png" alt="" class="submenu-icon-img" />
+                <img src="/icons/menu/menu-item-icon-1.webp" alt="" class="submenu-icon-img" />
               </div>
               <div class="submenu-text">
                 <span class="submenu-title">{langNames.pt}</span>
@@ -205,7 +205,7 @@ const pathPt = pathForLocale(currentPath, 'pt');
                     <>
                       {subitem.separator && <hr class="mobile-submenu-separator" />}
                       <a href={subitem.link || '#'} class="mobile-submenu-item" target={subitem.link?.startsWith('http') ? '_blank' : undefined} rel={subitem.link?.startsWith('http') ? 'noopener noreferrer' : undefined}>
-                        <img src={subitem.icon ? `/icons/menu/${subitem.icon}` : '/icons/menu-item-icon.png'} alt="" class="mobile-submenu-icon" />
+                        <img src={subitem.icon ? `/icons/menu/${subitem.icon}` : '/icons/menu-item-icon.webp'} alt="" class="mobile-submenu-icon" />
                         <div class="mobile-submenu-text">
                           <span class="mobile-submenu-title">{subitem.label}</span>
                           {subitem.description && (
@@ -229,7 +229,7 @@ const pathPt = pathForLocale(currentPath, 'pt');
         <div class="mobile-nav-item mobile-language">
           <button class="mobile-nav-toggle mobile-language-btn" type="button">
             <span class="mobile-nav-label">
-              <img src="/icons/menu/menu-item-icon-1.png" alt="" class="mobile-submenu-icon" />
+              <img src="/icons/menu/menu-item-icon-1.webp" alt="" class="mobile-submenu-icon" />
               {langNames[lang]}
             </span>
             <span class="material-symbols-outlined mobile-nav-icon">expand_more</span>
