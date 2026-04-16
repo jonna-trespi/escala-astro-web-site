@@ -28,6 +28,9 @@ if (!post) {
 
 const { title, excerpt, publishedOnFormatted, categoryName, previewImage, thumbnail, content } = post;
 const imageUrl = previewImage || thumbnail;
+const baseDesc = (excerpt || title).trim();
+const metaDescription = baseDesc ? `${baseDesc} · Português (Escala 24x7)` : "Blog Escala 24x7 · Português";
+const pageTitle = `${title} | Blog Escala 24x7 (Português)`;
 ---
 
 <!doctype html>
@@ -36,8 +39,8 @@ const imageUrl = previewImage || thumbnail;
     <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title} - Blog Escala 24x7</title>
-    <meta name="description" content={excerpt || title} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
     <link rel="canonical" href={`https://www.escala24x7.com${Astro.url.pathname}`} />
     <link rel="icon" type="image/png" href="/icons/escala-favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
