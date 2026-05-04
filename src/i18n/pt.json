@@ -1,5 +1,38 @@
 {
   "language": { "es": "Español", "en": "English", "pt": "Português" },
+  "cookieBanner": {
+    "title": "Cookie Settings",
+    "badge": "Opt In / GDPR",
+    "introHtml": "Na <strong>Escala 24x7®</strong> usamos cookies e tecnologias semelhantes para melhorar sua experiência, analisar o uso do nosso site e lembrar suas preferências.",
+    "bullet1": "Você pode aceitar todas, rejeitar todas ou configurar conforme sua necessidade.",
+    "bullet2": "Cookies não essenciais ficam desativados por padrão.",
+    "bullet3": "Fechar este banner não constitui consentimento.",
+    "bullet4Lead": "Consulte nossa",
+    "cookiePolicy": "Política de Cookies",
+    "bullet4Mid": "e",
+    "privacyPolicy": "Política de Privacidade",
+    "bullet4Trail": "para mais informações.",
+    "ctaAdjust": "Ajustar privacidade",
+    "ctaReject": "Rejeitar tudo",
+    "ctaAccept": "Aceitar tudo",
+    "close": "Fechar aviso de cookies",
+    "settings": {
+      "badge": "GDPR-Compliant",
+      "modalTitle": "Ajuste de privacidade",
+      "linkCookieShort": "Política de cookies",
+      "linkPrivacyShort": "Política de privacidade",
+      "desc": "Usamos cookies e outras tecnologias nas categorias abaixo. Altere para aceitar ou rejeitar a recolha de dados relacionada.",
+      "essentialTitle": "Essenciais",
+      "essentialDesc": "Necessário para a funcionalidade básica do site.",
+      "required": "Obrigatório",
+      "analyticsTitle": "Analíticas",
+      "analyticsDesc": "Fornece informações sobre o seu uso e a interação com o site.",
+      "rejectAll": "Rejeitar tudo",
+      "acceptAll": "Aceitar tudo",
+      "acceptSelected": "Aceitar selecionados",
+      "closeModal": "Fechar ajustes de privacidade"
+    }
+  },
   "nav": {
     "company": "Empresa",
     "about": "Sobre a Escala 24x7",

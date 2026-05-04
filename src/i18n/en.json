@@ -1,5 +1,38 @@
 {
   "language": { "es": "Español", "en": "English", "pt": "Português" },
+  "cookieBanner": {
+    "title": "Cookie Settings",
+    "badge": "Opt In / GDPR",
+    "introHtml": "At <strong>Escala 24x7®</strong> we use cookies and similar technologies to improve your experience, analyze how our website is used, and remember your preferences.",
+    "bullet1": "You can accept all, reject all, or adjust settings to your needs.",
+    "bullet2": "Non-essential cookies are turned off by default.",
+    "bullet3": "Closing this banner does not count as consent.",
+    "bullet4Lead": "See our",
+    "cookiePolicy": "Cookie Policy",
+    "bullet4Mid": "and",
+    "privacyPolicy": "Privacy Policy",
+    "bullet4Trail": "for more information.",
+    "ctaAdjust": "Privacy settings",
+    "ctaReject": "Reject all",
+    "ctaAccept": "Accept all",
+    "close": "Close cookie notice",
+    "settings": {
+      "badge": "GDPR-Compliant",
+      "modalTitle": "Privacy settings",
+      "linkCookieShort": "Cookie policy",
+      "linkPrivacyShort": "Privacy policy",
+      "desc": "We use cookies and other technologies in the categories below. Toggle any to accept or reject related data collection.",
+      "essentialTitle": "Essential",
+      "essentialDesc": "Necessary for basic website functionality.",
+      "required": "Required",
+      "analyticsTitle": "Analytics",
+      "analyticsDesc": "Provides insight into your usage and site interaction.",
+      "rejectAll": "Reject all",
+      "acceptAll": "Accept all",
+      "acceptSelected": "Accept selected",
+      "closeModal": "Close privacy settings"
+    }
+  },
   "nav": {
     "company": "Company",
     "about": "About Escala 24x7",

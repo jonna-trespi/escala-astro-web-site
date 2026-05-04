@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import CookieConsentBanner from './CookieConsentBanner.astro';
 import { getT, pathForLocale, localePrefix, type Locale } from '../i18n';
 import esDict from '../i18n/es.json';
 import enDict from '../i18n/en.json';
@@ -250,6 +251,8 @@ const pathPt = pathForLocale(currentPath, 'pt');
     </div>
   </div>
 </header>
+
+<CookieConsentBanner lang={lang} />
 
 <style>
   .header {
