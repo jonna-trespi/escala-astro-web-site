@@ -1,15 +1,37 @@
 ---
 /**
- * Google Analytics 4 (GA4)
- * Incluir en el <head> de cada página para tracking global.
+ * Google Analytics 4 (GA4) — solo si el usuario aceptó analítica (CookieConsentBanner).
  */
-const measurementId = 'G-E34HCRR4SM';
 ---
 
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
 <script is:inline>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'G-E34HCRR4SM');
+  (function () {
+    var MID = 'G-E34HCRR4SM';
+    function analyticsOn() {
+      try {
+        return localStorage.getItem('escala_cookie_analytics_v1') === '1';
+      } catch (e) {
+        return false;
+      }
+    }
+    function inject() {
+      if (window.__escalaGALoaded) return;
+      window.__escalaGALoaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(MID);
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', MID);
+    }
+    if (analyticsOn()) inject();
+    window.addEventListener('escala-analytics-consent-changed', function (ev) {
+      if (ev && ev.detail && ev.detail.enabled === true) inject();
+    });
+  })();
 </script>

@@ -20,10 +20,21 @@ const privacyPolicyPdfHref =
   lang === 'en'
     ? 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd1c37234276b203d6b_1.%20Privacy%20policy.pdf'
     : 'https://cdn.prod.website-files.com/6980f6f0e4844fc50c236095/69d8edd237f09770c45dd800_1.%20Politica%20de%20privacidad.pdf';
+
+/** Client-side CookieFlow / Supabase audit (same schema as Reform CookieFlow™). */
+const cookieFlowClientConfig = {
+  supabaseUrl: import.meta.env.PUBLIC_COOKIEFLOW_SUPABASE_URL ?? '',
+  supabaseAnon: import.meta.env.PUBLIC_COOKIEFLOW_SUPABASE_ANON_KEY ?? '',
+  geoWorker:
+    import.meta.env.PUBLIC_COOKIEFLOW_GEO_WORKER_URL ??
+    'https://cookieflow-geo.reformdigital.workers.dev/',
+  /** Comma-separated ISO codes merged into default ZONE_3 (optional `rd-zone-3`-style overrides). */
+  zone3Extra: import.meta.env.PUBLIC_COOKIEFLOW_ZONE3_EXTRA_ISO ?? '',
+};
 ---
 
 <div
-  class="cookie-consent"
+  class="cookie-consent cookie-consent--enter-prep"
   id="cookie-consent-banner"
   role="dialog"
   aria-modal="false"
@@ -234,6 +245,8 @@ const privacyPolicyPdfHref =
   </div>
 </div>
 
+<script type="application/json" id="escala-cookieflow-env" set:html={JSON.stringify(cookieFlowClientConfig)} />
+
 <style is:global>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
   .cookie-consent {
@@ -246,6 +259,37 @@ const privacyPolicyPdfHref =
     width: min(37.5rem, calc(100vw - 48px));
     max-width: calc(100vw - 48px);
     pointer-events: none;
+  }
+
+  /* Entrada: 1 s de espera (JS) + slide desde abajo */
+  .cookie-consent.cookie-consent--enter-prep:not(.cookie-consent--enter-visible) {
+    opacity: 0;
+    transform: translate3d(0, calc(100% + 32px), 0);
+    transition: none;
+  }
+
+  .cookie-consent.cookie-consent--enter-prep:not(.cookie-consent--enter-visible) .cookie-consent__panel {
+    pointer-events: none;
+  }
+
+  .cookie-consent.cookie-consent--enter-prep.cookie-consent--enter-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition:
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cookie-consent.cookie-consent--enter-prep:not(.cookie-consent--enter-visible) {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .cookie-consent.cookie-consent--enter-prep:not(.cookie-consent--enter-visible) .cookie-consent__panel {
+      pointer-events: auto;
+    }
   }
 
   .cookie-consent__panel {
@@ -846,6 +890,156 @@ const privacyPolicyPdfHref =
     var STORAGE = 'escala_cookie_consent_v1';
     var ANALYTICS = 'escala_cookie_analytics_v1';
     var SESSION_DISMISS = 'escala_cookie_banner_session';
+    var CONSENT_ID_KEY = 'escala_rd_consent_id_v1';
+
+    var cfgEl = document.getElementById('escala-cookieflow-env');
+    var cfg = {
+      supabaseUrl: '',
+      supabaseAnon: '',
+      geoWorker: 'https://cookieflow-geo.reformdigital.workers.dev/',
+      zone3Extra: '',
+    };
+    if (cfgEl && cfgEl.textContent) {
+      try {
+        cfg = Object.assign(cfg, JSON.parse(cfgEl.textContent));
+      } catch (e) {}
+    }
+
+    var ZONE3_DEFAULT =
+      'AR,AT,BH,BE,BR,BG,CA,HR,CY,CZ,DK,EE,FI,FR,DE,GR,HU,IS,IE,IL,IT,JP,KE,KR,LV,LI,LT,LU,MT,MU,NL,NZ,NG,NO,PL,PT,QA,RO,SK,SI,ZA,ES,SE,CH,TR,UG,GB,UY';
+    var ZONE2_CSV = 'AS,GU,MP,PR,US,VI';
+
+    function isoSet(csv) {
+      var o = {};
+      String(csv || '')
+        .split(',')
+        .forEach(function (c) {
+          c = c.trim().toUpperCase();
+          if (c.length === 2) o[c] = true;
+        });
+      return o;
+    }
+
+    var ZONE2 = isoSet(ZONE2_CSV);
+    var ZONE3 = isoSet(ZONE3_DEFAULT + (cfg.zone3Extra ? ',' + cfg.zone3Extra : ''));
+
+    function resolveZone(country) {
+      if (!country || String(country).length !== 2) return 'ZONE_3';
+      var u = String(country).toUpperCase();
+      if (ZONE2[u]) return 'ZONE_2';
+      if (ZONE3[u]) return 'ZONE_3';
+      return 'ZONE_1';
+    }
+
+    function notifyAnalytics(enabled) {
+      try {
+        window.dispatchEvent(
+          new CustomEvent('escala-analytics-consent-changed', { detail: { enabled: !!enabled } }),
+        );
+      } catch (e) {}
+    }
+
+    function getOrCreateConsentId() {
+      try {
+        var existing = localStorage.getItem(CONSENT_ID_KEY);
+        if (existing && String(existing).length >= 20) return String(existing);
+      } catch (e) {}
+      var id = '';
+      try {
+        var a = new Uint8Array(14);
+        crypto.getRandomValues(a);
+        id = Array.from(a, function (b) {
+          return ('0' + b.toString(16)).slice(-2);
+        }).join('');
+        id = id.toUpperCase().slice(0, 28).padEnd(28, '0');
+      } catch (e2) {
+        id = (Date.now() + Math.random()).toString(36).toUpperCase().replace(/\./g, '').slice(0, 28).padEnd(28, 'X');
+      }
+      try {
+        localStorage.setItem(CONSENT_ID_KEY, id);
+      } catch (e3) {}
+      return id;
+    }
+
+    function modalSnippet() {
+      var el = root.querySelector('.cookie-consent__intro');
+      var t = el && el.textContent ? el.textContent.replace(/\s+/g, ' ').trim() : '';
+      return t.slice(0, 4000);
+    }
+
+    function pageUrl() {
+      try {
+        return location.href.split('#')[0];
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function fetchGeo() {
+      var url = (cfg.geoWorker || '').replace(/\/$/, '') + '/';
+      return fetch(url, { headers: { 'x-cookieflow': '1' }, credentials: 'omit' })
+        .then(function (r) {
+          return r.ok ? r.json() : {};
+        })
+        .catch(function () {
+          return {};
+        });
+    }
+
+    function pushConsentRecord(payload) {
+      if (!cfg.supabaseUrl || !cfg.supabaseAnon) return;
+      var base = String(cfg.supabaseUrl).replace(/\/$/, '');
+      var pu = pageUrl();
+      if (!pu) pu = typeof location !== 'undefined' ? location.origin + location.pathname : 'unknown:client';
+      var body = {
+        consent_id: getOrCreateConsentId(),
+        anonymized_ip: payload.anonymized_ip || null,
+        page_url: pu,
+        user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
+        consent_method: payload.consent_method,
+        modal_text: modalSnippet(),
+        button_clicked: payload.button_clicked || '',
+        consents: payload.consents,
+        geo_region: payload.geo_region || 'ZONE_3',
+      };
+      fetch(base + '/rest/v1/consents', {
+        method: 'POST',
+        headers: {
+          apikey: cfg.supabaseAnon,
+          Authorization: 'Bearer ' + cfg.supabaseAnon,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify(body),
+        keepalive: true,
+      }).catch(function () {});
+    }
+
+    function recordConsent(consentMethod, buttonEl, consents) {
+      fetchGeo().then(function (geo) {
+        var country = geo && geo.country ? String(geo.country) : '';
+        var zone = resolveZone(country);
+        var ip = geo && geo.ip ? String(geo.ip) : null;
+        var clicked = '';
+        if (buttonEl && buttonEl.textContent) clicked = buttonEl.textContent.replace(/\s+/g, ' ').trim().slice(0, 500);
+        pushConsentRecord({
+          consent_method: consentMethod,
+          button_clicked: clicked,
+          consents: consents,
+          geo_region: zone,
+          anonymized_ip: ip,
+        });
+      });
+    }
+
+    function consentsFromAnalytics(on) {
+      return {
+        essential: true,
+        analytics: !!on,
+        marketing: false,
+        personalization: false,
+      };
+    }
 
     function hideMain() {
       root.style.display = 'none';
@@ -861,6 +1055,16 @@ const privacyPolicyPdfHref =
       hideMain();
       return;
     }
+
+    function scheduleBannerEntrance() {
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var delayMs = reduceMotion ? 0 : 1000;
+      window.setTimeout(function () {
+        root.classList.add('cookie-consent--enter-visible');
+      }, delayMs);
+    }
+
+    scheduleBannerEntrance();
 
     function openSettings() {
       var cb = document.getElementById('cookie-settings-analytics');
@@ -882,6 +1086,7 @@ const privacyPolicyPdfHref =
     function saveAll(on) {
       localStorage.setItem(STORAGE, on ? 'accepted' : 'rejected');
       localStorage.setItem(ANALYTICS, on ? '1' : '0');
+      notifyAnalytics(on);
       closeSettings();
       hideMain();
     }
@@ -891,6 +1096,7 @@ const privacyPolicyPdfHref =
       var on = cb && cb.checked;
       localStorage.setItem(STORAGE, 'custom');
       localStorage.setItem(ANALYTICS, on ? '1' : '0');
+      notifyAnalytics(on);
       closeSettings();
       hideMain();
     }
@@ -899,14 +1105,18 @@ const privacyPolicyPdfHref =
       sessionStorage.setItem(SESSION_DISMISS, '1');
       hideMain();
     });
-    root.querySelector('[data-cc-accept]')?.addEventListener('click', function () {
+    root.querySelector('[data-cc-accept]')?.addEventListener('click', function (ev) {
       localStorage.setItem(STORAGE, 'accepted');
       localStorage.setItem(ANALYTICS, '1');
+      recordConsent('accept_all', ev.currentTarget, consentsFromAnalytics(true));
+      notifyAnalytics(true);
       hideMain();
     });
-    root.querySelector('[data-cc-reject]')?.addEventListener('click', function () {
+    root.querySelector('[data-cc-reject]')?.addEventListener('click', function (ev) {
       localStorage.setItem(STORAGE, 'rejected');
       localStorage.setItem(ANALYTICS, '0');
+      recordConsent('reject_all', ev.currentTarget, consentsFromAnalytics(false));
+      notifyAnalytics(false);
       hideMain();
     });
     root.querySelector('[data-cc-open-settings]')?.addEventListener('click', function () {
@@ -915,12 +1125,19 @@ const privacyPolicyPdfHref =
 
     overlay.querySelector('[data-settings-close]')?.addEventListener('click', closeSettings);
     overlay.querySelector('[data-settings-backdrop]')?.addEventListener('click', closeSettings);
-    overlay.querySelector('[data-settings-reject]')?.addEventListener('click', function () {
+    overlay.querySelector('[data-settings-reject]')?.addEventListener('click', function (ev) {
+      recordConsent('reject_all', ev.currentTarget, consentsFromAnalytics(false));
       saveAll(false);
     });
-    overlay.querySelector('[data-settings-accept-all]')?.addEventListener('click', function () {
+    overlay.querySelector('[data-settings-accept-all]')?.addEventListener('click', function (ev) {
+      recordConsent('accept_all', ev.currentTarget, consentsFromAnalytics(true));
       saveAll(true);
     });
-    overlay.querySelector('[data-settings-accept-selected]')?.addEventListener('click', saveSelected);
+    overlay.querySelector('[data-settings-accept-selected]')?.addEventListener('click', function (ev) {
+      var cb = document.getElementById('cookie-settings-analytics');
+      var on = !!(cb && cb.checked);
+      recordConsent('accept_selected', ev.currentTarget, consentsFromAnalytics(on));
+      saveSelected();
+    });
   })();
 </script>
