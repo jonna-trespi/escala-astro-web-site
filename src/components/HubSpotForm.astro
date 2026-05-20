@@ -132,6 +132,10 @@ const portalId = '48294971';
       return key;
     }
 
+    function isPhoneOrDropdownLabel(label) {
+      return !!(label.closest('.hsfc-PhoneInput') || label.closest('.hsfc-DropdownOptions'));
+    }
+
     /** Traduce labels de checkboxes, radios y títulos de grupo (términos, temas de interés) y corrige lang. */
     function applyCheckboxAndRadioLabels() {
       const form = wrapper.querySelector('form');
@@ -139,6 +143,7 @@ const portalId = '48294971';
       const labels = form.querySelectorAll('label[id$="-label"], label.hsfc-FieldLabel, .hs-form-field label, .hsfc-CheckboxFieldGroup__Options label, .hsfc-CheckboxFieldGroup_Options label, .hsfc-CheckboxFieldGroup label, [data-hsfc-id="CheckboxFieldGroup"] label');
       let applied = 0;
       labels.forEach(function (label) {
+        if (isPhoneOrDropdownLabel(label)) return;
         const span = label.querySelector('span');
         const rawText = (span ? span.textContent : label.textContent) || '';
         const text = rawText.trim();
@@ -165,6 +170,7 @@ const portalId = '48294971';
       if (labels.length === 0) return false;
       let applied = 0;
       labels.forEach(function (label) {
+        if (isPhoneOrDropdownLabel(label)) return;
         const span = label.querySelector('span');
         const rawText = (span ? span.textContent : label.textContent) || '';
         const text = rawText.trim();
@@ -172,6 +178,7 @@ const portalId = '48294971';
         const forId = label.getAttribute('for');
         const input = forId ? form.querySelector('#' + CSS.escape(forId)) : label.nextElementSibling;
         if (!input) return;
+        if (input.closest('.hsfc-PhoneInput')) return;
         var type = (input.type || '').toLowerCase();
         var isCheckboxOrRadio = input.tagName === 'INPUT' && (type === 'checkbox' || type === 'radio');
         if (isCheckboxOrRadio) return;
@@ -194,16 +201,30 @@ const portalId = '48294971';
       var btnDone = applySubmitButtonText();
       return labelsDone || checkboxDone || btnDone;
     }
+
+    function shouldDisconnectObserver() {
+      var phone = wrapper.querySelector('.hsfc-PhoneInput');
+      if (!phone) return false;
+      return (
+        wrapper.classList.contains('hubspot-labels-as-placeholders') ||
+        !wrapper.querySelector('form label.hsfc-FieldLabel:not(.hubspot-label-as-placeholder)')
+      );
+    }
+
     var observer = new MutationObserver(function () {
-      if (onFormReady()) observer.disconnect();
+      onFormReady();
+      if (shouldDisconnectObserver()) observer.disconnect();
     });
     observer.observe(wrapper, { childList: true, subtree: true });
-    if (onFormReady()) observer.disconnect();
-    else setTimeout(function () {
+    onFormReady();
+    if (shouldDisconnectObserver()) observer.disconnect();
+    setTimeout(function () {
       onFormReady();
       applyCheckboxAndRadioLabels();
       applySubmitButtonText();
+      if (shouldDisconnectObserver()) observer.disconnect();
     }, 2000);
+    setTimeout(function () { observer.disconnect(); }, 8000);
     setTimeout(function () { applyCheckboxAndRadioLabels(); }, 3500);
     setTimeout(function () { applyCheckboxAndRadioLabels(); }, 5500);
     var successCheck = setInterval(function () {
@@ -217,6 +238,8 @@ const portalId = '48294971';
   .hubspot-form-wrapper {
     width: 100%;
     max-width: 100%;
+    overflow: visible;
+    position: relative;
   }
 
   /* Ocultar el bloque de texto descriptivo del form (ej. "We'd love to hear from you!...") */
@@ -296,6 +319,34 @@ const portalId = '48294971';
   :global(.hsfc-DropdownOptions__Search input[type="text"][role="searchbox"]::placeholder) {
     color: #1a1a1a !important;
     opacity: 0.8 !important;
+  }
+
+  /* Teléfono: evitar recorte y quedar por encima del banner de cookies (z-index 12000) */
+  .hubspot-form-wrapper :global(.hsfc-PhoneInput),
+  .hubspot-form-wrapper :global([data-hsfc-id="PhoneField"]) {
+    overflow: visible !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hubspot-form-wrapper :global(.hsfc-PhoneInput:focus-within),
+  .hubspot-form-wrapper :global([data-hsfc-id="PhoneField"]:focus-within) {
+    z-index: 13001;
+  }
+
+  :global(.hsfc-DropdownOptions) {
+    z-index: 13001 !important;
+    pointer-events: auto !important;
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  :global(.hsfc-DropdownOptions [role="option"]),
+  :global(.hsfc-DropdownOptions button),
+  :global(.hsfc-DropdownOptions li) {
+    color: #1a1a1a !important;
+    pointer-events: auto !important;
   }
 
   /* Espaciado entre campos */

@@ -273,7 +273,7 @@ const mapLocations = [
     min-height: 100vh;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
     padding: 100px 0;
   }
 
@@ -485,6 +485,8 @@ const mapLocations = [
     gap: 1.5rem;
     position: relative;
     top: -60px;
+    z-index: 2;
+    overflow: visible;
   }
 
   .form-card-title {
