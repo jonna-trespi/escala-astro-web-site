@@ -195,38 +195,46 @@ const portalId = '48294971';
       return applied > 0;
     }
 
-    function onFormReady() {
-      var labelsDone = applyPlaceholdersAndHideLabels();
-      var checkboxDone = applyCheckboxAndRadioLabels();
-      var btnDone = applySubmitButtonText();
-      return labelsDone || checkboxDone || btnDone;
+    var translationsApplied = false;
+
+    function isHubspotFormLoaded() {
+      var root = wrapper.querySelector('.hs-form-html');
+      return !!(root && root.getAttribute('data-loaded'));
     }
 
-    function shouldDisconnectObserver() {
-      var phone = wrapper.querySelector('.hsfc-PhoneInput');
-      if (!phone) return false;
-      return (
-        wrapper.classList.contains('hubspot-labels-as-placeholders') ||
-        !wrapper.querySelector('form label.hsfc-FieldLabel:not(.hubspot-label-as-placeholder)')
-      );
+    /** Tras hidratación de React (HubSpot v4). Mutar el DOM antes rompe captcha y submit. */
+    function applyTranslations() {
+      if (translationsApplied || !isHubspotFormLoaded()) return;
+      translationsApplied = true;
+      applyPlaceholdersAndHideLabels();
+      applyCheckboxAndRadioLabels();
+      applySubmitButtonText();
+    }
+
+    function scheduleTranslations() {
+      if (!isHubspotFormLoaded()) return;
+      window.setTimeout(applyTranslations, 2500);
     }
 
     var observer = new MutationObserver(function () {
-      onFormReady();
-      if (shouldDisconnectObserver()) observer.disconnect();
+      if (isHubspotFormLoaded()) {
+        observer.disconnect();
+        scheduleTranslations();
+      }
     });
-    observer.observe(wrapper, { childList: true, subtree: true });
-    onFormReady();
-    if (shouldDisconnectObserver()) observer.disconnect();
-    setTimeout(function () {
-      onFormReady();
-      applyCheckboxAndRadioLabels();
-      applySubmitButtonText();
-      if (shouldDisconnectObserver()) observer.disconnect();
-    }, 2000);
-    setTimeout(function () { observer.disconnect(); }, 8000);
-    setTimeout(function () { applyCheckboxAndRadioLabels(); }, 3500);
-    setTimeout(function () { applyCheckboxAndRadioLabels(); }, 5500);
+    observer.observe(wrapper, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-loaded'],
+    });
+
+    if (isHubspotFormLoaded()) scheduleTranslations();
+    window.setTimeout(function () {
+      if (!translationsApplied && isHubspotFormLoaded()) scheduleTranslations();
+      observer.disconnect();
+    }, 10000);
+
     var successCheck = setInterval(function () {
       if (applySubmittedMessage()) clearInterval(successCheck);
     }, 1500);
